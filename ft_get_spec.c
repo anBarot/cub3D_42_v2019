@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 18:20:58 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/28 18:25:17 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,6 @@ int	ft_spec_isvalid(t_spec *spec)
 	if ((ft_check_map_content_and_size(spec->map) + ft_check_map_border(spec->map)) != 2)
 		return (0);
 	printf("\033[0;32m");
-	printf("\n------specs are valid------\n");
+	printf("\n------specs are valid------\n"
 	return (1);
 }
