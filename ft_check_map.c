@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:58:10 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 14:53:22 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/28 17:49:37 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 int	ft_check_map_content_and_size(char **map)
 {
-	size_t	x;
+	printf("\n-----entering check content------\n");
+	size_t	size;
 	int		i_line;
 	int		i_col;
 
-	x = ft_strlen(map[0]);
+	size = ft_strlen(map[0]);
 	i_line = 0;
 	i_col = 0;
 	while (map[i_line])
 	{
-		if (ft_strlen(map[i_line]) != x)
+		printf("\nmap %d : %s\n", i_line, map[i_line]);
+		if (ft_strlen(map[i_line]) != size)
 			return (0);
 		while (map[i_line][i_col])
 		{
 			if (ft_check_in_set_char(map[i_line][i_col], "012NEWS") != 1)
 				return (0);
+			i_col++;
 		}
 		i_line++;
 	}
+	printf("\n-----quitting check content------\n");
 	return (1);
 }
 
@@ -58,7 +62,7 @@ int	ft_check_map_border(char **map)
 	i_col = 0;
 	nbr_col = ft_strlen(map[0]);
 	nbr_line = 0;
-	while (map[nbr_line][0])
+	while (map[nbr_line])
 		nbr_line++;
 	while (i_col <= nbr_col)
 	{
