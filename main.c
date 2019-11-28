@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 15:08:16 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/28 15:51:24 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_spec_initialyze(t_spec *spec)
 {
 	printf("\n-----entering spec initialyze------\n");
 	if (!(spec->resol = (t_resol *)malloc(sizeof(t_resol))) || !(spec->col_ceil = (t_col *)malloc(sizeof(t_col)))
-		|| !(spec->col_floor = (t_col *)malloc(sizeof(t_col))))
+		|| !(spec->col_floor = (t_col *)malloc(sizeof(t_col))) || !(spec->map = (char **)malloc(sizeof(char*) * 1000000)))
 		return (0);
 	spec->resol->x = 0;
 	spec->resol->y = 0;
@@ -52,7 +52,6 @@ int	ft_spec_initialyze(t_spec *spec)
 	spec->path_east = 0;
 	spec->path_south = 0;
 	spec->path_sprite = 0;
-	spec->map = 0;
 	printf("\n------quitting spec initialize------\n");
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 15:20:05 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/28 15:58:37 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,24 @@ int		ft_get_spec(t_spec *spec, int fd)
 void ft_get_map(char **map, char **line, int fd)
 {
 	printf("\n-----entering get map------\n");
-	int		i_line;
-	int		i_map;
+	int		map_line;
 
-	i_line = 0;
-	i_map = 0;
-	while (line[i_line])
+	map_line = 0;
+	while (line)
 	{
-		map[i_map] = ft_strdup((const char *)line);
-		i_map++;
-		if ((get_next_line(fd, line)) == 0)
+		map[map_line] = ft_strdup((const char *)*line);
+		map_line++;
+		if (get_next_line(fd, line) == 0)
+		{
+			map[map_line] = ft_strdup((const char *)line);
+			map[map_line + 1] = ft_strdup("\0");
 			break ;
+		}
+		if (line[0][0] != '1')
+		{
+			map[map_line + 1] = ft_strdup("\0");
+			break ;
+		}
 	}
 	printf("\n------quitting get map------\n");
 }
