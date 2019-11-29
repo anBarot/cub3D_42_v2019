@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 18:40:36 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/29 14:47:44 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
+# include "../minilibx_opengl_20191021/mlx_opengl.h"
+# include "../minilibx_opengl_20191021/mlx.h"
+# include "../minilibx_opengl_20191021/mlx_int.h"
+# include "../minilibx_opengl_20191021/mlx_new_window.h"
+# include "../minilibx_opengl_20191021/mlx_png.h"
 # define BUFFER_SIZE 100
 typedef struct		s_resol
 {
@@ -61,4 +67,5 @@ int					ft_spec_isvalid(t_spec *spec);
 int					ft_isdigit(int c);
 char				*ft_strdup(const char *s);
 int					ft_atoi(const char *s);
+void				ft_free_spec(t_spec *spec);
 #endif

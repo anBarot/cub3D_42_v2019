@@ -6,11 +6,11 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/28 13:58:10 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 18:40:29 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/29 13:51:26 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../include/cub3D.h"
 
 int	ft_check_map_content_and_size(char **map)
 {

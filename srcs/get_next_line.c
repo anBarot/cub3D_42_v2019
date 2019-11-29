@@ -6,11 +6,11 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:57:29 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 14:45:43 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/29 13:50:58 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../include/cub3D.h"
 
 int		get_next_line(int fd, char **line)
 {

@@ -6,11 +6,11 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 18:48:01 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/29 14:45:23 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../include/cub3D.h"
 
 int		errno;
 
@@ -19,23 +19,24 @@ int 	main(int ac, char **av)
 	printf("\n-----entering main------\n");
 	t_spec	*spec;
 	int		fd;
+	void	*mlx_ptr;
+	void	*win_ptr;
 	
 	if (!(spec = (t_spec *)malloc(sizeof(t_spec))) || !(ft_spec_initialyze(spec)))
 		return (0);
-	if (ac != 2 || (fd = open(av[1], O_RDONLY)) == -1
-		|| !ft_get_spec(spec, fd) || !ft_spec_isvalid(spec))
+	if (ac != 2 || (fd = open(av[1], O_RDONLY)) == -1 || !ft_get_spec(spec, fd)
+		|| !ft_spec_isvalid(spec) || !(mlx_ptr = mlx_init()))
 	{
 		perror("ERROR\n");
 		return (0);
 	}
-	// if (!mlx_new_window(mlx_ptr, w_size->x, w_size->y, char *title))
-		return (0);
+	win_ptr = mlx_new_opengl_window(mlx_ptr, 500, 500, "test cub3D");
 	ft_free_spec(spec);
 	printf("\n------quitting main------\n");
 	return (0);
 }
 
-int	ft_spec_initialyze(t_spec *spec)
+int		ft_spec_initialyze(t_spec *spec)
 {
 	if (!(spec->resol = (t_resol *)malloc(sizeof(t_resol)))
 		|| !(spec->col_ceil = (t_col *)malloc(sizeof(t_col)))
@@ -56,4 +57,13 @@ int	ft_spec_initialyze(t_spec *spec)
 	spec->path_south = 0;
 	spec->path_sprite = 0;
 	return (1);
+}
+
+void	ft_free_spec(t_spec *spec)
+{
+	free(spec->col_ceil);
+	free(spec->col_floor);
+	free(spec->resol);
+	free(spec->map);
+	free(spec);
 }

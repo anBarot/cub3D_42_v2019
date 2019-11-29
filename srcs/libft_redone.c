@@ -6,11 +6,11 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:38:02 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/28 14:38:49 by abarot           ###   ########.fr       */
+/*   Updated: 2019/11/29 13:50:55 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../include/cub3D.h"
 
 size_t	ft_strlen(const char *s)
 {
