@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -20,35 +20,6 @@ size_t	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
-}
-
-char	*ft_strcat(char *s1, char *s2, int r_v, int var_free)
-{
-	char	*res;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	;
-	if (!(res = (char *)malloc((ft_strlen((char *)s1) + r_v + 1) * sizeof(char))))
-		return (0);
-	while (s1[i])
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (j < r_v)
-	{
-		res[i + j] = s2[j];
-		j++;
-	}
-	res[i + j] = '\0';
-	if ((var_free == 1 && s1) || (var_free == 3 && s1))
-		free(s1);
-	if ((var_free == 2 && s2) || (var_free == 3 && s2))
-		free(s2);
-	return (res);
 }
 
 int	ft_isdigit(int c)
@@ -103,4 +74,16 @@ int	ft_atoi(const char *s)
 		i++;
 	}
 	return (sign * nbr);
+}
+
+int	ft_check_in_set_char(char to_test, char *dataset)
+{
+	int	i_dataset;
+
+	i_dataset = 0;
+	while (dataset[i_dataset] && dataset[i_dataset] != to_test)
+		i_dataset++;
+	if (dataset[i_dataset] == '\0')
+		return (0);
+	return (1);
 }

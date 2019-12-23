@@ -6,39 +6,41 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 13:40:59 by abarot            #+#    #+#              #
-#    Updated: 2019/11/29 14:47:27 by abarot           ###   ########.fr        #
+#    Updated: 2019/12/11 18:29:06 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	Cub3D
 
-SRCS	=	srcs/main.c srcs/ft_check_map.c srcs/ft_get_spec.c srcs/get_next_line.c \
-			srcs/libft_redone.c
-
-INCL	=	include/cub3D.h 
+SRCS	=	srcs/main.c \
+			srcs/xtract/ft_check_map.c srcs/xtract/ft_get_spec.c \
+			srcs/toolbox/get_next_line.c srcs/toolbox/libft_redone.c
 
 OBJS	=	$(SRCS:.c=.o)
 
-OBJS_ARCH	=	objs.a
+CFLAGS	=	-Wall -Wextra #-Werror
 
-LIB_MLX		=	minilibx_opengl_20191021/libmlx.a
+INCL	=	include
 
-CFLAGS	=	-Wall -Wextra
+FRAMEWORK = -framework OpenGL -framework AppKit 
+
+LIB 	= -lmlx -lXext -lX11 
+
+LIB_PATH	=	-L/usr/local/lib
 
 RM	=	rm -f
 			
 %.o : %.c
-		clang $(FLAGS) -c $< -o $@ 
+		gcc $(CFLAGS) -c $< -o $@ -I$(INCL)
 
 all	:	
-		make -C minilibx_opengl_20191021/ && make $(NAME)
-		ar -rc $(OBJS_ARCH) $(OBJS)
-		clang $(FLAGS) $(OBJS_ARCH) $(LIB_MLX) -o $(NAME)
+		make $(NAME)		
 
 $(NAME)	: $(OBJS) 
-
+			gcc   $(OBJS) $(LIB_PATH) $(LIB) -o $(NAME) -I$(INCL)
+			
 clean	:
-		$(RM) $(OBJS) $(OBJS_ARCH)
+		$(RM) $(OBJS)
 
 fclean	:	clean
 		$(RM) $(NAME) 

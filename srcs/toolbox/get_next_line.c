@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "cub3D.h"
 
 int		get_next_line(int fd, char **line)
 {
@@ -20,19 +20,19 @@ int		get_next_line(int fd, char **line)
 
 	read_value = BUFFER_SIZE;
 	if (!(buffer_str = (char *)malloc(sizeof(char) * read_value + 1)) ||
-	!(*line = (char *)malloc(sizeof(char) * 1)))
+	!(*line = (char *)ft_calloc(sizeof(char), 1)))
 		return (-1);
 	if (fd < 0 || !read_value || !line)
 		return (-1);
-	(*to_keep) ? *line = ft_strcat(to_keep, *line, read_value, 2) : 0;
+	(*to_keep) ? *line = ft_strjoinfree(to_keep, *line, 0) : 0;
 	while (ft_hasnewline(*line) != 1)
 	{
 		if ((read_value = read(fd, buffer_str, BUFFER_SIZE)) < 0)
-		{	
+		{
 			free(buffer_str);
 			return (-1);
 		}
-		*line = ft_strcat(*line, buffer_str, read_value, 1);
+		*line = ft_strjoinfree(*line, buffer_str, 1);
 		if (read_value < BUFFER_SIZE && ft_hasnewline(*line) != 1)
 		{
 			free(buffer_str);
@@ -64,6 +64,34 @@ void	ft_createkeep(char *keep, char *line)
 	keep[j] = '\0';
 }
 
+char	*ft_strjoinfree(char *s1, char *s2, int var_free)
+{
+	char	*res;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	if (!(res = (char *)malloc((ft_strlen(s1) + BUFFER_SIZE + 1) * sizeof(char))))
+		return (0);
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		res[i + j] = s2[j];
+		j++;
+	}
+	res[i + j] = '\0';
+	if ((var_free == 1 && s1) || (var_free == 3 && s1))
+		free(s1);
+	if ((var_free == 2 && s2) || (var_free == 3 && s2))
+		free(s2);
+	return (res);
+}
+
 int		ft_hasnewline(char *str)
 {
 	int i;
@@ -76,4 +104,27 @@ int		ft_hasnewline(char *str)
 		i++;
 	}
 	return (0);
+}
+
+void	*ft_calloc(size_t num, size_t size)
+{
+	char			*dest;
+	size_t			tot_size;
+	unsigned int	i;
+
+	i = 0;
+	tot_size = num * size;
+	if (tot_size == 0)
+	{
+		num = 1;
+		size = 1;
+	}
+	if (!(dest = (char *)malloc(tot_size)))
+		return (0);
+	while (i < tot_size)
+	{
+		dest[i] = '\0';
+		i++;
+	}
+	return ((void *)dest);
 }
