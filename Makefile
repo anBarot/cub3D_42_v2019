@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 13:40:59 by abarot            #+#    #+#              #
-#    Updated: 2019/12/11 18:29:06 by abarot           ###   ########.fr        #
+#    Updated: 2020/01/06 13:17:36 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ INCL	=	include
 
 FRAMEWORK = -framework OpenGL -framework AppKit 
 
-LIB 	= -lmlx -lXext -lX11 -lm
+LIB 	= -lmlx 
 
 LIB_PATH	=	-L/usr/local/lib
 
@@ -38,7 +38,7 @@ all	:
 		make $(NAME)		
 
 $(NAME)	: $(OBJS) 
-			gcc   $(OBJS) $(LIB_PATH) $(LIB) -o $(NAME) -I$(INCL)
+			gcc   $(OBJS) $(FRAMEWORK) $(LIB_PATH) $(LIB) -o $(NAME) -I$(INCL)
 			
 clean	:
 		$(RM) $(OBJS)

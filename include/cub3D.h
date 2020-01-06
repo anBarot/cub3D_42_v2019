@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2019/12/11 19:00:02 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/06 13:31:43 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # include <math.h>
 # define WALL_SIZE			64
 # define FOV 				60
-# define LEFTKEY(value)		((value == 65361 || value == 113) ? 1 : 0)
-# define RIGHTKEY(value)	((value == 65363 || value == 100) ? 1 : 0)
-# define UPKEY(value)		((value == 65362 || value == 122) ? 1 : 0)
-# define DOWNKEY(value)		((value == 65364 || value == 115) ? 1 : 0)
-# define ESCAPEKEY(value)	((value == 65307) ? 1 : 0)
+# define LEFTKEY(value)		((value == 123 || value == 0) ? 1 : 0)
+# define RIGHTKEY(value)	((value == 124 || value == 2) ? 1 : 0)
+# define UPKEY(value)		((value == 126 || value == 13) ? 1 : 0)
+# define DOWNKEY(value)		((value == 125 || value == 1) ? 1 : 0)
+# define ESCAPEKEY(value)	((value == 53) ? 1 : 0)
 # define tan(value)			(tan(value * (M_PI / 180)))
 
 //ajout struc s_raycast

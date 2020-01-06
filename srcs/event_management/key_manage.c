@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:05:01 by abarot            #+#    #+#             */
-/*   Updated: 2019/12/11 16:41:59 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/06 12:15:21 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_key_pressed(int keycode, t_spec *spec)
 		mlx_destroy_window(spec->mlx_ptr, spec->win_ptr);
 		return (0);
 	}
-	printf("\ncoor playeur : \nline : %d\ncol : %d\ndir : %c\n", spec->map_player_coord[0], spec->map_player_coord[1], spec->dir);
+	printf("\ncoor playeur : \nline : %d\ncol : %d\ndir : %c\nkeycode : %d\n", spec->map_player_coord[0], spec->map_player_coord[1], spec->dir, keycode);
 	return (1);
 }
 
@@ -120,8 +120,9 @@ void	ft_display_screen(t_spec *spec)
 	while (col <= spec->resol[0])
 	{
 		wall_projection_size = (prop_constant / ft_cast_ray(spec));
+		printf("\nwall proj size : %2.f\n",wall_projection_size);
+		printf("\nproj const : %2.f\n", prop_constant);
 		printf("\nray length : %f\nangle : %f\n", ft_cast_ray(spec), spec->cam_angle);
-		printf("\nwall proj size : %f\n",wall_projection_size);
 		while (line < spec->resol[1])
 		{
 			if (line <= ((spec->resol[1] / 2) - (wall_projection_size / 2)))
@@ -135,7 +136,6 @@ void	ft_display_screen(t_spec *spec)
 		line = 0;
 		col++;
 		spec->cam_angle += (60 / spec->resol[0]);
-		printf("\nangle : %f\n", spec->cam_angle);
 		if (spec->cam_angle >= 360)
 			spec->cam_angle -= 360;
 		else if (spec->cam_angle < 0)
