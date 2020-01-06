@@ -32,11 +32,17 @@ int		ft_get_spec(t_spec *spec, int fd)
 		(line[0] == 'C' && line[1] == ' ') ? spec->col_ceil = ft_get_col(line) : 0;
 		(line[0] == '1') ? ft_get_map(spec, &line, fd) : 0;
 	}
-	if (ft_get_coord(spec) == 0)
+	if (!(ft_get_coord(spec)) || !(ft_get_camangle(spec)))
 		return (0);
-	printf("\ncol ceil : %d\ncol floor : %d\nresol : %dx%d\npaths : %s,%s,%s,%s,%s\n", *spec->col_ceil, *spec->col_floor, spec->resol[0],
+	printf("\ncol ceil : %d\ncol floor : %d\nresol : %dx%d\npaths : %s,%s,%s,%s,%s\n", spec->col_ceil, spec->col_floor, spec->resol[0],
 		spec->resol[1], spec->path_east, spec->path_north, spec->path_west, spec->path_south, spec->path_sprite);
-	printf("\ncoor : %d,%d,%c\nmap :\n%s\n%s\n%s\n%s\n", spec->coord_player[0], spec->coord_player[1], spec->dir[0], spec->map[0], spec->map[1], spec->map[2], spec->map[3]);
+	printf("\ncoor : %d,%d,%c\ncam angle : %f\n", spec->map_player_coord[0], spec->map_player_coord[1], spec->dir, spec->cam_angle);
+	int i = 0;
+	while (spec->map[i])
+	{	
+		printf("map [%d]: %s\n", i, spec->map[i]);
+		i++;
+	}
 	if (!spec->col_ceil || !spec->col_floor || !spec->resol
 		|| spec->resol[0] > 2560 || spec->resol[1] > 1540 || !spec->path_north || 
 		!spec->path_west || !spec->path_east || !spec->path_south || !spec->path_sprite
@@ -47,13 +53,27 @@ int		ft_get_spec(t_spec *spec, int fd)
 	return (1);
 }
 
+int		ft_get_camangle(t_spec *spec)
+{
+	if (spec->dir == 'N')
+		spec->cam_angle = 60;
+	else if (spec->dir == 'W')
+		spec->cam_angle = 330;
+	else if (spec->dir == 'S')
+		spec->cam_angle = 230;
+	else if (spec->dir == 'E')
+		spec->cam_angle = 150;
+	else
+		return (0);
+	return (1);
+}
+
 int		ft_get_coord(t_spec *spec)
 {
 	int	col;
 	int line;
 
-	if (!(spec->dir = (char *)ft_calloc(2, sizeof(char))) || 
-	!(spec->coord_player = (int *)ft_calloc(2, sizeof(int))))
+	if (!(spec->map_player_coord = (int *)ft_calloc(2, sizeof(int))))
 		return (0);
 	line = 0;
 	col = 0;
@@ -63,9 +83,9 @@ int		ft_get_coord(t_spec *spec)
 		{
 			if (ft_check_in_set_char(spec->map[line][col], "WESN"))
 			{
-				spec->coord_player[0] = line;
-				spec->coord_player[1] = col;
-				spec->dir[0] = spec->map[line][col];
+				spec->map_player_coord[0] = line;
+				spec->map_player_coord[1] = col;
+				spec->dir = spec->map[line][col];
 				spec->map[line][col] = '0';
 				return (1);
 			}
@@ -112,14 +132,14 @@ int		*ft_get_res(char *line)
 	return (resol);
 }
 
-int		*ft_get_col(char *line)
+int		ft_get_col(char *line)
 {
 	int 	i_line;
 	char	*color;
 	int		i_color;
-	int		*col;
+	int		col;
 
-	if (!(color = (char *)ft_calloc(10, sizeof(char))) || !(col = (int *)ft_calloc(1, sizeof(int))))
+	if (!(color = (char *)ft_calloc(10, sizeof(char))))
 		return (0);
 	i_color = 0;
 	i_line = 2;
@@ -134,6 +154,7 @@ int		*ft_get_col(char *line)
 	}
 	if (ft_atoi(color) < 0 || ft_atoi(color) > 255255255)
 		return (0);
-	*col = ft_atoi(color);
+	col = ft_atoi(color);
+	free(color);
 	return (col);
 }

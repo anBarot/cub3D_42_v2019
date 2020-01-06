@@ -14,7 +14,8 @@ NAME	=	Cub3D
 
 SRCS	=	srcs/main.c \
 			srcs/xtract/ft_check_map.c srcs/xtract/ft_get_spec.c \
-			srcs/toolbox/get_next_line.c srcs/toolbox/libft_redone.c
+			srcs/toolbox/get_next_line.c srcs/toolbox/libft_redone.c \
+			srcs/event_management/key_manage.c srcs/event_management/ray_casting.c\
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -24,7 +25,7 @@ INCL	=	include
 
 FRAMEWORK = -framework OpenGL -framework AppKit 
 
-LIB 	= -lmlx -lXext -lX11 
+LIB 	= -lmlx -lXext -lX11 -lm
 
 LIB_PATH	=	-L/usr/local/lib
 
