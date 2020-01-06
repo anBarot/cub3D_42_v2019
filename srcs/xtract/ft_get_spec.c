@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2019/12/11 18:53:06 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:05:38 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_get_spec(t_spec *spec, int fd)
 	}
 	if (!(ft_get_coord(spec)) || !(ft_get_camangle(spec)))
 		return (0);
-	printf("\ncol ceil : %d\ncol floor : %d\nresol : %dx%d\npaths : %s,%s,%s,%s,%s\n", spec->col_ceil, spec->col_floor, spec->resol[0],
+	printf("\ncol ceil : %d\ncol floor : %d\nresol : %fx%f\npaths : %s,%s,%s,%s,%s\n", spec->col_ceil, spec->col_floor, spec->resol[0],
 		spec->resol[1], spec->path_east, spec->path_north, spec->path_west, spec->path_south, spec->path_sprite);
 	printf("\ncoor : %d,%d,%c\ncam angle : %f\n", spec->map_player_coord[0], spec->map_player_coord[1], spec->dir, spec->cam_angle);
 	int i = 0;
@@ -114,12 +114,12 @@ void ft_get_map(t_spec *spec, char **line, int fd)
 	spec->map[map_line] = ft_strdup(*line);
 }
 
-int		*ft_get_res(char *line)
+double		*ft_get_res(char *line)
 {
-	int i_line;
-	int	*resol;
+	int 	i_line;
+	double	*resol;
 
-	if (!(resol = (int *)ft_calloc(2, sizeof(int))))
+	if (!(resol = (double *)ft_calloc(2, sizeof(double))))
 		return (0);
 	i_line = 0;
 	while (!ft_isdigit(line[i_line]))
@@ -143,12 +143,12 @@ int		ft_get_col(char *line)
 		return (0);
 	i_color = 0;
 	i_line = 2;
-	while(line[i_line])
+	while (line[i_line])
 	{
 		while (ft_isdigit(line[i_line]) == 0 && line[i_line])
 			i_line++;
 		while (ft_isdigit(line[i_line]) == 1 && line[i_line])
-		{	
+		{
 			color[i_color++] = line[i_line++];
 		}
 	}

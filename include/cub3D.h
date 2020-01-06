@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/06 13:31:43 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/06 15:00:21 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct		s_spec
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	int				*resol;
+	double			*resol;
 	int				col_ceil;
 	int				col_floor;
 	char			*path_north;
@@ -55,7 +55,7 @@ typedef struct		s_raycast
 	double			*wall_coord_line;
 	double			*wall_coord_col;
 }					t_raycast;
-int					*ft_get_res(char *line);
+double				*ft_get_res(char *line);
 int					ft_get_spec(t_spec *spec, int fd);
 int					ft_get_col(char *line);
 void				ft_get_map(t_spec *spec, char **line, int fd);

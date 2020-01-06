@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:05:01 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/06 12:15:21 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/06 15:54:11 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_key_pressed(int keycode, t_spec *spec)
 		mlx_destroy_window(spec->mlx_ptr, spec->win_ptr);
 		return (0);
 	}
-	printf("\ncoor playeur : \nline : %d\ncol : %d\ndir : %c\nkeycode : %d\n", spec->map_player_coord[0], spec->map_player_coord[1], spec->dir, keycode);
+	printf("\ncoor playeur : \nline : %d\ncol : %d\ndir : %c\nangle : %.2f\n", spec->map_player_coord[0], spec->map_player_coord[1], spec->dir, spec->cam_angle);
 	return (1);
 }
 
@@ -116,13 +116,13 @@ void	ft_display_screen(t_spec *spec)
 
 	col = 0;
 	line = 0;
-	prop_constant = WALL_SIZE * ((spec->resol[0] /2) / tan(30));
+	prop_constant = (WALL_SIZE / 2) * ((spec->resol[0] /2) / tan(30));
 	while (col <= spec->resol[0])
 	{
 		wall_projection_size = (prop_constant / ft_cast_ray(spec));
-		printf("\nwall proj size : %2.f\n",wall_projection_size);
-		printf("\nproj const : %2.f\n", prop_constant);
-		printf("\nray length : %f\nangle : %f\n", ft_cast_ray(spec), spec->cam_angle);
+		// printf("\nwall proj size : %2.f\n",wall_projection_size);
+		// printf("\nproj const : %2.f\n", prop_constant);
+		// printf("\nray length : %f\nangle : %f\n", ft_cast_ray(spec), spec->cam_angle);
 		while (line < spec->resol[1])
 		{
 			if (line <= ((spec->resol[1] / 2) - (wall_projection_size / 2)))
@@ -136,6 +136,7 @@ void	ft_display_screen(t_spec *spec)
 		line = 0;
 		col++;
 		spec->cam_angle += (60 / spec->resol[0]);
+		// printf("\ncam angle during cast : %f\n", spec->cam_angle);
 		if (spec->cam_angle >= 360)
 			spec->cam_angle -= 360;
 		else if (spec->cam_angle < 0)

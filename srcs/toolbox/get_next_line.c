@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:57:29 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/06 13:37:42 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/06 14:46:18 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ char	*ft_strjoinfree(char *s1, char *s2, int var_free)
 
 	i = 0;
 	j = 0;
-	printf("\ns1 : %s\ns2 : %s\n", s1, s2);
-	if (!s1 || !s2 || !(res = (char *)malloc((ft_strlen(s1) + BUFFER_SIZE + 1) * sizeof(char))))
+	if (!s1 || !s2 || !(res = (char *)ft_calloc((ft_strlen(s1) + BUFFER_SIZE + 1), sizeof(char))))
 		return (0);
 	while (s1[i])
 	{
