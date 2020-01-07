@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/06 14:05:38 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/06 16:22:32 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		ft_get_camangle(t_spec *spec)
 	else if (spec->dir == 'W')
 		spec->cam_angle = 330;
 	else if (spec->dir == 'S')
-		spec->cam_angle = 230;
+		spec->cam_angle = 240;
 	else if (spec->dir == 'E')
 		spec->cam_angle = 150;
 	else

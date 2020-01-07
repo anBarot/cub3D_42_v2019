@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/06 15:00:21 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/07 14:46:21 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@
 # define UPKEY(value)		((value == 126 || value == 13) ? 1 : 0)
 # define DOWNKEY(value)		((value == 125 || value == 1) ? 1 : 0)
 # define ESCAPEKEY(value)	((value == 53) ? 1 : 0)
-# define tan(value)			(tan(value * (M_PI / 180)))
-
-//ajout struc s_raycast
+# define RAD(degree)		((degree) * (M_PI / 180))
 
 typedef struct		s_spec
 {
@@ -74,4 +72,5 @@ void				ft_get_crosscoord_line(t_spec *spec, t_raycast *raycast);
 void				ft_get_crosscoord_col(t_spec *spec, t_raycast *raycast);
 void				ft_get_specialangle_coord(t_spec *spec, t_raycast *raycast);
 double				ft_magnitude(double *in_coord, double *fin_coord);
+double				ft_get_distortion_correction(double angle);
 #endif
