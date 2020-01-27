@@ -6,9 +6,17 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/07 14:46:21 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/27 18:42:37 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* to do list : 
+		-	tester fonction remove in str,
+		-	gerer les parses error,
+		-	gerer erreurs de color : creer struct col R,G,B 
+		-	creer maps test,
+*/
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -21,19 +29,26 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
-# define WALL_SIZE			64
-# define FOV 				60
-# define LEFTKEY(value)		((value == 123 || value == 0) ? 1 : 0)
-# define RIGHTKEY(value)	((value == 124 || value == 2) ? 1 : 0)
-# define UPKEY(value)		((value == 126 || value == 13) ? 1 : 0)
-# define DOWNKEY(value)		((value == 125 || value == 1) ? 1 : 0)
-# define ESCAPEKEY(value)	((value == 53) ? 1 : 0)
-# define RAD(degree)		((degree) * (M_PI / 180))
+# define RESOL_MAX_X			2560
+# define RESOL_MAX_Y			1440
+# define VALID_MAP_VALUE(value)	((value == '0' || value == '1' || value == '2' 
+								|| value == 'N' || value == 'E' || value == 'S' 
+								|| value == 'W') ? 1 : 0)
+# define WALL_SIZE				64
+# define FOV 					60
+# define LEFTKEY(value)			((value == 123 || value == 0) ? 1 : 0)
+# define RIGHTKEY(value)		((value == 124 || value == 2) ? 1 : 0)
+# define UPKEY(value)			((value == 126 || value == 13) ? 1 : 0)
+# define DOWNKEY(value)			((value == 125 || value == 1) ? 1 : 0)
+# define ESCAPEKEY(value)		((value == 53) ? 1 : 0)
+# define RAD(degree)			((degree) * (M_PI / 180))
 
-typedef struct		s_spec
+typedef struct		s_parse
 {
+	/* creer struc pour p_win, mlx et error mgt (int)
 	void			*mlx_ptr;
 	void			*win_ptr;
+	*/
 	double			*resol;
 	int				col_ceil;
 	int				col_floor;
@@ -43,16 +58,31 @@ typedef struct		s_spec
 	char			*path_south;
 	char			*path_sprite;
 	char			**map;
+}					t_parse;
+typedef struct		s_player_coord
+{
 	int				*map_player_coord;
 	char			dir;
 	double			cam_angle;
-}					t_spec;
+}					t_player_coor;
 typedef struct		s_raycast
 {
 	double			*cube_player_coord;
 	double			*wall_coord_line;
 	double			*wall_coord_col;
 }					t_raycast;
+enum				e_error
+{
+	NO_ERROR,
+	MAP_VALUE_ERROR,
+	MAP_BORDER_ERROR,
+	MAP_SIZE_ERROR,
+	RESOL_ERROR,
+	COORD_ERROR,
+	CF_COLOR_ERROR,
+	MULTIPLAYER_ERROR,
+	PATH_ERROR
+};
 double				*ft_get_res(char *line);
 int					ft_get_spec(t_spec *spec, int fd);
 int					ft_get_col(char *line);

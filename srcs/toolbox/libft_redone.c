@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:38:02 by abarot            #+#    #+#             */
-/*   Updated: 2019/11/29 13:50:55 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/27 17:28:52 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,35 @@ int	ft_check_in_set_char(char to_test, char *dataset)
 	if (dataset[i_dataset] == '\0')
 		return (0);
 	return (1);
+}
+
+char	*ft_remove_in_str(char *str, char *char_set)
+{
+	int		i_str;
+	int		in_str;
+	int		i_char_set;
+	char	*n_str;
+	
+	i_str = 0;
+	in_str = 0;
+	if (!(n_str = ft_calloc(sizeof(char), ft_strlen(str))))
+		return (0);
+	while (char_set[i_char_set])
+	{
+		i_char_set = 0;
+		while (char_set[i_char_set])
+		{
+			if (str[i_str] == char_set[i_char_set])
+			{	
+				i_str++;
+				i_char_set = -1;
+			}
+			i_char_set++;
+		}
+		n_str[in_str] = str[i_str];
+		i_str++;
+		in_str++;
+	}
+	free(str);
+	return (n_str);
 }

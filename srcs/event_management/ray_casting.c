@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 15:32:44 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/07 17:14:35 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/27 13:33:14 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	ft_cast_ray(t_spec *spec)
 	{
 		ft_get_crosscoord_line(spec, raycast);
 		ft_get_crosscoord_col(spec, raycast);
-		printf("\n angle : %f\ncoor line : %f,%f\ncoor col : %f,%f\n", spec->cam_angle,raycast->wall_coord_line[0], raycast->wall_coord_line[1], raycast->wall_coord_col[0], raycast->wall_coord_col[1]);
+		// printf("\n angle : %f\ncoor line : %f,%f\ncoor col : %f,%f\n", spec->cam_angle,raycast->wall_coord_line[0], raycast->wall_coord_line[1], raycast->wall_coord_col[0], raycast->wall_coord_col[1]);
 		if (ft_magnitude(raycast->cube_player_coord, raycast->wall_coord_col) 
 			< ft_magnitude(raycast->cube_player_coord, raycast->wall_coord_line))
 			corrected_dist = ft_magnitude(raycast->cube_player_coord, raycast->wall_coord_col);
@@ -43,14 +43,14 @@ double	ft_cast_ray(t_spec *spec)
 	free(raycast->wall_coord_col);
 	free(raycast->wall_coord_line);
 	free(raycast);
-	return (corrected_dist * cos(RAD(distortion_correction)));
+	return (corrected_dist );//* cos(RAD(distortion_correction)));
 }
 
 double	ft_get_distortion_correction(double angle)
 {
 	if (angle >= 0 && angle <= 90)
 		return (90 - angle);
-	else if (angle > 90 && angle <= 180)
+	else if (angle > 90 && angle < 180)
 		return (angle - 90);
 	else if (angle > 180 && angle <= 270)
 		return (angle - 180);

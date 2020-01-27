@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 18:57:15 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/06 13:35:27 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/27 16:29:18 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void				ft_createkeep(char *keep, char *line);
 int					ft_isdigit(int c);
 char				*ft_strdup(const char *s);
 int					ft_atoi(const char *s);
-int					ft_check_in_set_char(char to_test, char *dataset);
+int					ft_is_char_in_set(char to_test, char *dataset);
 void				*ft_calloc(size_t num, size_t size);
+char				*ft_remove_in_str(char *str, char c);
 #endif
