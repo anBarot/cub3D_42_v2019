@@ -12,15 +12,41 @@
 
 #include "cub3D.h"
 
+int		ft_is_valid_resolution(char *line)
+{
+	int 	i_line;
+	int		n_repet;
+
+	i_line = 1;
+	n_repet = 2;
+	while (line[i_line] == ' ')
+		i_line++;
+	while(n_repet--)
+	{
+		while (ft_isdigit(line[i_line]))
+			i_line++;
+		while (line[i_line] == ' ')
+		{	
+			i_line++;
+			if (i_line == 30)
+				return (0);
+		}
+	}
+	if (line[i_line])
+		return (0);
+	return (1);
+}
+
 double		*ft_get_resolution(char *line)
 {
 	int 	i_line;
 	double	*resol;
 
-	if (!(resol = (double *)ft_calloc(2, sizeof(double))))
+	if (!(resol = (double *)ft_calloc(2, sizeof(double)))
+		|| !ft_is_valid_resolution(line))
 		return (0);
-	i_line = 0;
-	while (!ft_isdigit(line[i_line]))
+	i_line = 1;
+	while (line[i_line] == ' ')
 		i_line++;
 	resol[0] = ft_atoi(line + i_line);
 	while (ft_isdigit(line[i_line]))

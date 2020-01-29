@@ -12,19 +12,40 @@
 
 #include "cub3D.h"
 
-int		ft_get_col(t_spec * spec, char *line)
+int		ft_check_color(char *str)
 {
-	int		i_line;
-	char	*color;
-	int		i_color;
+	int i_str;
+	int	i_repetition;
+	int tmp_col;
+
+	i_repetition = 2;
+	i_str = 0;
+	tmp_col = ft_atoi(str);
+	if (tmp_col < 0 || tmp_col > 255)
+		return (0);
+	while (!i_repetition--)
+	{
+		while (str[i_str] != ',')
+			i_str++;
+		tmp_col = ft_atoi(str + i_str + 1);
+		if (tmp_col < 0 || tmp_col > 255)
+			return (0);
+	}
+	while (ft_isdigit(str[i_str]))
+		i_str++;
+	if (str[i_str])
+		return (0);
+	return (1);
+}
+
+int		ft_get_color(t_config *config, char *line)
+{
 	int		col;
 
 	line = ft_remove_in_str(line, " CF");
+	if (!ft_check_color(line))
+		return (FC_COLOR_ERROR);
+	line = ft_remove_in_str(line, ",");
 	col = ft_atoi(line);
-	/* gerer erreurs col : >255 pour chaque  RGB*/
-	if (ft_atoi(color) < 0 || ft_atoi(color) > 255255255)
-		return (0);
-	col = ft_atoi(color);
-	free(color);
 	return (col);
 }

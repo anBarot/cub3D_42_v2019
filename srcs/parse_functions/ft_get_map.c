@@ -28,27 +28,27 @@ int		ft_is_valid_value_mapline(char *map_line);
 	return (1);
 }
 
-void ft_get_map(t_spec *spec, char **line, int fd)
+void ft_get_map(t_config *config, char **line, int fd)
 {
 	int		map_line;
 	int		line_width;
 
-	if (!(spec->map = (char **)ft_calloc(1000000, sizeof(char *))))
+	if (!(config->map = (char **)ft_calloc(1000000, sizeof(char *))))
 		return ;
 	map_line = 0;
-	spec->map[map_line] = ft_strdup(*line);
-	line_width = ft_strlen(spec->map[map_line]);
+	config->map[map_line] = ft_strdup(*line);
+	line_width = ft_strlen(config->map[map_line]);
 	map_line++;
 	while (get_next_line(fd, line) == 1)
 	{
-		spec->map[map_line] = ft_remove_in_str(ft_strdup(*line), ' ');
-		if (!ft_is_valid_value_mapline(spec->map[map_line]))
-			spec->error = MAP_VALUE_ERROR;
-		if (map_line > 1000000 || ft_strlen(spec->map[map_line]) != line_width)
-			spec->error = MAP_SIZE_ERROR;
+		config->map[map_line] = ft_remove_in_str(ft_strdup(*line), ' ');
+		if (!ft_is_valid_value_mapline(config->map[map_line]))
+			config->error = MAP_VALUE_ERROR;
+		if (map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
+			config->error = MAP_SIZE_ERROR;
 		map_line++;
 	}
-	spec->map[map_line] = ft_strdup(*line);
-	if (map_line > 1000000 || ft_strlen(spec->map[map_line]) != line_width)
-		spec->error = MAP_SIZE_ERROR;
+	config->map[map_line] = ft_strdup(*line);
+	if (map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
+		config->error = MAP_SIZE_ERROR;
 }

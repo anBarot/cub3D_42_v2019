@@ -13,7 +13,7 @@
 NAME	=	Cub3D
 
 SRCS	=	srcs/main.c \
-			srcs/parse_functions/ft_check_map.c srcs/parse_functions/ft_get_spec.c \
+			srcs/parse_functions/ft_check_map.c srcs/parse_functions/ft_get_config.c \
 			srcs/toolbox/get_next_line.c srcs/toolbox/libft_redone.c \
 			srcs/event_management/key_manage.c srcs/event_management/ray_casting.c\
 			srcs/event_management/ft_display_screen.c 
@@ -24,9 +24,9 @@ CFLAGS	=	-Wall -Wextra #-Werror
 
 INCL	=	include
 
-FRAMEWORK = -framework OpenGL -framework AppKit 
+#FRAMEWORK = -framework OpenGL -framework AppKit 
 
-LIB 	= -lmlx 
+LIB 	= -lmlx -lm -lXext -lX11
 
 LIB_PATH	=	-L/usr/local/lib
 

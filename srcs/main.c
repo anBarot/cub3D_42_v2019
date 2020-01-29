@@ -16,23 +16,24 @@ int		errno;
 
 int 	main(int ac, char **av)
 {
-	t_spec	*spec;
+	t_config	*config;
 	int		fd;
-	
-	if (!(spec = (t_spec *)malloc(sizeof(t_spec))))
+
+	ft_initialyse_	
+	if (!(config = (t_config *)malloc(sizeof(t_config))))
 		return (0);
-	if (ac != 2 || (fd = open(av[1], O_RDONLY)) == -1 || !ft_get_spec(spec, fd) 
-		|| !(spec->mlx_ptr = mlx_init()) || 
-		!(spec->win_ptr = mlx_new_window(spec->mlx_ptr, spec->resol[0], spec->resol[1], av[1])))
+	if (ac != 2 || (fd = open(av[1], O_RDONLY)) == -1 || !ft_get_config(config, fd) 
+		|| !(config->mlx_ptr = mlx_init()) || 
+		!(config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol[0], config->resol[1], av[1])))
 	{
 		perror("ERROR\n");
 		return (0);
 	}
 	close(fd);
-	ft_display_screen(spec);
-	mlx_key_hook(spec->win_ptr, &(ft_key_pressed), spec);
-	mlx_loop(spec->mlx_ptr);
-	free(spec);
+	ft_display_screen(config);
+	mlx_key_hook(config->win_ptr, &(ft_key_pressed), config);
+	mlx_loop(config->mlx_ptr);
+	free(config);
 	printf("\n------quitting main------\n");
 	return (0);
 }

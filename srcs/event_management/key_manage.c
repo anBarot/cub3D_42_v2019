@@ -12,88 +12,90 @@
 
 #include "cub3D.h"
 
-int	ft_key_pressed(int keycode, t_spec *spec)
+int	ft_key_pressed(int keycode, t_config *config)
 {
+	printf("\nkeycode : %d\n",keycode);
 	if (UPKEY(keycode))
-		ft_move_forward(spec);
+		ft_move_forward(config);
 	else if (DOWNKEY(keycode))
-		ft_move_backward(spec);
+		ft_move_backward(config);
 	else if (LEFTKEY(keycode))
-		ft_turn_left(spec);
+		ft_turn_left(config);
 	else if (RIGHTKEY(keycode))
-		ft_turn_right(spec);
-	else if (LEFT_LAT_LKEY(keycode))
-		ft_move_lateral(spec);
+		ft_turn_right(config);
+	else if (RIGHT_LAT_KEY(keycode))
+		ft_move_lateral_rigth(config);
 	else if (LEFT_LAT_KEY(keycode))
-		ft_move_lateral(spec);
+		ft_move_lateral_left(config);
 	else if (ESCAPEKEY(keycode))
 	{	
-		mlx_destroy_window(spec->mlx_ptr, spec->win_ptr);
+		mlx_destroy_window(config->mlx_ptr, config->win_ptr);
 		return (0);
 	}
-	printf("\ncoor playeur : \nline : %d\ncol : %d\ndir : %c\nangle : %.2f\n", spec->map_player_coord[0], spec->map_player_coord[1], spec->dir, spec->cam_angle);
+	printf("\ncoor playeur : \nline : %d\ncol : %d\ndir : %c\nangle : %.2f\n", 
+	config->map_player_coord[0], config->map_player_coord[1], config->dir, config->cam_angle);
 	return (1);
 }
 
-void	ft_move_forward(t_spec *spec)
+void	ft_move_forward(t_config *config)
 {
-	if (spec->dir == 'N' && spec->map[spec->map_player_coord[0] - 1][spec->map_player_coord[1]] != '1')
-		spec->map_player_coord[0] -= 1;
-	else if (spec->dir == 'W' && spec->map[spec->map_player_coord[0]][spec->map_player_coord[1] - 1] != '1')
-		spec->map_player_coord[1] -= 1;
-	else if (spec->dir == 'S' && spec->map[spec->map_player_coord[0] + 1][spec->map_player_coord[1]] != '1')
-		spec->map_player_coord[0] += 1;
-	else if	(spec->dir == 'E' && spec->map[spec->map_player_coord[0]][spec->map_player_coord[1] + 1] != '1')
-		spec->map_player_coord[1] += 1;
-	ft_display_screen(spec);
+	if (config->dir == 'N' && config->map[config->map_player_coord[0] - 1][config->map_player_coord[1]] != '1')
+		config->map_player_coord[0] -= 1;
+	else if (config->dir == 'W' && config->map[config->map_player_coord[0]][config->map_player_coord[1] - 1] != '1')
+		config->map_player_coord[1] -= 1;
+	else if (config->dir == 'S' && config->map[config->map_player_coord[0] + 1][config->map_player_coord[1]] != '1')
+		config->map_player_coord[0] += 1;
+	else if	(config->dir == 'E' && config->map[config->map_player_coord[0]][config->map_player_coord[1] + 1] != '1')
+		config->map_player_coord[1] += 1;
+	ft_display_screen(config);
 }
 
-void	ft_move_backward(t_spec *spec)
+void	ft_move_backward(t_config *config)
 {
-	if (spec->dir == 'N' && spec->map[spec->map_player_coord[0] + 1][spec->map_player_coord[1]] != '1')
-		spec->map_player_coord[0] += 1;
-	else if (spec->dir == 'W' && spec->map[spec->map_player_coord[0]][spec->map_player_coord[1] + 1] != '1')
-		spec->map_player_coord[1] += 1;
-	else if (spec->dir == 'S' && spec->map[spec->map_player_coord[0] - 1][spec->map_player_coord[1]] != '1')
-		spec->map_player_coord[0] -= 1;
-	else if	(spec->dir == 'E' && spec->map[spec->map_player_coord[0]][spec->map_player_coord[1] - 1] != '1')
-		spec->map_player_coord[1] -= 1;
-	ft_display_screen(spec);
+	if (config->dir == 'N' && config->map[config->map_player_coord[0] + 1][config->map_player_coord[1]] != '1')
+		config->map_player_coord[0] += 1;
+	else if (config->dir == 'W' && config->map[config->map_player_coord[0]][config->map_player_coord[1] + 1] != '1')
+		config->map_player_coord[1] += 1;
+	else if (config->dir == 'S' && config->map[config->map_player_coord[0] - 1][config->map_player_coord[1]] != '1')
+		config->map_player_coord[0] -= 1;
+	else if	(config->dir == 'E' && config->map[config->map_player_coord[0]][config->map_player_coord[1] - 1] != '1')
+		config->map_player_coord[1] -= 1;
+	ft_display_screen(config);
 }
 
-void	ft_turn_left(t_spec *spec)
+void	ft_turn_left(t_config *config)
 {
-	if (spec->cam_angle == 0)
-		spec->cam_angle = 360;
-	spec->cam_angle -= 20;
-	if (spec->cam_angle == 0)
-		spec->cam_angle = 360;
-	spec->cam_angle -= 10;
-	if (spec->cam_angle >= 135 && spec->cam_angle < 225)
-		spec->dir = 'E';
-	if (spec->cam_angle >= 45 && spec->cam_angle < 135)
-		spec->dir = 'N';
-	if ((spec->cam_angle >= 315 && spec->cam_angle <= 360)
-		|| (spec->cam_angle >= 0 && spec->cam_angle < 45))
-		spec->dir = 'W';
-	if (spec->cam_angle >= 225 && spec->cam_angle < 315)
-		spec->dir = 'S';
-	ft_display_screen(spec);
+	if (config->cam_angle == 0)
+		config->cam_angle = 360;
+	config->cam_angle -= 20;
+	if (config->cam_angle == 0)
+		config->cam_angle = 360;
+	config->cam_angle -= 10;
+	if (config->cam_angle >= 135 && config->cam_angle < 225)
+		config->dir = 'E';
+	if (config->cam_angle >= 45 && config->cam_angle < 135)
+		config->dir = 'N';
+	if ((config->cam_angle >= 315 && config->cam_angle <= 360)
+		|| (config->cam_angle >= 0 && config->cam_angle < 45))
+		config->dir = 'W';
+	if (config->cam_angle >= 225 && config->cam_angle < 315)
+		config->dir = 'S';
+	ft_display_screen(config);
 }
 
-void	ft_turn_right(t_spec *spec)
+void	ft_turn_right(t_config *config)
 {
-	if (spec->cam_angle == 360)
-		spec->cam_angle = 0;
-	spec->cam_angle += 20;
-	if (spec->cam_angle >= 135 && spec->cam_angle < 225)
-		spec->dir = 'E';
-	if (spec->cam_angle >= 45 && spec->cam_angle < 135)
-		spec->dir = 'N';
-	if ((spec->cam_angle >= 315 && spec->cam_angle <= 360)
-		|| (spec->cam_angle >= 0 && spec->cam_angle < 45))
-		spec->dir = 'W';
-	if (spec->cam_angle >= 225 && spec->cam_angle < 315)
-		spec->dir = 'S';
-	ft_display_screen(spec);
+	if (config->cam_angle == 360)
+		config->cam_angle = 0;
+	config->cam_angle += 20;
+	if (config->cam_angle >= 135 && config->cam_angle < 225)
+		config->dir = 'E';
+	if (config->cam_angle >= 45 && config->cam_angle < 135)
+		config->dir = 'N';
+	if ((config->cam_angle >= 315 && config->cam_angle <= 360)
+		|| (config->cam_angle >= 0 && config->cam_angle < 45))
+		config->dir = 'W';
+	if (config->cam_angle >= 225 && config->cam_angle < 315)
+		config->dir = 'S';
+	ft_display_screen(config);
 }
