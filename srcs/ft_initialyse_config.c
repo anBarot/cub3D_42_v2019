@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_cf_colors.c                                 :+:      :+:    :+:   */
+/*   ft_initialyse_config.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/29 14:53:55 by abarot           ###   ########.fr       */
+/*   Created: 2020/01/29 15:51:47 by abarot            #+#    #+#             */
+/*   Updated: 2020/01/29 17:11:47 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int		ft_get_col(t_config * config, char *line)
+int		ft_initialyse_config(t_config *config)
 {
-	int		i_line;
-	char	*color;
-	int		i_color;
-	int		col;
-
-	line = ft_remove_in_str(line, " CF");
-	col = ft_atoi(line);
-	/* gerer erreurs col : >255 pour chaque  RGB*/
-	if (ft_atoi(color) < 0 || ft_atoi(color) > 255255255)
+	config->mlx_ptr = 0;
+	config->win_ptr = 0;
+	if (!(config->resol = (double *)ft_calloc(sizeof(double), 2)))
 		return (0);
-	col = ft_atoi(color);
-	free(color);
-	return (col);
+	config->col_ceil = 0;
+	config->col_floor = 0;
+	config->path_north = 0;
+	config->path_west = 0;
+	config->path_east = 0;
+	config->path_south = 0;
+	config->path_sprite = 0;
+	if (!(config->map = (char **)ft_calloc(sizeof(char *), 1000000)))
+		return (0);
+	return (1);
 }

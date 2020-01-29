@@ -6,19 +6,21 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/27 16:02:39 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/29 16:03:33 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+
+/* 
+---------merge avec version maison-------
 
 double		*ft_get_resolution(char *line)
 {
 	int 	i_line;
 	double	*resol;
 
-	if (!(resol = (double *)ft_calloc(2, sizeof(double))))
-		return (0);
 	i_line = 0;
 	while (!ft_isdigit(line[i_line]))
 		i_line++;
@@ -36,3 +38,5 @@ double		*ft_get_resolution(char *line)
 		return (0);
 	return (resol);
 }
+
+*/
