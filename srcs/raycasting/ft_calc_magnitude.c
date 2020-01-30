@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_receive_events.c                                :+:      :+:    :+:   */
+/*   ft_calc_magnitude.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 17:14:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/30 13:09:01 by abarot           ###   ########.fr       */
+/*   Created: 2020/01/06 15:32:44 by abarot            #+#    #+#             */
+/*   Updated: 2020/01/30 12:18:30 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int		ft_receive_events(t_config *config, char *title)
+double	ft_calc_magnitude(double *in_coord, double *end_coord)
 {
-	mlx_init(config->mlx_ptr);
-	mlx_new_window(config->mlx_ptr, config->resol[0], config->resol[1], title);
-	mlx_loop(config->mlx_ptr)
-	mlx_mouse_hook(config->win_ptr, int (*ft_pressed_key)(), config)
-	ft_display_screen(config);
-	return (0);
+	double	magnitude;
+	
+	magnitude = sqrt((pow(end_coord[0] - in_coord[0], 2)) + (pow(end_coord[1] - in_coord[1], 2)));
+	return (magnitude);
 }

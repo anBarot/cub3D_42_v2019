@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/29 18:02:06 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/30 13:03:16 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,6 @@
 		-	algo img : img base C + F
 */
 
-<<<<<<< HEAD
-=======
-/*
---------a merger------
-
-	-parse color,
-	-parse resol,
-	-parse map,
-*/
-
->>>>>>> origin/cub3D_v2020_01_29
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "toolbox.h"
@@ -61,14 +50,8 @@
 
 typedef struct		s_config
 {
-<<<<<<< HEAD
 	void			*mlx;
 	void			*win_ptr;
-	int				error_type;
-=======
-	void			*mlx_ptr;
-	void			*win_ptr;
->>>>>>> origin/cub3D_v2020_01_29
 	double			*resol;
 	int				col_ceil;
 	int				col_floor;
@@ -78,17 +61,9 @@ typedef struct		s_config
 	char			*path_south_texture;
 	char			*path_sprite;
 	char			**map;
-}					t_config;
-<<<<<<< HEAD
-typedef struct		s_player_coor
-=======
-typedef struct		s_player_coord
->>>>>>> origin/cub3D_v2020_01_29
-{
-	int				*map_player_coord;
-	char			dir;
+	int				*player_coord;
 	double			cam_angle;
-}					t_player_coor;
+}					t_config;
 enum				e_error
 {
 	NO_ERROR,
@@ -96,45 +71,31 @@ enum				e_error
 	INVALID_ARG_ERROR,
 	INIT_ERROR,
 	OPEN_FILE_ERROR,
-	MAP_VALUE_ERROR,
-	MAP_BORDER_ERROR,
-	MAP_SIZE_ERROR,
+	MAP_ERROR,
 	RESOL_ERROR,
 	COORD_ERROR,
-	FC_COLOR_ERROR,
 	MULTIPLAYER_ERROR,
-<<<<<<< HEAD
+	C_COLOR_ERROR,
+	F_COLOR_ERROR,
 	N_PATH_ERROR,
 	S_PATH_ERROR,
 	W_PATH_ERROR,
 	E_PATH_ERROR,
 	S_PATH_ERROR
-=======
-	PATH_NORTH_ERROR,
-	PATH_WEST_ERROR,
-	PATH_SOUTH_ERROR,
-	PATH_EAST_ERROR,
-	PATH_SPRITE_ERROR
->>>>>>> origin/cub3D_v2020_01_29
 };
-double				*ft_get_res(char *line);
-int					ft_get_config(t_config *config, int fd);
-int					ft_get_col(char *line);
-void				ft_get_map(t_config *config, char **line, int fd);
-int					ft_check_map_border(char **map);
-int					ft_check_map_content_and_size(char **map);
-int					ft_get_coord(t_config *config);
-int					ft_get_camangle(t_config *config);
-int					ft_key_pressed(int keycode, t_config *config);
-void				ft_move_forward(t_config *config);
-void				ft_move_backward(t_config *config);
-void				ft_turn_left(t_config *config);
-void				ft_turn_right(t_config *config);
-void				ft_display_screen(t_config *config);
-double				ft_cast_ray(t_config *config);
-void				ft_get_crosscoord_line(t_config *config, t_raycast *raycast);
-void				ft_get_crosscoord_col(t_config *config, t_raycast *raycast);
-void				ft_get_configialangle_coord(t_config *config, t_raycast *raycast);
-double				ft_magnitude(double *in_coord, double *fin_coord);
-double				ft_get_distortion_correction(double angle);
+int			ft_error_msg(int error_value);
+int			ft_initialyse_config(t_config *config);
+int			ft_is_valid_arg(const char *av_1, const char *av_2);
+int			ft_parse_file(t_config *config, char *cub_file);
+int			ft_get_color(t_config * config, char *line);
+void 		ft_get_map(t_config *config, char **line, int fd);
+int			ft_get_player_coor(t_config *config);
+double		*ft_get_resolution(char *line);
+char		*ft_get_texture_path(t_config *config, char *line);
+int			ft_receive_events(t_config *config, char *title);
+int			ft_pressed_key(int keycode, t_config *config);
+void		ft_move_backward(t_config *config);
+void		ft_move_forward(t_config *config);
+void		ft_turn_left(t_config *config);
+void		ft_turn_right(t_config *config);
 #endif

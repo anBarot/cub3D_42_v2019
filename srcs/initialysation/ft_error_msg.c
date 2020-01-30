@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:11:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/29 17:11:43 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/30 11:35:40 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,14 @@ int		ft_error_msg(int error_value)
 	("Error\nThe programm initialyzation is not possible\n") : 0;
 	(error_value == OPEN_FILE_ERROR) ? ft_printf
 	("Error\nThe program can't be oppened, check if you have the appropriate rights\n") : 0;
-	(error_value == MAP_VALUE_ERROR) ? ft_printf
-	("Error\nTheir is an unauthorized value in the map\n") : 0;
-	(error_value == MAP_BORDER_ERROR) ? ft_printf
-	("Error\nHo no! You can escape!\n") : 0;
-	(error_value == MAP_SIZE_ERROR) ? ft_printf
-	("Error\nThe map isn't rectangular\n") : 0;
+	(error_value == MAP_ERROR) ? ft_printf
+	("Error\nYour map is not valid, check the values or the equal length of each line\n") : 0;
 	(error_value == RESOL_ERROR) ? ft_printf
 	("Error\nThe resolution is not in the right format : try '"'R XXXX YYYY'"'\n") : 0;
-	(error_value == CF_COLOR_ERROR) ? ft_printf
-	("Error\nThe color is not in the right format, try '"'C RRR,GGG,BBB'"' or '"'F RRR,GGG,BBB'"'") : 0;
+	(error_value == C_COLOR_ERROR) ? ft_printf
+	("Error\nThe ceiling color is not in the right format, try '"'C RRR,GGG,BBB'"'") : 0;
+	(error_value == F_COLOR_ERROR) ? ft_printf
+	("Error\nThe floor color is not in the right format, try '"'F RRR,GGG,BBB'"'") : 0;
 	(error_value == MULTIPLAYER_ERROR) ? ft_printf
 	("Error\nOnly one player can play the game") : 0;
 	(error_value == PATH_NORTH_ERROR) ? ft_printf
