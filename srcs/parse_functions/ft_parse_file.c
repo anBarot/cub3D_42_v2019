@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_config.c                                      :+:      :+:    :+:   */
+/*   ft_parse_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/29 14:47:40 by abarot           ###   ########.fr       */
+/*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
+/*   Updated: 2020/01/29 17:17:52 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int		ft_get_config(t_config *config, int fd)
+int		ft_parse_file(t_config *config, char *cub_file)
 {
-	char *line;
+	char	*line;
+	int		fd;
 	
+	if ((fd = open(cub_file, O_RDONLY)) == -1)
+		return (OPEN_FILE_ERROR);
 	while (get_next_line(fd, &line) == 1)
 	{
-<<<<<<< HEAD
-		(line[0] == 'R' && line[1] == ' ') ? config->resol = ft_get_res(line) : 0;
-		(line[0] == 'N' && line[1] == 'O' && line[2] == ' ') ?
-				config->path_north = ft_strdup(line + 3) : 0;
-		(line[0] == 'S' && line[1] == 'O' && line[2] == ' ') ?
-				config->path_south = ft_strdup(line + 3) : 0;
-		(line[0] == 'W' && line[1] == 'E' && line[2] == ' ') ?
-				config->path_west = ft_strdup(line + 3) : 0;
-		(line[0] == 'E' && line[1] == 'A' && line[2] == ' ') ?
-				config->path_east = ft_strdup(line + 3) : 0;
-		(line[0] == 'S' && line[1] == ' ') ? config->path_sprite = ft_strdup(line + 2) : 0;
-		(line[0] == 'F' && line[1] == ' ') ? ft_get_col(line, config) : 0;
-		(line[0] == 'C' && line[1] == ' ') ? ft_get_col(line, config) : 0;
-		(line[0] == '1') ? ft_get_map(config, &line, fd) : 0;
-=======
 		(line[0] == 'R' && line[1] == ' ') ?
 				config->resol = ft_get_resolution(line) : 0;
 		(line[0] == 'N' && line[1] == 'O' && line[2] == ' ') ?
@@ -43,7 +31,7 @@ int		ft_get_config(t_config *config, int fd)
 				config->path_west = ft_get_texture_path(line + 3) : 0;
 		(line[0] == 'E' && line[1] == 'A' && line[2] == ' ') ?
 				config->path_east = ft_get_texture_path(line + 3) : 0;
-		(line[0] == 'S' && line[1] == ' ') ? 
+		(line[0] == 'S' && line[1] == ' ') ?
 				config->path_sprite = ft_get_texture_path(line + 2) : 0;
 
 
@@ -53,7 +41,6 @@ int		ft_get_config(t_config *config, int fd)
 		(line[0] == 'C' && line[1] == ' ') ? config->col_ceil = ft_get_col(line) : 0;
 		(line[0] == '1') ? ft_get_map(config, &line, fd) : 0;
 		*/
->>>>>>> origin/cub3D_v2020_01_29
 	}
 
 	/*	test du parse :
@@ -66,10 +53,6 @@ int		ft_get_config(t_config *config, int fd)
 	// {	
 	// 	printf("map [%d]: %s\n", i, config->map[i]);
 	// 	i++;
-<<<<<<< HEAD
-	// }
-	*/
-=======
 	// }*/
 	(!config->path_east) ? config->error = PATH_EAST_ERROR : 0;
 	(!config->path_west) ? config->error = PATH_WEST_ERROR : 0;
@@ -77,9 +60,8 @@ int		ft_get_config(t_config *config, int fd)
 	(!config->path_south) ? config->error = PATH_SOUTH_ERROR : 0;
 	(!config->path_sprite) ? config->error = PATH_SPRITE_ERROR : 0;
 	if (config->error)
-		return (0);
+		return (config->error);
 	printf("\033[0;32m");
 	printf("\n------configs are valid------\n");
->>>>>>> origin/cub3D_v2020_01_29
 	return (1);
 }

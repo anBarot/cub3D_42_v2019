@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/27 18:42:37 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/29 18:02:06 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,23 @@
 		-	gerer les parses error,
 		-	gerer erreurs de color : creer struct col R,G,B 
 		-	creer maps test,
+		-	faire un main de test automatique ou makefile (pr tous projet adaptable),
+		-	ft_calloc des l initialisation,
+		-	ajout libft : printf + getnext
+		-	algo img : img base C + F
 */
 
+<<<<<<< HEAD
+=======
+/*
+--------a merger------
+
+	-parse color,
+	-parse resol,
+	-parse map,
+*/
+
+>>>>>>> origin/cub3D_v2020_01_29
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "toolbox.h"
@@ -46,9 +61,14 @@
 
 typedef struct		s_config
 {
+<<<<<<< HEAD
 	void			*mlx;
 	void			*win_ptr;
 	int				error_type;
+=======
+	void			*mlx_ptr;
+	void			*win_ptr;
+>>>>>>> origin/cub3D_v2020_01_29
 	double			*resol;
 	int				col_ceil;
 	int				col_floor;
@@ -59,7 +79,11 @@ typedef struct		s_config
 	char			*path_sprite;
 	char			**map;
 }					t_config;
+<<<<<<< HEAD
 typedef struct		s_player_coor
+=======
+typedef struct		s_player_coord
+>>>>>>> origin/cub3D_v2020_01_29
 {
 	int				*map_player_coord;
 	char			dir;
@@ -68,6 +92,10 @@ typedef struct		s_player_coor
 enum				e_error
 {
 	NO_ERROR,
+	INVALID_ARG_NBR_ERROR,
+	INVALID_ARG_ERROR,
+	INIT_ERROR,
+	OPEN_FILE_ERROR,
 	MAP_VALUE_ERROR,
 	MAP_BORDER_ERROR,
 	MAP_SIZE_ERROR,
@@ -75,11 +103,19 @@ enum				e_error
 	COORD_ERROR,
 	FC_COLOR_ERROR,
 	MULTIPLAYER_ERROR,
+<<<<<<< HEAD
 	N_PATH_ERROR,
 	S_PATH_ERROR,
 	W_PATH_ERROR,
 	E_PATH_ERROR,
 	S_PATH_ERROR
+=======
+	PATH_NORTH_ERROR,
+	PATH_WEST_ERROR,
+	PATH_SOUTH_ERROR,
+	PATH_EAST_ERROR,
+	PATH_SPRITE_ERROR
+>>>>>>> origin/cub3D_v2020_01_29
 };
 double				*ft_get_res(char *line);
 int					ft_get_config(t_config *config, int fd);

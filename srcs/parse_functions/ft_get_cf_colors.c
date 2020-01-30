@@ -6,12 +6,13 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/27 19:16:00 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/29 14:53:55 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+<<<<<<< HEAD
 int		ft_check_color(char *str)
 {
 	int i_str;
@@ -39,6 +40,9 @@ int		ft_check_color(char *str)
 }
 
 int		ft_get_color(t_config *config, char *line)
+=======
+int		ft_get_col(t_config * config, char *line)
+>>>>>>> origin/cub3D_v2020_01_29
 {
 	int		col;
 

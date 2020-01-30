@@ -6,15 +6,21 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 14:05:01 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/27 19:18:11 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/29 17:42:58 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+<<<<<<< HEAD
 int	ft_key_pressed(int keycode, t_config *config)
 {
 	printf("\nkeycode : %d\n",keycode);
+=======
+int	ft_pressed_key(int keycode, t_config *config)
+{
+	mlx_clear_window(config->mlx_ptr, config->win_ptr);
+>>>>>>> origin/cub3D_v2020_01_29
 	if (UPKEY(keycode))
 		ft_move_forward(config);
 	else if (DOWNKEY(keycode))
@@ -23,15 +29,23 @@ int	ft_key_pressed(int keycode, t_config *config)
 		ft_turn_left(config);
 	else if (RIGHTKEY(keycode))
 		ft_turn_right(config);
+<<<<<<< HEAD
 	else if (RIGHT_LAT_KEY(keycode))
 		ft_move_lateral_rigth(config);
 	else if (LEFT_LAT_KEY(keycode))
 		ft_move_lateral_left(config);
+=======
+	else if (LEFT_LAT_LKEY(keycode))
+		ft_move_lat_left(config);
+	else if (RIGHT_LAT_KEY(keycode))
+		ft_move_lat_right(config);
+>>>>>>> origin/cub3D_v2020_01_29
 	else if (ESCAPEKEY(keycode))
 	{	
 		mlx_destroy_window(config->mlx_ptr, config->win_ptr);
 		return (0);
 	}
+<<<<<<< HEAD
 	printf("\ncoor playeur : \nline : %d\ncol : %d\ndir : %c\nangle : %.2f\n", 
 	config->map_player_coord[0], config->map_player_coord[1], config->dir, config->cam_angle);
 	return (1);
@@ -99,3 +113,8 @@ void	ft_turn_right(t_config *config)
 		config->dir = 'S';
 	ft_display_screen(config);
 }
+=======
+	ft_display_screen(config);
+	return (1);
+}
+>>>>>>> origin/cub3D_v2020_01_29

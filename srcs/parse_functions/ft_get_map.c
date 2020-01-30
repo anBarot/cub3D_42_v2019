@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/27 17:15:28 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/29 16:06:34 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ void ft_get_map(t_config *config, char **line, int fd)
 	int		map_line;
 	int		line_width;
 
+<<<<<<< HEAD
 	if (!(config->map = (char **)ft_calloc(1000000, sizeof(char *))))
 		return ;
+=======
+>>>>>>> origin/cub3D_v2020_01_29
 	map_line = 0;
 	config->map[map_line] = ft_strdup(*line);
 	line_width = ft_strlen(config->map[map_line]);
