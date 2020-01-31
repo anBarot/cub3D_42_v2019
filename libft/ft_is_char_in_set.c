@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_llutoa.c                                        :+:      :+:    :+:   */
+/*   ft_is_char_in_set.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/20 11:28:24 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/25 13:20:56 by abarot           ###   ########.fr       */
+/*   Created: 2019/11/27 18:38:02 by abarot            #+#    #+#             */
+/*   Updated: 2020/01/31 12:15:53 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_llutoa(unsigned long long n)
+int		ft_is_char_in_set(char c, char *char_set)
 {
-	char			*res;
-	int				i;
+	int	i_set;
 
-	if (!(res = (char*)ft_calloc(sizeof(char), 21)))
+	i_set = 0;
+	if (!c)
+		return (1);
+	if (!char_set)
 		return (0);
-	i = 0;
-	if (!n)
-		res[i++] = 48;
-	while (n >= 1)
+	while (char_set[i_set])
 	{
-		res[i] = (n % 10) + 48;
-		n = n / 10;
-		i++;
+		if (char_set[i_set] == c)
+			return (1);
+		else
+			i_set++;
 	}
-	return (ft_reverse_string(res));
+	return (0);
 }

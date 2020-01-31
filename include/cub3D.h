@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/30 13:03:16 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/31 13:54:24 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@
 
 #ifndef CUB3D_H
 # define CUB3D_H
-# include "toolbox.h"
-# include "mlx.h"
+# include <mlx.h>
 # include <string.h>
-# include <errno.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include "libft.h"
+# include "libftprintf.h"
 # define RESOL_MAX_X			2560
 # define RESOL_MAX_Y			1440
 # define VALID_MAP_VALUE(value)	((value == '0' || value == '1' || value == '2' \
@@ -75,6 +75,7 @@ enum				e_error
 	RESOL_ERROR,
 	COORD_ERROR,
 	MULTIPLAYER_ERROR,
+	NO_PLAYER_ERROR,
 	C_COLOR_ERROR,
 	F_COLOR_ERROR,
 	N_PATH_ERROR,
@@ -87,11 +88,11 @@ int			ft_error_msg(int error_value);
 int			ft_initialyse_config(t_config *config);
 int			ft_is_valid_arg(const char *av_1, const char *av_2);
 int			ft_parse_file(t_config *config, char *cub_file);
-int			ft_get_color(t_config * config, char *line);
+int			ft_get_color(char *line);
 void 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
 double		*ft_get_resolution(char *line);
-char		*ft_get_texture_path(t_config *config, char *line);
+char		*ft_get_texture_path(char *line);
 int			ft_receive_events(t_config *config, char *title);
 int			ft_pressed_key(int keycode, t_config *config);
 void		ft_move_backward(t_config *config);

@@ -6,11 +6,11 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 14:34:43 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/23 13:16:56 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/31 10:40:30 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libftprintf.h"
 
 int	ft_is_printf_type(char c)
 {

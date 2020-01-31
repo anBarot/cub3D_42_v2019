@@ -1,14 +1,14 @@
-R 800 600
-S ../texture/path_to_the_sprite_texture
-SO ../texture/path_to_the_south_texture
-NO ./path_to_the_north_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-F 220,100,100
+R 800 6000
+S texture/red_brick_wall.jpeg       
+SO texture/red_brick_wall.jpeg
+NO texture/red_bricks.jpeg
+WE texture/stone_wall.jpeg
+EA texture/red_bricks.jpeg
+F 220,100,255
 C 100,200,100
 111111111
 100010001
 110000001
-100N00001
+1000N0001
 100000001
 111111111

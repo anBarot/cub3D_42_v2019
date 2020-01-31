@@ -6,13 +6,13 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/30 13:00:48 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:03:06 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int		ft_is_valid_value_mapline(char *map_line);
+int		ft_is_valid_value_mapline(char *map_line)
 {
 	int i_str;
 
@@ -28,10 +28,10 @@ int		ft_is_valid_value_mapline(char *map_line);
 	return (1);
 }
 
-void 	ft_get_map(t_config *config, char **line, int fd)
+void	ft_get_map(t_config *config, char **line, int fd)
 {
-	int		map_line;
-	int		line_width;
+	int				map_line;
+	unsigned int	line_width;
 
 	map_line = 0;
 	config->map[map_line] = ft_strdup(*line);
@@ -39,14 +39,19 @@ void 	ft_get_map(t_config *config, char **line, int fd)
 	map_line++;
 	while (get_next_line(fd, line) == 1)
 	{
-		config->map[map_line] = ft_remove_in_str(ft_strdup(*line), ' ');
-		if (!ft_is_valid_value_mapline(config->map[map_line]))
-			return (0);
-		if (map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
-			return (0);
+		config->map[map_line] = ft_remove_in_str(ft_strdup(*line), " ");
+		if (!ft_is_valid_value_mapline(config->map[map_line]) || 
+			map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
+		{
+			config->map = 0;
+			return ;
+		}
 		map_line++;
 	}
 	config->map[map_line] = ft_strdup(*line);
 	if (map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
-		return (0);
+	{	
+		config->map = 0;
+		return ;
+	}
 }

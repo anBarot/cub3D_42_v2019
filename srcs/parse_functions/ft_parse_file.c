@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/30 13:05:25 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/31 14:09:38 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,20 @@ int		ft_is_config_valid(t_config *config)
 	(!config->col_floor) ? error_value = F_COLOR_ERROR : 0;
 	(!config->resol) ? error_value = RESOL_ERROR : 0;
 	(!config->map) ? error_value = MAP_ERROR : 0;
-	(!config->cam_angle) ? error_value = MULTIPLAYER_ERROR : 0;
 	return (error_value);
 }
 
 int		ft_parse_file(t_config *config, char *cub_file)
 {
+	printf("\n-----beggining parsing-----\n");
 	char	*line;
 	int		fd;
+	int		error_value;
 
+	error_value = 0;
 	if ((fd = open(cub_file, O_RDONLY)) == -1)
 		return (OPEN_FILE_ERROR);
-	while (get_next_line(fd, &line) == 1)
+	while (get_next_line(fd, &line) == 1 && config->map)
 	{
 		(line[0] == 'R' && line[1] == ' ') ?
 				config->resol = ft_get_resolution(line) : 0;
@@ -51,10 +53,13 @@ int		ft_parse_file(t_config *config, char *cub_file)
 				config->path_east_texture = ft_get_texture_path(line + 3) : 0;
 		(line[0] == 'S' && line[1] == ' ') ?
 				config->path_sprite = ft_get_texture_path(line + 2) : 0;
-		(line[0] == 'F' && line[1] == ' ') ? config->col_floor = ft_get_col(line) : 0;
-		(line[0] == 'C' && line[1] == ' ') ? config->col_ceil = ft_get_col(line) : 0;
+		(line[0] == 'F' && line[1] == ' ') ? config->col_floor = ft_get_color(line) : 0;
+		(line[0] == 'C' && line[1] == ' ') ? config->col_ceil = ft_get_color(line) : 0;
 		(line[0] == '1') ? ft_get_map(config, &line, fd) : 0;
 	}
-	ft_get_player_coord(config);
+	if (!config->map)
+		return (error_value = MAP_ERROR);
+	if ((error_value = ft_get_player_coor(config)))
+		return (error_value);
 	return (ft_is_config_valid(config));
 }

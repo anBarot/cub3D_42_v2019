@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/30 13:04:45 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/31 13:41:03 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int		ft_get_player_coor(t_config *config)
 	{
 		while (config->map[line][col])
 		{
-			if (ft_check_in_set_char(config->map[line][col], "WESN"))
+			if (ft_is_char_in_set(config->map[line][col], "WESN"))
 			{
 				if (count_player == 1)
-					return ;
+					return (MULTIPLAYER_ERROR);
 				config->player_coord[0] = line;
 				config->player_coord[1] = col;
 				config->cam_angle = ft_get_camangle(config->map[line][col]);
@@ -53,4 +53,7 @@ int		ft_get_player_coor(t_config *config)
 		col = 0;
 		line++;
 	}
+	if (count_player == 0)
+		return (NO_PLAYER_ERROR);
+	return (NO_ERROR);
 }

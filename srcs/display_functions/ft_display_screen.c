@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/30 13:12:45 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/31 11:30:59 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	ft_display_screen(t_config *config)
 	double	wall_projection_size;
 	double	prop_constant;
 	void	*background_img;
+	int		col;
 
 	col = 0;
-	mlx_clear
 	prop_constant = ((WALL_SIZE / 2) * ((config->resol[0] /2) / tan(RAD(30))));
-	background_img = mlx_new_image(config->mlx_ptr, config->res[0], config->res[1]);
+	background_img = mlx_new_image(config->mlx_ptr, config->resol[0], config->resol[1]);
 	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, background_img, 0, 0);
 	while (col <= config->resol[0])
 	{
