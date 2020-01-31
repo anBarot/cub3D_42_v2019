@@ -28,7 +28,7 @@ int		ft_is_valid_value_mapline(char *map_line);
 	return (1);
 }
 
-void ft_get_map(t_config *config, char **line, int fd)
+void 	ft_get_map(t_config *config, char **line, int fd)
 {
 	int		map_line;
 	int		line_width;

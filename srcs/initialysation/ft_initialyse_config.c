@@ -20,10 +20,10 @@ int		ft_initialyse_config(t_config *config)
 		return (0);
 	config->col_ceil = 0;
 	config->col_floor = 0;
-	config->path_north = 0;
-	config->path_west = 0;
-	config->path_east = 0;
-	config->path_south = 0;
+	config->path_north_texture = 0;
+	config->path_west_texture = 0;
+	config->path_east_texture = 0;
+	config->path_south_texture = 0;
 	config->path_sprite = 0;
 	if (!(config->map = (char **)ft_calloc(sizeof(char *), 1000000)))
 		return (0);

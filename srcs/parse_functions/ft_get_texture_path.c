@@ -25,8 +25,10 @@ char	*ft_get_texture_path(t_config *config, char *line)
 	i_line = ft_strlen(line);
 	while (line[i_line] != '.')
 		i_line--;
-	if (!ft_strncmp(line + i_line, "jpg", 5) || !ft_strncmp(line + i_line, "jpeg", 5) 
-		|| !ft_strncmp(line + i_line, "gif", 5) || !ft_strncmp(line + i_line, "bmp", 5))
+	if (!ft_strncmp(line + i_line, "jpg", 5) ||
+		!ft_strncmp(line + i_line, "jpeg", 5) ||
+		!ft_strncmp(line + i_line, "gif", 5) ||
+		!ft_strncmp(line + i_line, "bmp", 5))
 		return (0);
 	else
 		return (path);

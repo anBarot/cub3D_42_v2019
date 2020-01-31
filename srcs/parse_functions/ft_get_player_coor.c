@@ -15,17 +15,17 @@
 double		ft_get_camangle(char dir)
 {
 	if (dir == 'N')
-		config->cam_angle = 60;
+		return (60);
 	else if (dir == 'W')
-		config->cam_angle = 330;
+		return (330);
 	else if (dir == 'S')
-		config->cam_angle = 240;
+		return (240);
 	else if (dir == 'E')
-		config->cam_angle = 150;
-	return (1);
+		return (150);
+	return (0);
 }
 
-void		ft_get_player_coor(t_config *config)
+int		ft_get_player_coor(t_config *config)
 {
 	int		col;
 	int 	line;
@@ -42,8 +42,8 @@ void		ft_get_player_coor(t_config *config)
 			{
 				if (count_player == 1)
 					return ;
-				config->map_player_coord[0] = line;
-				config->map_player_coord[1] = col;
+				config->player_coord[0] = line;
+				config->player_coord[1] = col;
 				config->cam_angle = ft_get_camangle(config->map[line][col]);
 				config->map[line][col] = '0';
 				count_player++;

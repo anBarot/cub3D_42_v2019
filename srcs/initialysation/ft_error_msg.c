@@ -15,7 +15,7 @@
 int		ft_error_msg(int error_value)
 {
 	(error_value == INVALID_ARG_NBR_ERROR) ? ft_printf
-	("Error\nYou have too many arguments, only the name of the file .cub followed by -save are allowed\n") : 0;
+	("Error\nYou have too many or too few arguments, only the name of the file .cub followed by -save are allowed\n") : 0;
 	(error_value == INVALID_ARG_ERROR) ? ft_printf
 	("Error\nThe file you are trying to read is not valid, check the extension '"'.cub'"'\n") : 0;
 	(error_value == INIT_ERROR) ? ft_printf
@@ -32,15 +32,15 @@ int		ft_error_msg(int error_value)
 	("Error\nThe floor color is not in the right format, try '"'F RRR,GGG,BBB'"'") : 0;
 	(error_value == MULTIPLAYER_ERROR) ? ft_printf
 	("Error\nOnly one player can play the game") : 0;
-	(error_value == PATH_NORTH_ERROR) ? ft_printf
-	("Error\nYour north texture file can't be found, check if it has the appropriate extension or path") : 0;
-	(error_value == PATH_WEST_ERROR) ? ft_printf
-	("Error\nYour west texture file can't be found, check if it has the appropriate extension or path") : 0;
-	(error_value == PATH_SOUTH_ERROR) ? ft_printf
-	("Error\nYour south texture file can't be found, check if it has the appropriate extension or path") : 0;
-	(error_value == PATH_EAST_ERROR) ? ft_printf
-	("Error\nYour east texture file can't be found, check if it has the appropriate extension or path") : 0;
-	(error_value == PATH_SPRITE_ERROR) ? ft_printf
-	("Error\nYour sprite file can't be found, check if it has the appropriate extension or path") : 0;
+	(error_value == N_PATH_ERROR) ? ft_printf
+	("Error\nYour north texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	(error_value == W_PATH_ERROR) ? ft_printf
+	("Error\nYour west texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	(error_value == SO_PATH_ERROR) ? ft_printf
+	("Error\nYour south texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	(error_value == E_PATH_ERROR) ? ft_printf
+	("Error\nYour east texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	(error_value == SP_PATH_ERROR) ? ft_printf
+	("Error\nYour sprite file can't be found, check if it has the appropriate extension or path\n") : 0;
 	return (0);
 }

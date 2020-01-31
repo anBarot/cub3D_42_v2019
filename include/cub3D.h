@@ -50,7 +50,7 @@
 
 typedef struct		s_config
 {
-	void			*mlx;
+	void			*mlx_ptr;
 	void			*win_ptr;
 	double			*resol;
 	int				col_ceil;
@@ -78,10 +78,10 @@ enum				e_error
 	C_COLOR_ERROR,
 	F_COLOR_ERROR,
 	N_PATH_ERROR,
-	S_PATH_ERROR,
+	SO_PATH_ERROR,
 	W_PATH_ERROR,
 	E_PATH_ERROR,
-	S_PATH_ERROR
+	SP_PATH_ERROR
 };
 int			ft_error_msg(int error_value);
 int			ft_initialyse_config(t_config *config);
