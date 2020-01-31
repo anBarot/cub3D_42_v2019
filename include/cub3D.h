@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 13:54:24 by abarot           ###   ########.fr       */
+/*   Updated: 2020/01/31 15:10:11 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,15 @@
 # include "libftprintf.h"
 # define RESOL_MAX_X			2560
 # define RESOL_MAX_Y			1440
+# define WALL_SIZE				64
+# define FOV 					60
 # define VALID_MAP_VALUE(value)	((value == '0' || value == '1' || value == '2' \
 								|| value == 'N' || value == 'E' || value == 'S'\
 								|| value == 'W') ? 1 : 0)
-# define WALL_SIZE				64
-# define FOV 					60
+# define NORTH_DIR(value)		((value >= 45 && value < 135) ? 1 : 0)
+# define EAST_DIR(value)		((value >= 135 && value < 225) ? 1 : 0)
+# define SOUTH_DIR(value)		((value >= 225 && value < 315) ? 1 : 0)
+# define WEST_DIR(value)		((value >= 315 || value < 45) ? 1 : 0)
 # define LEFT_LAT_KEY(value)	((value == 1) ? 1 : 0)
 # define RIGHT_LAT_KEY(value) 	((value == 1) ? 1 : 0)
 # define LEFTKEY(value)			((value == 123 || value == 0) ? 1 : 0)
