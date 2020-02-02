@@ -43,9 +43,9 @@ CFLAGS	=	-Wall -Wextra #-Werror
 
 INCL	=	include
 
-FRAMEWORK = -framework OpenGL -framework AppKit 
+FRAMEWORK = #-framework OpenGL -framework AppKit 
 
-LIB 	= -lmlx  #-lm -lXext -lX11  
+LIB 	= -lmlx  -lm -lXext -lX11  
 
 LIB_PATH	=	-L/usr/local/lib
 
@@ -55,13 +55,14 @@ RM	=	rm -f
 		gcc $(CFLAGS) -c $< -o $@ -I$(INCL)
 
 all	:	
-		make $(NAME)		
+		make -C libft
+		make $(NAME)
 
 $(NAME)	: $(OBJS) 
-			gcc libft.a $(OBJS) $(FRAMEWORK) $(LIBPATH) $(LIB) -o $(NAME) -I$(INCL)
+			gcc  $(OBJS) $(FRAMEWORK) libft.a $(LIBPATH) $(LIB) -o $(NAME) -I$(INCL)
 			
 clean	:
-		$(RM) $(OBJS)
+		$(RM) $(OBJS) && make -C libft fclean
 
 fclean	:	clean
 		$(RM) $(NAME) 

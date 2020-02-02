@@ -14,10 +14,11 @@
 
 int		ft_receive_events(t_config *config, char *title)
 {
-	mlx_init(config->mlx_ptr);
-	mlx_new_window(config->mlx_ptr, config->resol[0], config->resol[1], title);
+	printf("\n-----enterring events functions-----\n");
+	config->mlx_ptr = mlx_init();
+	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol[0], config->resol[1], title);
 	mlx_loop(config->mlx_ptr);
-	//voir cassage loop
-	if (!mlx_key_hook(config->win_ptr, &ft_pressed_key, config))
+	while (!mlx_key_hook(config->win_ptr, &ft_pressed_key, config))
+		return (1);
 	return (0);
 }

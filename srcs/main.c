@@ -29,7 +29,18 @@ int 	main(int ac, char **av)
 	if ((error_value = ft_parse_file(config, av[1])))
 		return (ft_error_msg(error_value));
 	printf("\n----.cub is valid----\n");
-	ft_receive_events(config, av[1]);
+	printf("\nresolution : %.0fx%.0f\ncolor : F %d, C %d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
+	config->resol[0], config->resol[1], config->col_floor, config->col_ceil, config->path_north_texture,
+	config->path_east_texture, config->path_west_texture, config->path_south_texture, config->path_sprite);
+	int i = 0;
+	while (config->map[i])
+	{
+		printf("\nmap %d : %s", i, config->map[i]);
+		i++;
+	}
+	printf("\ntitle : %s\n", av[1]);
+	if (!ft_receive_events(config, av[1]))
+		return (0);
 	/*ft_free_struct(config);*/
 	return (0);
 }

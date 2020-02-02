@@ -1,4 +1,4 @@
-R 800 6000
+R 800 600
 S texture/red_brick_wall.jpeg       
 SO texture/red_brick_wall.jpeg
 NO texture/red_bricks.jpeg
