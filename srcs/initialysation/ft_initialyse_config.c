@@ -16,7 +16,8 @@ int		ft_initialyse_config(t_config *config)
 {
 	config->mlx_ptr = 0;
 	config->win_ptr = 0;
-	config->resol = 0;
+	config->resol.x = 0;
+	config->resol.y = 0;
 	config->col_ceil = 0;
 	config->col_floor = 0;
 	config->path_north_texture = 0;
@@ -26,8 +27,8 @@ int		ft_initialyse_config(t_config *config)
 	config->path_sprite = 0;
 	if (!(config->map = (char **)ft_calloc(sizeof(char *), 1000000)))
 		return (0);
-	if (!(config->player_coord = (int *)ft_calloc(sizeof(int), 2)))
-		return (0);
+	config->player_coord.x = 0;
+	config->player_coord.y = 0;
 	config->cam_angle = 0;
 	return (1);
 }

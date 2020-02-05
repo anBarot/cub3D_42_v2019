@@ -15,8 +15,8 @@
 void	ft_get_crosscoord_horizontal(t_config *config, t_raycast *raycast)
 {
 	raycast->wall_coord_line = (double *)ft_calloc(sizeof(double), 2);
-	raycast->wall_coord_line[0] = raycast->cube_player_coord[0];
-	raycast->wall_coord_line[1] = raycast->cube_player_coord[1];
+	raycast->wall_coord_line[0] = raycast->cube_player_coord.x;
+	raycast->wall_coord_line[1] = raycast->cube_player_coord.y;
 	if (config->cam_angle > 0 && config->cam_angle < 180)
 	{	
 		raycast->wall_coord_line[0] -= (WALL_SIZE / 2);

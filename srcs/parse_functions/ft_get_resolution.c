@@ -37,27 +37,23 @@ int		ft_is_valid_resolution(char *line)
 	return (1);
 }
 
-double		*ft_get_resolution(char *line)
+void		ft_get_resolution(t_config *config, char *line)
 {
 	int 	i_line;
-	double	*resol;
 
 	i_line = 0;
-	if (!ft_is_valid_resolution(line) || !(resol = (double *)ft_calloc(sizeof(double), 2)))
-		return (0);
+	if (!ft_is_valid_resolution(line))
+		return ;
 	while (!ft_isdigit(line[i_line]))
 		i_line++;
-	resol[0] = (double)ft_atoi(line + i_line);
+	config->resol.x = ft_atoi(line + i_line);
 	while (ft_isdigit(line[i_line]))
 		i_line++;
 	while (line[i_line] == ' ')
 		i_line++;
-	resol[1] = (double)ft_atoi(line + i_line);
-	if (resol[0] > RESOL_MAX_X)
-		resol[0] = RESOL_MAX_X;
-	if (resol[1] > RESOL_MAX_Y)
-		resol[1] = RESOL_MAX_Y;
-	if (resol[0] < 0 || resol[1] < 0)
-		return (0);
-	return (resol);
+	config->resol.y = ft_atoi(line + i_line);
+	if (config->resol.x > RESOL_MAX_X)
+		config->resol.x = RESOL_MAX_X;
+	if (config->resol.y > RESOL_MAX_Y)
+		config->resol.y = RESOL_MAX_Y;
 }

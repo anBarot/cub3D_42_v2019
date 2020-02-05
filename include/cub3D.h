@@ -11,14 +11,8 @@
 /* ************************************************************************** */
 
 /* to do list : 
-		-	tester fonction remove in str,
-		-	gerer les parses error,
-		-	gerer erreurs de color : creer struct col R,G,B 
 		-	creer maps test,
 		-	faire un main de test automatique ou makefile (pr tous projet adaptable),
-		-	ft_calloc des l initialisation,
-		-	ajout libft : printf + getnext
-		-	algo img : img base C + F
 */
 
 #ifndef CUB3D_H
@@ -43,20 +37,25 @@
 # define EAST_DIR(value)		((value >= 135 && value < 225) ? 1 : 0)
 # define SOUTH_DIR(value)		((value >= 225 && value < 315) ? 1 : 0)
 # define WEST_DIR(value)		((value >= 315 || value < 45) ? 1 : 0)
-# define LEFT_LAT_KEY(value)	((value == 1) ? 1 : 0)
-# define RIGHT_LAT_KEY(value) 	((value == 1) ? 1 : 0)
-# define LEFTKEY(value)			((value == 123 || value == 0) ? 1 : 0)
-# define RIGHTKEY(value)		((value == 124 || value == 2) ? 1 : 0)
-# define UPKEY(value)			((value == 126 || value == 13) ? 1 : 0)
-# define DOWNKEY(value)			((value == 125 || value == 1) ? 1 : 0)
-# define ESCAPEKEY(value)		((value == 53) ? 1 : 0)
+# define LEFT_LAT_KEY(value)	((value == 113) ? 1 : 0)
+# define RIGHT_LAT_KEY(value) 	((value == 100) ? 1 : 0)
+# define LEFTKEY(value)			((value ==  65361) ? 1 : 0)
+# define RIGHTKEY(value)		((value == 65363) ? 1 : 0)
+# define UPKEY(value)			((value == 65362 || value == 113) ? 1 : 0)
+# define DOWNKEY(value)			((value == 65364 || value == 115) ? 1 : 0)
+# define ESCAPEKEY(value)		((value == 65307) ? 1 : 0)
 # define RAD(degree)			((degree) * (M_PI / 180))
 
+typedef struct		s_coord
+{
+	int				x;
+	int				y;
+}					t_coord;
 typedef struct		s_config
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
-	double			*resol;
+	t_coord			resol;
 	int				col_ceil;
 	int				col_floor;
 	char			*path_north_texture;
@@ -65,7 +64,7 @@ typedef struct		s_config
 	char			*path_south_texture;
 	char			*path_sprite;
 	char			**map;
-	int				*player_coord;
+	t_coord			player_coord;
 	double			cam_angle;
 }					t_config;
 enum				e_error
@@ -95,12 +94,12 @@ int			ft_parse_file(t_config *config, char *cub_file);
 int			ft_get_color(char *line);
 void 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
-double		*ft_get_resolution(char *line);
+void		ft_get_resolution(t_config *config, char *line);
 char		*ft_get_texture_path(char *line);
 int			ft_receive_events(t_config *config, char *title);
 int			ft_pressed_key(int keycode, t_config *config);
-void		ft_move_backward(t_config *config);
-void		ft_move_forward(t_config *config);
-void		ft_turn_left(t_config *config);
-void		ft_turn_right(t_config *config);
+void		ft_move_backandforth(t_config *config, int mv_value);
+void		ft_move_lateral(t_config *config, int mv_value);
+void		ft_turn(t_config *config, int angle_value);
+void		ft_display_screen(t_config *config);
 #endif

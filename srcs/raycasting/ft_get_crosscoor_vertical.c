@@ -15,8 +15,8 @@
 void	ft_get_crosscoord_vertical(t_config *config, t_raycast *raycast)
 {
 	raycast->wall_coord_col = (double *)ft_calloc(sizeof(double), 2);
-	raycast->wall_coord_col[0] = raycast->cube_player_coord[0];
-	raycast->wall_coord_col[1] = raycast->cube_player_coord[1];
+	raycast->wall_coord_col[0] = raycast->cube_player_coord.x;
+	raycast->wall_coord_col[1] = raycast->cube_player_coord.y;
 	if (config->cam_angle > 270 || config->cam_angle < 90)
 	{	
 		raycast->wall_coord_col[0] += ((WALL_SIZE / 2) * tan(RAD(360 - config->cam_angle)));

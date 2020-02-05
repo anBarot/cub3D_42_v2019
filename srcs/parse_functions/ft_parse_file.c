@@ -24,14 +24,14 @@ int		ft_is_config_valid(t_config *config)
 	(!config->path_sprite) ? error_value = SP_PATH_ERROR : 0;
 	(!config->col_ceil) ? error_value = C_COLOR_ERROR : 0;
 	(!config->col_floor) ? error_value = F_COLOR_ERROR : 0;
-	(!config->resol) ? error_value = RESOL_ERROR : 0;
+	(!config->resol.x) ? error_value = RESOL_ERROR : 0;
+	(!config->resol.y) ? error_value = RESOL_ERROR : 0;
 	(!config->map) ? error_value = MAP_ERROR : 0;
 	return (error_value);
 }
 
 int		ft_parse_file(t_config *config, char *cub_file)
 {
-	printf("\n-----beggining parsing-----\n");
 	char	*line;
 	int		fd;
 	int		error_value;
@@ -42,7 +42,7 @@ int		ft_parse_file(t_config *config, char *cub_file)
 	while (get_next_line(fd, &line) == 1 && config->map)
 	{
 		(line[0] == 'R' && line[1] == ' ') ?
-				config->resol = ft_get_resolution(line) : 0;
+				ft_get_resolution(config, line) : 0;
 		(line[0] == 'N' && line[1] == 'O' && line[2] == ' ') ?
 				config->path_north_texture = ft_get_texture_path(line + 3) : 0;
 		(line[0] == 'S' && line[1] == 'O' && line[2] == ' ') ?
@@ -61,5 +61,6 @@ int		ft_parse_file(t_config *config, char *cub_file)
 		return (error_value = MAP_ERROR);
 	if ((error_value = ft_get_player_coor(config)))
 		return (error_value);
+	close(fd);
 	return (ft_is_config_valid(config));
 }

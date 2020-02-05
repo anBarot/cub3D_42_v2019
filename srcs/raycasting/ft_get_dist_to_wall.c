@@ -12,6 +12,14 @@
 
 #include "cub3D.h"
 
+double	ft_calc_magnitude(double *in_coord, double *end_coord)
+{
+	double	magnitude;
+	
+	magnitude = sqrt((pow(end_coord[0] - in_coord[0], 2)) + (pow(end_coord[1] - in_coord[1], 2)));
+	return (magnitude);
+}
+
 double	ft_get_distance_to_wall(t_config *config)
 {
 

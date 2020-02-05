@@ -42,8 +42,8 @@ int		ft_get_player_coor(t_config *config)
 			{
 				if (count_player == 1)
 					return (MULTIPLAYER_ERROR);
-				config->player_coord[0] = line;
-				config->player_coord[1] = col;
+				config->player_coord.x = line;
+				config->player_coord.y = col;
 				config->cam_angle = ft_get_camangle(config->map[line][col]);
 				config->map[line][col] = '0';
 				count_player++;

@@ -16,11 +16,11 @@ void	ft_draw_column(t_config *config, double wall_proj_size, int col)
 {
 	int		line;
 
-	line = (config->resol[1] / 2) - (wall_proj_size / 2);
-	while (line < ((config->resol[1] / 2) + (wall_proj_size / 2)))
+	line = (config->resol.y / 2) - (wall_proj_size / 2);
+	while (line < ((config->resol.y / 2) + (wall_proj_size / 2)))
 	{
-		if (line > ((config->resol[1] / 2) - (wall_proj_size / 2)) 
-			&& line <= ((config->resol[1] / 2) + (wall_proj_size / 2)))
+		if (line > ((config->resol.y / 2) - (wall_proj_size / 2)) 
+			&& line <= ((config->resol.y / 2) + (wall_proj_size / 2)))
 			mlx_pixel_put(config->mlx_ptr, config->win_ptr, col, line, 100150100);
 		line++;
 	}
@@ -35,15 +35,15 @@ void	ft_display_screen(t_config *config)
 	int		col;
 
 	col = 0;
-	prop_constant = ((WALL_SIZE / 2) * ((config->resol[0] /2) / tan(RAD(30))));
-	background_img = mlx_new_image(config->mlx_ptr, config->resol[0], config->resol[1]);
+	prop_constant = ((WALL_SIZE / 2) * ((config->resol.x /2) / tan(RAD(30))));
+	background_img = mlx_new_image(config->mlx_ptr, config->resol.x, config->resol.y);
 	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, background_img, 0, 0);
-	while (col <= config->resol[0])
+	while (col <= config->resol.x)
 	{
 		wall_projection_size = (prop_constant / ft_cast_ray(config));
 		ft_draw_column(config, wall_projection_size, col);
 		col++;
-		config->cam_angle += (60 / config->resol[0]);
+		config->cam_angle += (60 / config->resol.x);
 		if (config->cam_angle >= (double)360)
 			config->cam_angle -= 360;
 		else if (config->cam_angle < (double)0)
