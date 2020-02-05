@@ -24,11 +24,8 @@ SRCS	=	srcs/main.c \
 			srcs/parse_functions/ft_parse_file.c \
 			srcs/event_management/ft_receive_events.c \
 			srcs/event_management/ft_pressed_key.c \
-			srcs/event_management/moves.c  
-			# srcs/display_functions/ft_display_screen.c \
-			srcs/raycasting/ft_get_crosscoor_horizontal.c \
-			srcs/raycasting/ft_get_crosscoor_special_angle.c \
-			srcs/raycasting/ft_get_crosscoor_vertical.c \
+			srcs/event_management/moves.c  \
+			srcs/display_functions/ft_display_screen.c \
 			srcs/raycasting/ft_get_dist_to_wall.c
 
 OBJS	=	$(SRCS:.c=.o)

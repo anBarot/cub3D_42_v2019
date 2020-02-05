@@ -27,7 +27,7 @@ void	ft_move_backandforth(t_config *config, int mv_value)
 		config->map[config->player_coord.x][config->player_coord.y - mv_value] != '1')
 		config->player_coord.y -= mv_value;
 	mlx_clear_window(config->mlx_ptr, config->win_ptr);
-	// ft_display_screen(config);
+	ft_display_screen(config);
 }
 
 void	ft_move_lateral(t_config *config, int mv_value)
@@ -45,7 +45,7 @@ void	ft_move_lateral(t_config *config, int mv_value)
 		config->map[config->player_coord.x + mv_value][config->player_coord.y] != '1')
 		config->player_coord.x += mv_value;
 	mlx_clear_window(config->mlx_ptr, config->win_ptr);
-	// ft_display_screen(config);
+	ft_display_screen(config);
 }
 
 void	ft_turn(t_config *config, int angle_value)
@@ -56,5 +56,5 @@ void	ft_turn(t_config *config, int angle_value)
 	if (config->cam_angle > 360)
 		config->cam_angle -= 360;
 	mlx_clear_window(config->mlx_ptr, config->win_ptr);
-	// ft_display_screen(config);
+	ft_display_screen(config);
 }
