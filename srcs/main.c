@@ -39,7 +39,7 @@ int 	main(int ac, char **av)
 		printf("\nmap %d : %s", i, config->map[i]);
 		i++;
 	}
-	printf("\ntitle : %s\n", av[1]);
+	printf("\ncoor : %d,%d\n", config->player_coord.x, config->player_coord.y);
 	// fin test parse
 	ft_receive_events(config, av[1]);
 	return (0);

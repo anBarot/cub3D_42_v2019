@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_screen.c                                :+:      :+:    :+:   */
+/*   //ft_display_screen.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -34,6 +34,7 @@ double	ft_get_wallproj(t_config *config, double angle)
 	p_coor.y = (config->player_coord.y * WALL_SIZE) + (WALL_SIZE / 2);
 	dist_to_wall = ft_get_dist_to_wall(p_coor, config->map, angle);
 	prop_constant = ((WALL_SIZE / 2) * ((config->resol.x /2) / tan(RAD(FOV / 2))));
+	prop_constant /= 2;
 	return (prop_constant / dist_to_wall);
 }
 

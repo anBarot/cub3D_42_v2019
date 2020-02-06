@@ -27,7 +27,7 @@ SRCS	=	ft_addtoa.c ft_atoi.c ft_bzero.c ft_calloc.c ft_char_to_str.c \
 			ft_printf/ft_printf.c \
 			ft_printf/initialyse_and_apply_spec/apply_spec.c \
 			ft_printf/initialyse_and_apply_spec/create_formated_string.c \
-			ft_printf/initialyse_and_apply_spec/ft_display_char_is_zero.c \
+			ft_printf/initialyse_and_apply_spec///ft_display_char_is_zero.c \
 			ft_printf/initialyse_and_apply_spec/ft_initialyse_spec.c \
 			ft_printf/initialyse_and_apply_spec/ft_spec_is_valid.c \
 			ft_printf/parse_functions/ft_get_arg_as_a_string.c \

@@ -45,7 +45,7 @@
 # define RIGHT_LAT_KEY(value) 	((value == 100) ? 1 : 0)
 # define LEFTKEY(value)			((value ==  65361) ? 1 : 0)
 # define RIGHTKEY(value)		((value == 65363) ? 1 : 0)
-# define UPKEY(value)			((value == 65362 || value == 113) ? 1 : 0)
+# define UPKEY(value)			((value == 65362 || value == 122) ? 1 : 0)
 # define DOWNKEY(value)			((value == 65364 || value == 115) ? 1 : 0)
 # define ESCAPEKEY(value)		((value == 65307) ? 1 : 0)
 # define RAD(degree)			((degree) * (M_PI / 180))
@@ -69,7 +69,7 @@ typedef struct		s_config
 	char			*path_sprite;
 	char			**map;
 	t_coord			player_coord;
-	double			cam_angle;
+	int				cam_angle;
 }					t_config;
 enum				e_error
 {
@@ -101,10 +101,9 @@ int			ft_get_player_coor(t_config *config);
 void		ft_get_resolution(t_config *config, char *line);
 char		*ft_get_texture_path(char *line);
 int			ft_receive_events(t_config *config, char *title);
-int			ft_pressed_key(int keycode, t_config *config);
 void		ft_move_backandforth(t_config *config, int mv_value);
 void		ft_move_lateral(t_config *config, int mv_value);
 void		ft_turn(t_config *config, int angle_value);
 void		ft_display_screen(t_config *config);
-double		ft_get_distance_to_wall(t_coord p_coor, char **map, double angle);
+double		ft_get_dist_to_wall(t_coord p_coor, char **map, double angle);
 #endif
