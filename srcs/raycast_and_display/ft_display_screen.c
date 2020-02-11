@@ -26,12 +26,12 @@ void	ft_draw_column(t_config *config, double wall_proj_size, int col)
 
 double	ft_get_wallproj(t_config *config, double angle)
 {
-	double	prop_constant;
-	double	dist_to_wall;
-	t_coord	p_coor;
+	double		prop_constant;
+	double		dist_to_wall;
+	t_fcoord	p_coor;
 
-	p_coor.x = (config->player_coord.x * WALL_SIZE) + (WALL_SIZE / 2);
-	p_coor.y = (config->player_coord.y * WALL_SIZE) + (WALL_SIZE / 2);
+	p_coor.x = ((double)config->player_coord.x * WALL_SIZE) + (WALL_SIZE / 2);
+	p_coor.y = ((double)config->player_coord.y * WALL_SIZE) + (WALL_SIZE / 2);
 	dist_to_wall = ft_get_dist_to_wall(p_coor, config->map, angle);
 	prop_constant = ((WALL_SIZE / 2) * ((config->resol.x /2) / tan(RAD(FOV / 2))));
 	prop_constant /= 2;

@@ -35,8 +35,6 @@
 								|| value == 'N' || value == 'E' || value == 'S'\
 								|| value == 'W') ? 1 : 0)
 # define IS_WALL_SPRITE(value)	((value == '1' || value == '2') ? 1 : 0)
-# define SPEC_ANGLE(value)		((value == 90 || value == 0 || value == 270 \
-								|| value == 180) ? 1 : 0)
 # define NORTH_DIR(value)		((value >= 45 && value < 135) ? 1 : 0)
 # define EAST_DIR(value)		((value >= 135 && value < 225) ? 1 : 0)
 # define SOUTH_DIR(value)		((value >= 225 && value < 315) ? 1 : 0)
@@ -52,9 +50,14 @@
 
 typedef struct		s_coord
 {
-	int				x;
-	int				y;
+	int					x;
+	int					y;
 }					t_coord;
+typedef struct		s_fcoord
+{
+	double				x;
+	double				y;
+}					t_fcoord;
 typedef struct		s_config
 {
 	void			*mlx_ptr;
@@ -105,5 +108,5 @@ void		ft_move_backandforth(t_config *config, int mv_value);
 void		ft_move_lateral(t_config *config, int mv_value);
 void		ft_turn(t_config *config, int angle_value);
 void		ft_display_screen(t_config *config);
-double		ft_get_dist_to_wall(t_coord p_coor, char **map, double angle);
+double		ft_get_dist_to_wall(t_fcoord p_coor, char **map, double angle);
 #endif
