@@ -1,4 +1,4 @@
-R 800 600
+R 1000 600
 S texture/red_brick_wall.jpeg       
 SO texture/red_brick_wall.jpeg
 NO texture/red_bricks.jpeg
@@ -9,7 +9,5 @@ C 100,200,100
 11111
 10001
 10001
-10001
 10N01
-10001
 11111

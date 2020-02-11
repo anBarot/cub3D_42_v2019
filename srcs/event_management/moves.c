@@ -14,9 +14,6 @@
 
 void	ft_move_backandforth(t_config *config, int mv_value)
 {
-	printf("\ndir : %s\n", (NORTH_DIR(config->cam_angle)) ? "NO" : (SOUTH_DIR(config->cam_angle)) ? "SO" :
-	 (WEST_DIR(config->cam_angle)) ? "WE" : (EAST_DIR(config->cam_angle)) ? "EA" : 0);
-			printf("\npredi coor : %c\n",config->map[config->player_coord.x][config->player_coord.y - mv_value]);
 	if (NORTH_DIR((int)config->cam_angle) &&
 		config->map[config->player_coord.x - mv_value][config->player_coord.y] != '1')
 		{
@@ -31,15 +28,12 @@ void	ft_move_backandforth(t_config *config, int mv_value)
 	else if	(EAST_DIR(config->cam_angle) &&
 		config->map[config->player_coord.x][config->player_coord.y + mv_value] != '1')
 		config->player_coord.y += mv_value;
-	printf("\ncoor : %d,%d\nangle : %d\n", config->player_coord.x, config->player_coord.y, config->cam_angle);
 	mlx_clear_window(config->mlx_ptr, config->win_ptr);
-	//ft_display_screen(config);
+	ft_display_screen(config);
 }
 
 void	ft_move_lateral(t_config *config, int mv_value)
 {
-	printf("\ndir : %s\n", (NORTH_DIR(config->cam_angle)) ? "NO" : (SOUTH_DIR(config->cam_angle)) ? "SO" :
-	 (WEST_DIR(config->cam_angle)) ? "WE" : (EAST_DIR(config->cam_angle)) ? "EA" : 0);
 	if (NORTH_DIR(config->cam_angle) &&
 		config->map[config->player_coord.x][config->player_coord.y + mv_value] != '1')
 		config->player_coord.y += mv_value;
@@ -52,21 +46,17 @@ void	ft_move_lateral(t_config *config, int mv_value)
 	else if	(EAST_DIR(config->cam_angle) &&
 		config->map[config->player_coord.x + mv_value][config->player_coord.y] != '1')
 		config->player_coord.x += mv_value;
-	printf("\ncoor : %d,%d\nangle : %d\n", config->player_coord.x, config->player_coord.y, config->cam_angle);
 	mlx_clear_window(config->mlx_ptr, config->win_ptr);
-	//ft_display_screen(config);
+	ft_display_screen(config);
 }
 
 void	ft_turn(t_config *config, int angle_value)
 {
-	printf("\ndir : %s\n", (NORTH_DIR(config->cam_angle)) ? "NO" : (SOUTH_DIR(config->cam_angle)) ? "SO" :
-	 (WEST_DIR(config->cam_angle)) ? "WE" : (EAST_DIR(config->cam_angle)) ? "EA" : 0);
 	config->cam_angle += angle_value;
 	if (config->cam_angle < 0)
 		config->cam_angle += 360;
 	if (config->cam_angle > 360)
 		config->cam_angle -= 360;
-	printf("\ncoor : %d,%d\nangle : %d\n", config->player_coord.x, config->player_coord.y, config->cam_angle);
 	mlx_clear_window(config->mlx_ptr, config->win_ptr);
-	//ft_display_screen(config);
+	ft_display_screen(config);
 }

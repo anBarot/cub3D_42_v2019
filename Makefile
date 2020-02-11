@@ -16,16 +16,14 @@ SRCS	=	srcs/main.c \
 			srcs/initialysation/ft_error_msg.c \
 			srcs/initialysation/ft_initialyse_config.c \
 			srcs/initialysation/ft_is_valid_arg.c \
-			srcs/parse_functions/ft_get_cf_colors.c \
-			srcs/parse_functions/ft_get_map.c \
-			srcs/parse_functions/ft_get_player_coor.c \
-			srcs/parse_functions/ft_get_resolution.c \
-			srcs/parse_functions/ft_get_texture_path.c \
 			srcs/parse_functions/ft_parse_file.c \
+			srcs/parse_functions/ft_get_texture_and_resolution.c \
+			srcs/parse_functions/ft_get_cf_colors.c \
+			srcs/parse_functions/ft_get_map_and_pcoor.c \
 			srcs/event_management/ft_receive_events.c \
 			srcs/event_management/moves.c  \
-			srcs/display_functions///ft_display_screen.c \
-			srcs/raycasting/ft_get_dist_to_wall.c
+			srcs/raycast_and_display/ft_display_screen.c \
+			srcs/raycast_and_display/ft_get_dist_to_wall.c
 
 OBJS	=	$(SRCS:.c=.o)
 

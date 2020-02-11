@@ -46,7 +46,7 @@ void	ft_display_screen(t_config *config)
 	double	tmp_angle;
 
 	col = 0;
-	delta_angle = (60 / config->resol.x);
+	delta_angle = (60 / (double)config->resol.x);
 	tmp_angle = config->cam_angle;
 	while (col <= config->resol.x)
 	{
