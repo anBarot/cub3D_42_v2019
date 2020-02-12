@@ -96,13 +96,12 @@ enum				e_error
 };
 int			ft_error_msg(int error_value);
 int			ft_initialyse_config(t_config *config);
-int			ft_is_valid_arg(const char *av_1, const char *av_2);
 int			ft_parse_file(t_config *config, char *cub_file);
+void		ft_get_resolution(t_config *config, char *line);
+char		*ft_get_texture_path(char *line);
 int			ft_get_color(char *line);
 void 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
-void		ft_get_resolution(t_config *config, char *line);
-char		*ft_get_texture_path(char *line);
 int			ft_receive_events(t_config *config, char *title);
 void		ft_move_backandforth(t_config *config, int mv_value);
 void		ft_move_lateral(t_config *config, int mv_value);
