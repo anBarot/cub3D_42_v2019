@@ -54,6 +54,7 @@ int 	main(int ac, char **av)
 	}
 	printf("\ncoor : %d,%d\n", config->player_coord.x, config->player_coord.y);
 	// fin test parse
+	ft_initialyse_img(config);
 	ft_receive_events(config, av[1]);
 	return (0);
 }

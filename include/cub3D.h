@@ -13,7 +13,8 @@
 /* to do list : 
 		-	creer maps test,
 		-	faire un main de test automatique ou makefile (pr tous projet adaptable),
-		-	
+		-	verif angles
+		-	create textures
 */
 
 #ifndef CUB3D_H
@@ -50,14 +51,44 @@
 
 typedef struct		s_coord
 {
-	int					x;
-	int					y;
+	int				x;
+	int				y;
 }					t_coord;
 typedef struct		s_fcoord
 {
-	double				x;
-	double				y;
+	double			x;
+	double			y;
 }					t_fcoord;
+typedef struct		s_raycast
+{
+	double			prop_cste;
+	t_fcoord		p_coor;
+	double 			dist_cross_hor;
+	double 			dist_cross_vert;
+	double			smallest_dist;
+	int				wall_proj;
+	char			nesw_path;
+}					t_raycast;
+typedef struct 		s_color
+{
+	int				r;
+	int				g;
+	int				b;
+	int				alpha;
+}					t_color;
+typedef	struct		s_mlx_img
+{
+	void			*background;
+	char			*background_mlx;
+	void			*north;
+	void			*north_mlx;
+	void			*south;
+	void			*south_mlx;
+	void			*west;
+	void			*west_mlx;
+	void			*east;
+	void			*east_mlx;
+}					t_mlx_img;
 typedef struct		s_config
 {
 	void			*mlx_ptr;
@@ -73,6 +104,7 @@ typedef struct		s_config
 	char			**map;
 	t_coord			player_coord;
 	int				cam_angle;
+	t_mlx_img		*img;
 }					t_config;
 enum				e_error
 {
@@ -102,10 +134,11 @@ char		*ft_get_texture_path(char *line);
 int			ft_get_color(char *line);
 void 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
+void		ft_initialyse_img(t_config *config);
 int			ft_receive_events(t_config *config, char *title);
 void		ft_move_backandforth(t_config *config, int mv_value);
 void		ft_move_lateral(t_config *config, int mv_value);
 void		ft_turn(t_config *config, int angle_value);
 void		ft_display_screen(t_config *config);
-double		ft_get_dist_to_wall(t_fcoord p_coor, char **map, double angle);
+void		ft_get_dist_to_wall(t_raycast *ray, char **map, double angle);
 #endif

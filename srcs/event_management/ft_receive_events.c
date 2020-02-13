@@ -23,7 +23,7 @@ void	ft_escape_game(t_config *config)
 	free(config->path_south_texture);
 	free(config->path_west_texture);
 	free(config->path_sprite);
-	while (config->map && config->map[line])
+	while (config->map[line])
 	{
 		free(config->map[line]);
 		line++;
@@ -52,6 +52,7 @@ int		ft_receive_events(t_config *config, char *title)
 {
 	config->mlx_ptr = mlx_init();
 	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol.x, config->resol.y, title);
+	ft_create_background(config);
 	ft_display_screen(config);
 	mlx_key_hook(config->win_ptr, &ft_pressed_key, config);
 	mlx_loop(config->mlx_ptr);

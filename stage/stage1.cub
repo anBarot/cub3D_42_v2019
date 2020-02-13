@@ -4,10 +4,12 @@ SO texture/red_brick_wall.jpeg
 NO texture/red_bricks.jpeg
 WE texture/stone_wall.jpeg
 EA texture/red_bricks.jpeg
-F 220,100,255
+F 200,100,255
 C 100,200,100
-11111
-10001
-10N01
-10001
-11111
+111111111
+100000001
+100000001
+1000N0001
+100000001
+100000001
+111111111

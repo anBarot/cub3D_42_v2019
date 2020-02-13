@@ -32,7 +32,7 @@ INCL	=	include
 
 FRAMEWORK = #-framework OpenGL -framework AppKit 
 
-LIB 	= -lmlx  -lm -lXext -lX11  
+LIB 	= -lmlx  -lm -lXext -lX11  -lbsd
 
 LIB_PATH	=	-L/usr/local/lib
 
