@@ -35,14 +35,14 @@ int		ft_error_msg(int error_value)
 	(error_value == NO_PLAYER_ERROR) ? ft_printf
 	("Error\nThere is no player!\n") : 0;
 	(error_value == N_PATH_ERROR) ? ft_printf
-	("Error\nYour north texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	("Error\nYour north texture file can't be found, check if it has the appropriate extension .xpm or path\n") : 0;
 	(error_value == W_PATH_ERROR) ? ft_printf
-	("Error\nYour west texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	("Error\nYour west texture file can't be found, check if it has the appropriate extension .xpm or path\n") : 0;
 	(error_value == SO_PATH_ERROR) ? ft_printf
-	("Error\nYour south texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	("Error\nYour south texture file can't be found, check if it has the appropriate extension .xpm or path\n") : 0;
 	(error_value == E_PATH_ERROR) ? ft_printf
-	("Error\nYour east texture file can't be found, check if it has the appropriate extension or path\n") : 0;
+	("Error\nYour east texture file can't be found, check if it has the appropriate extension .xpm or path\n") : 0;
 	(error_value == SP_PATH_ERROR) ? ft_printf
-	("Error\nYour sprite file can't be found, check if it has the appropriate extension or path\n") : 0;
+	("Error\nYour sprite file can't be found, check if it has the appropriate extension .xpm or path\n") : 0;
 	return (0);
 }

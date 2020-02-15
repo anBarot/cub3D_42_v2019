@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   //ft_display_screen.c                              :+:      :+:    :+:   */
+/*   ft_display_screen.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,32 +12,21 @@
 
 #include "cub3D.h"
 
-
-
-
-
-
 void	ft_draw_column(t_config *config, t_raycast *ray, int col)
 {
 	int		y_coor;
     void	*wall_texture;
-	int 	width = 1;
 
-    
-	printf("\n---draw column---\n");
 	y_coor = (config->resol.y / 2) - (ray->wall_proj / 2);
-	printf("\nfile : %s\n", config->path_west_texture);
 	if (ray->nesw_path == 'S')
-    	wall_texture = mlx_xpm_file_to_image(config->mlx_ptr, config->path_south_texture, &width, &(ray->wall_proj));
+    	wall_texture = config->img.south;
 	else if (ray->nesw_path == 'E')
-    	wall_texture = mlx_xpm_file_to_image(config->mlx_ptr, config->path_east_texture, &width, &(ray->wall_proj));
+    	wall_texture = config->img.east;
 	else if (ray->nesw_path == 'N')
-    	wall_texture = mlx_xpm_file_to_image(config->mlx_ptr, config->path_north_texture, &width, &(ray->wall_proj));
+    	wall_texture = config->img.north;
 	else if (ray->nesw_path == 'W')
-    	wall_texture = mlx_xpm_file_to_image(config->mlx_ptr, config->path_west_texture, &width, &(ray->wall_proj));
-	printf("\n---get wall texture---\n\ny coor : %d\ncol : %d\nwall texture : %p\n", y_coor, col, wall_texture);
+    	wall_texture = config->img.west;
 	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, wall_texture, col, y_coor);
-	mlx_destroy_image (config->mlx_ptr, wall_texture);
 }
 
 void	ft_initialyse_ray(t_raycast *ray)

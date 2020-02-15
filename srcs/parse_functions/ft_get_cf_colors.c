@@ -12,40 +12,51 @@
 
 #include "cub3D.h"
 
-int		ft_check_color(char *str)
+void	ft_fill_color(t_color color, char *line, char cf, t_config *config)
 {
-	int i_str;
-	int	i_repetition;
-	int tmp_col;
+	char	*n_str;
 
-	i_repetition = 2;
-	i_str = 0;
-	tmp_col = ft_atoi(str);
-	if (tmp_col < 0 || tmp_col > 255)
-		return (0);
-	while (i_repetition-- && str[i_str])
+	n_str = ft_remove_in_str(line, "CF, ");
+	if (cf == 'C')
 	{
-		while (str[i_str] != ',')
-			i_str++;
-		tmp_col = ft_atoi(str + i_str++ + 1);
-		if (tmp_col < 0 || tmp_col > 255)
-			return (0);
+		config->col_ceil.R = color.R;
+		config->col_ceil.G = color.G;
+		config->col_ceil.B = color.B;
+		config->col_ceil.pix_put_col = ft_atoi((const char *)n_str);
 	}
-	while (ft_isdigit(str[i_str]))
-		i_str++;
-	if (str[i_str])
-		return (0);
-	return (1);
+	else
+	{
+		config->col_floor.R = color.R;
+		config->col_floor.G = color.G;
+		config->col_floor.B = color.B;
+		config->col_floor.pix_put_col = ft_atoi((const char *)n_str);
+	}
+	free(n_str);
 }
 
-int		ft_get_color(char *line)
+void		ft_get_color(char *line, t_config *config)
 {
-	int		col;
-	char	*n_line;
+	int		i_line;
+	t_color	color;
 
-	if (!ft_check_color(line + 2))
-		return (0);
-	n_line = ft_remove_in_str(line, " CF,");
-	col = ft_atoi(n_line);
-	return (col);
+	i_line = 0;
+	while (!ft_isdigit(line[i_line]) && line[i_line])
+		i_line++;
+	color.R = ft_atoi(line + i_line);
+	while (ft_isdigit(line[i_line]))
+		i_line++;
+	(line[i_line] == ',') ? i_line++ : 0;
+	color.G = ft_atoi((const char *)line + i_line);
+	while (ft_isdigit(line[i_line]))
+		i_line++;
+	(line[i_line] == ',') ? i_line++ : 0;
+	color.B = ft_atoi((const char *)line + i_line);
+	while (ft_isdigit(line[i_line]))
+		i_line++;
+	while (line[i_line] == ' ' && i_line < 50 && line[i_line])
+		i_line++;
+	if (color.R < 0 || color.B < 0 || color.G < 0 || color.R > 255 
+	|| color.G > 255 || color.B > 255 || line[i_line])
+		return ;
+	ft_fill_color(color, line, line[0], config);
 }

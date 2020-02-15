@@ -15,6 +15,7 @@ NAME	=	Cub3D
 SRCS	=	srcs/main.c \
 			srcs/initialysation/ft_error_msg.c \
 			srcs/initialysation/ft_initialyse_config.c \
+			srcs/initialysation/ft_initialyse_img.c \
 			srcs/parse_functions/ft_parse_file.c \
 			srcs/parse_functions/ft_get_texture_and_resolution.c \
 			srcs/parse_functions/ft_get_cf_colors.c \

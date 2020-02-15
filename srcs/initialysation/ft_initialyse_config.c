@@ -18,8 +18,8 @@ int		ft_initialyse_config(t_config *config)
 	config->win_ptr = 0;
 	config->resol.x = 0;
 	config->resol.y = 0;
-	config->col_ceil = 0;
-	config->col_floor = 0;
+	config->col_ceil.pix_put_col = 0;
+	config->col_floor.pix_put_col = 0;
 	config->path_north_texture = 0;
 	config->path_west_texture = 0;
 	config->path_east_texture = 0;

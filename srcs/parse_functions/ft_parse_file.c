@@ -22,8 +22,8 @@ int		ft_is_config_valid(t_config *config)
 	(!config->path_north_texture) ? error_value = N_PATH_ERROR : 0;
 	(!config->path_south_texture) ? error_value = SO_PATH_ERROR : 0;
 	(!config->path_sprite) ? error_value = SP_PATH_ERROR : 0;
-	(!config->col_ceil) ? error_value = C_COLOR_ERROR : 0;
-	(!config->col_floor) ? error_value = F_COLOR_ERROR : 0;
+	(!config->col_ceil.pix_put_col) ? error_value = C_COLOR_ERROR : 0;
+	(!config->col_floor.pix_put_col) ? error_value = F_COLOR_ERROR : 0;
 	(!config->resol.x) ? error_value = RESOL_ERROR : 0;
 	(!config->resol.y) ? error_value = RESOL_ERROR : 0;
 	(!config->map) ? error_value = MAP_ERROR : 0;
@@ -53,8 +53,8 @@ int		ft_parse_file(t_config *config, char *cub_file)
 				config->path_east_texture = ft_get_texture_path(line + 3) : 0;
 		(line[0] == 'S' && line[1] == ' ') ?
 				config->path_sprite = ft_get_texture_path(line + 2) : 0;
-		(line[0] == 'F' && line[1] == ' ') ? config->col_floor = ft_get_color(line) : 0;
-		(line[0] == 'C' && line[1] == ' ') ? config->col_ceil = ft_get_color(line) : 0;
+		(line[0] == 'F' && line[1] == ' ') ? ft_get_color(line, config) : 0;
+		(line[0] == 'C' && line[1] == ' ') ? ft_get_color(line, config) : 0;
 		(line[0] == '1') ? ft_get_map(config, &line, fd) : 0;
 	}
 	if (!config->map)

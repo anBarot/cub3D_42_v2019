@@ -48,11 +48,8 @@ int	ft_pressed_key(int keycode, t_config *config)
 	return (1);
 }
 
-int		ft_receive_events(t_config *config, char *title)
+int		ft_receive_events(t_config *config)
 {
-	config->mlx_ptr = mlx_init();
-	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol.x, config->resol.y, title);
-	ft_create_background(config);
 	ft_display_screen(config);
 	mlx_key_hook(config->win_ptr, &ft_pressed_key, config);
 	mlx_loop(config->mlx_ptr);

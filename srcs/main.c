@@ -43,9 +43,11 @@ int 	main(int ac, char **av)
 		return (ft_error_msg(error_value));
 	// test parse
 	printf("\n----.cub is valid----\n");
-	printf("\nresolution : %dx%d\ncolor : F %d, C %d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
-	config->resol.x, config->resol.y, config->col_floor, config->col_ceil, config->path_north_texture,
-	config->path_east_texture, config->path_west_texture, config->path_south_texture, config->path_sprite);
+	printf("\nresolution : %dx%d\ncolor : F %d%d%d -> %d, C %d%d%d -> %d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
+	config->resol.x, config->resol.y, config->col_floor.R, config->col_floor.G, config->col_floor.B, config->col_floor.pix_put_col, 
+	config->col_ceil.R, config->col_ceil.G, config->col_ceil.B, config->col_ceil.pix_put_col,
+	config->path_north_texture, config->path_east_texture, config->path_west_texture, 
+	config->path_south_texture, config->path_sprite);
 	int i = 0;
 	while (config->map[i])
 	{
@@ -54,7 +56,9 @@ int 	main(int ac, char **av)
 	}
 	printf("\ncoor : %d,%d\n", config->player_coord.x, config->player_coord.y);
 	// fin test parse
+	config->mlx_ptr = mlx_init();
+	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol.x, config->resol.y, "test 1");
 	ft_initialyse_img(config);
-	ft_receive_events(config, av[1]);
+	ft_receive_events(config);
 	return (0);
 }

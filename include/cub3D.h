@@ -69,33 +69,36 @@ typedef struct		s_raycast
 	int				wall_proj;
 	char			nesw_path;
 }					t_raycast;
-typedef struct 		s_color
-{
-	int				r;
-	int				g;
-	int				b;
-	int				alpha;
-}					t_color;
 typedef	struct		s_mlx_img
 {
 	void			*background;
 	char			*background_mlx;
 	void			*north;
-	void			*north_mlx;
+	char			*north_mlx;
 	void			*south;
-	void			*south_mlx;
+	char			*south_mlx;
 	void			*west;
-	void			*west_mlx;
+	char			*west_mlx;
 	void			*east;
-	void			*east_mlx;
+	char			*east_mlx;
+	int				bpp;
+	int				endian;
+	int				size_line;
 }					t_mlx_img;
+typedef struct		s_color 
+{
+	int				R;
+	int				G;
+	int				B;
+	int				pix_put_col;
+}					t_color;
 typedef struct		s_config
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
 	t_coord			resol;
-	int				col_ceil;
-	int				col_floor;
+	t_color			col_ceil;
+	t_color			col_floor;
 	char			*path_north_texture;
 	char			*path_west_texture;
 	char			*path_east_texture;
@@ -104,7 +107,7 @@ typedef struct		s_config
 	char			**map;
 	t_coord			player_coord;
 	int				cam_angle;
-	t_mlx_img		*img;
+	t_mlx_img		img;
 }					t_config;
 enum				e_error
 {
@@ -131,11 +134,11 @@ int			ft_initialyse_config(t_config *config);
 int			ft_parse_file(t_config *config, char *cub_file);
 void		ft_get_resolution(t_config *config, char *line);
 char		*ft_get_texture_path(char *line);
-int			ft_get_color(char *line);
+void		ft_get_color(char *line, t_config *config);
 void 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
 void		ft_initialyse_img(t_config *config);
-int			ft_receive_events(t_config *config, char *title);
+int			ft_receive_events(t_config *config);
 void		ft_move_backandforth(t_config *config, int mv_value);
 void		ft_move_lateral(t_config *config, int mv_value);
 void		ft_turn(t_config *config, int angle_value);
