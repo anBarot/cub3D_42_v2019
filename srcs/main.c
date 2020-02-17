@@ -43,9 +43,9 @@ int 	main(int ac, char **av)
 		return (ft_error_msg(error_value));
 	// test parse
 	printf("\n----.cub is valid----\n");
-	printf("\nresolution : %dx%d\ncolor : F %d%d%d -> %d, C %d%d%d -> %d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
-	config->resol.x, config->resol.y, config->col_floor.R, config->col_floor.G, config->col_floor.B, config->col_floor.pix_put_col, 
-	config->col_ceil.R, config->col_ceil.G, config->col_ceil.B, config->col_ceil.pix_put_col,
+	printf("\nresolution : %dx%d\ncolor : F %d%d%d, C %d%d%d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
+	config->resol.x, config->resol.y, config->col_floor.R, config->col_floor.G, config->col_floor.B,
+	config->col_ceil.R, config->col_ceil.G, config->col_ceil.B,
 	config->path_north_texture, config->path_east_texture, config->path_west_texture, 
 	config->path_south_texture, config->path_sprite);
 	int i = 0;

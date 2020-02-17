@@ -69,28 +69,30 @@ typedef struct		s_raycast
 	int				wall_proj;
 	char			nesw_path;
 }					t_raycast;
+typedef struct 		s_img_spec
+{
+	void			*img_to_put;
+	char			*mlx;
+	int				width;
+	int				height;
+	int				size_line;
+}					t_img_spec;
 typedef	struct		s_mlx_img
 {
-	void			*background;
-	char			*background_mlx;
-	void			*north;
-	char			*north_mlx;
-	void			*south;
-	char			*south_mlx;
-	void			*west;
-	char			*west_mlx;
-	void			*east;
-	char			*east_mlx;
+	t_img_spec		ceiling;
+	t_img_spec		floor;
+	t_img_spec		north;
+	t_img_spec		south;
+	t_img_spec		west;
+	t_img_spec		east;
 	int				bpp;
 	int				endian;
-	int				size_line;
 }					t_mlx_img;
 typedef struct		s_color 
 {
 	int				R;
 	int				G;
 	int				B;
-	int				pix_put_col;
 }					t_color;
 typedef struct		s_config
 {
@@ -131,6 +133,7 @@ enum				e_error
 };
 int			ft_error_msg(int error_value);
 int			ft_initialyse_config(t_config *config);
+void		ft_initialyse_ray(t_raycast *ray);
 int			ft_parse_file(t_config *config, char *cub_file);
 void		ft_get_resolution(t_config *config, char *line);
 char		*ft_get_texture_path(char *line);
@@ -144,4 +147,5 @@ void		ft_move_lateral(t_config *config, int mv_value);
 void		ft_turn(t_config *config, int angle_value);
 void		ft_display_screen(t_config *config);
 void		ft_get_dist_to_wall(t_raycast *ray, char **map, double angle);
+t_img_spec	ft_wall_slice(void *mlx_ptr, t_img_spec img_to_slice, int col, int size);
 #endif

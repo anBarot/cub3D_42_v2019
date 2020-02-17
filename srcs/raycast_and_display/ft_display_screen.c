@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_screen.c                              :+:      :+:    :+:   */
+/*   ft_display_screen.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,31 +14,20 @@
 
 void	ft_draw_column(t_config *config, t_raycast *ray, int col)
 {
-	int		y_coor;
-    void	*wall_texture;
+	int			y_coor;
+	t_img_spec	img_tmp;
 
 	y_coor = (config->resol.y / 2) - (ray->wall_proj / 2);
 	if (ray->nesw_path == 'S')
-    	wall_texture = config->img.south;
+		img_tmp = ft_wall_slice(config->mlx_ptr, config->img.south, col, ray->wall_proj);
 	else if (ray->nesw_path == 'E')
-    	wall_texture = config->img.east;
+		img_tmp = ft_wall_slice(config->mlx_ptr, config->img.east, col, ray->wall_proj);
 	else if (ray->nesw_path == 'N')
-    	wall_texture = config->img.north;
+		img_tmp = ft_wall_slice(config->mlx_ptr, config->img.north, col, ray->wall_proj);
 	else if (ray->nesw_path == 'W')
-    	wall_texture = config->img.west;
-	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, wall_texture, col, y_coor);
-}
-
-void	ft_initialyse_ray(t_raycast *ray)
-{
-	ray->prop_cste = 0;
-	ray->p_coor.x = 0;
-	ray->p_coor.y = 0;
-	ray->dist_cross_hor = 0;
-	ray->dist_cross_vert = 0;
-	ray->smallest_dist = 0;
-	ray->wall_proj = 0;
-	ray->nesw_path = 0;
+		img_tmp = ft_wall_slice(config->mlx_ptr, config->img.west, col, ray->wall_proj);
+	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, img_tmp.img_to_put, col, y_coor);
+	mlx_destroy_image(config->mlx_ptr, img_tmp.img_to_put);
 }
 
 void	ft_get_wallproj(t_config *config, t_raycast *ray, double angle)
@@ -48,7 +37,7 @@ void	ft_get_wallproj(t_config *config, t_raycast *ray, double angle)
 	ft_get_dist_to_wall(ray, config->map, angle);
 	ray->prop_cste = ((WALL_SIZE / 2) * ((config->resol.x /2) / tan(RAD(FOV / 2))));
 	ray->wall_proj = ray->prop_cste / ray->smallest_dist;
-	printf("\ndist : %f\nwall proj : %d\npath : %c\n", ray->smallest_dist, ray->wall_proj, ray->nesw_path);
+	// printf("\ndist : %f\nwall proj : %d\npath : %c\n", ray->smallest_dist, ray->wall_proj, ray->nesw_path);
 }
 
 void	ft_display_screen(t_config *config)
@@ -63,16 +52,19 @@ void	ft_display_screen(t_config *config)
 	col = 0;
 	delta_angle = (60 / (double)config->resol.x);
 	tmp_angle = config->cam_angle;
-	while (col <= config->resol.x)
+	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img.ceiling.img_to_put, 0, 0);
+	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img.floor.img_to_put, 0, config->resol.y / 2);
+	while (col < config->resol.x)
 	{
 		ft_initialyse_ray(ray);
 		ft_get_wallproj(config, ray, tmp_angle);
 		ft_draw_column(config, ray, col);
 		col++;
 		tmp_angle += delta_angle;
-		if (tmp_angle > (double)360)
+		if (tmp_angle > 360)
 			tmp_angle -= 360;
-		else if (tmp_angle < (double)0)
+		else if (tmp_angle < 0)
 			tmp_angle += 360;
 	}
+	(ray) ? free(ray) : 0;
 }

@@ -22,8 +22,8 @@ int		ft_is_config_valid(t_config *config)
 	(!config->path_north_texture) ? error_value = N_PATH_ERROR : 0;
 	(!config->path_south_texture) ? error_value = SO_PATH_ERROR : 0;
 	(!config->path_sprite) ? error_value = SP_PATH_ERROR : 0;
-	(!config->col_ceil.pix_put_col) ? error_value = C_COLOR_ERROR : 0;
-	(!config->col_floor.pix_put_col) ? error_value = F_COLOR_ERROR : 0;
+	(config->col_ceil.R == -1) ? error_value = C_COLOR_ERROR : 0;
+	(config->col_floor.R == -1) ? error_value = F_COLOR_ERROR : 0;
 	(!config->resol.x) ? error_value = RESOL_ERROR : 0;
 	(!config->resol.y) ? error_value = RESOL_ERROR : 0;
 	(!config->map) ? error_value = MAP_ERROR : 0;
