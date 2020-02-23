@@ -85,7 +85,7 @@ void	ft_get_map(t_config *config, char **line, int fd)
 	map_line++;
 	while (get_next_line(fd, line) == 1 && **line == '1')
 	{
-		config->map[map_line] = ft_remove_in_str(ft_strdup(*line), " ");
+		config->map[map_line] = ft_remove_in_str((*line), " ");
 		if (!ft_is_valid_value_mapline(config->map[map_line]) || 
 			map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
 		{
@@ -93,8 +93,15 @@ void	ft_get_map(t_config *config, char **line, int fd)
 			return ;
 		}
 		map_line++;
+		free(*line);
 	}
-	if (**line == '1')
-		config->map[map_line] = ft_strdup(*line);
-	config->map[map_line + 1] = 0;
+	config->map[map_line] = ft_remove_in_str((*line), " ");
+	if (!ft_is_valid_value_mapline(config->map[map_line]) || 
+		map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
+	{
+		config->map = 0;
+		return ;
+	}
+	map_line++;
+	config->map[map_line + 1] = '\0';
 }

@@ -64,8 +64,8 @@ char	*ft_get_texture_path(char *line)
 	int 	fd;
 	int		i_line;
 
-	path = ft_remove_in_str(ft_strdup(line), " ");
-	if ((fd = open(path, O_RDONLY)) == -1)
+	path = ft_remove_in_str(line, " ");
+	if ((fd = open(path, O_RDWR)) == -1)
 		return (0);
 	close(fd);
 	i_line = ft_strlen(line) - 1;

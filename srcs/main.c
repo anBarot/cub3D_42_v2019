@@ -51,7 +51,7 @@ int 	main(int ac, char **av)
 	int i = 0;
 	while (config->map[i])
 	{
-		printf("\nmap %d : %s", i, config->map[i]);
+		printf("\nmap %2d  : %s", i, config->map[i]);
 		i++;
 	}
 	printf("\ncoor : %d,%d\n", config->player_coord.x, config->player_coord.y);

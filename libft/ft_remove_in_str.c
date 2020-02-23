@@ -22,7 +22,7 @@ char	*ft_remove_in_str(char *str, char *char_set)
 	in_str = 0;
 	i_str = 0;
 	i_char_set = 0;
-	if (!(n_str = calloc(sizeof(char), strlen(str))) || !str || !char_set)
+	if (!(n_str = calloc(sizeof(char), strlen(str) + 1)) || !str || !char_set)
 		return (0);
 	while (str[i_str])
 	{

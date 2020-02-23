@@ -61,6 +61,8 @@ int		get_next_line(int fd, char **line)
 	while (ft_hasnewline(*line) != 1)
 	{
 		read_value = read(fd, buffer_str, BUFFER_SIZE);
+		if (read_value < BUFFER_SIZE)
+			buffer_str[read_value] = '\0';
 		*line = ft_strjoin(*line, buffer_str, 1);
 		if (read_value < BUFFER_SIZE && ft_hasnewline(*line) != 1)
 		{

@@ -26,8 +26,8 @@ int	ft_outside_map(double x, double y, char **map)
 {
 	if ((int)(x / WALL_SIZE) > (ft_count_line(map) - 1) 
 		|| (int)(y / WALL_SIZE) > ((int)ft_strlen(map[0]) - 1)
-		|| ((int)(x / WALL_SIZE)) < 0
-		|| ((int)(y / WALL_SIZE)) < 0)
+		|| (int)(x / WALL_SIZE) < 0
+		|| (int)(y / WALL_SIZE) < 0)
 		return (1);
 	return (0);
 }
@@ -40,7 +40,7 @@ double	ft_get_magnitude(t_fcoord in_coord, t_fcoord end_coord)
 	return (magnitude);
 }
 
-double	ft_get_crosscoor_horizontal(t_fcoord p_coor, char **map, double angle)
+double	ft_get_crosscoor_horizontal(t_raycast *ray, char **map, double angle)
 {
 	double		delta_x;
 	double		delta_y;
@@ -48,29 +48,30 @@ double	ft_get_crosscoor_horizontal(t_fcoord p_coor, char **map, double angle)
 
 	if (angle > 0 && angle < 180)
 	{	
-		delta_x = -WALL_SIZE;
+		delta_x = -WALL_SIZE  - 0.01;
 		delta_y = delta_x / tan(RAD(angle));
 	}
 	else
 	{	
-		delta_x = WALL_SIZE;
+		delta_x = WALL_SIZE + 0.01;
 		delta_y = delta_x / tan(RAD(angle - 180));
 	}
-	wall_coor.x = p_coor.x + (delta_x / 2);
-	wall_coor.y = p_coor.y + (delta_y / 2);
-	if (ft_outside_map(wall_coor.x, wall_coor.y, map) || (int)(wall_coor.y / WALL_SIZE) == 0 || (int)(wall_coor.x / WALL_SIZE) == 0)
+	wall_coor.x = ray->p_coor.x + (delta_x / 2);
+	wall_coor.y = ray->p_coor.y + (delta_y / 2);
+	if (ft_outside_map(wall_coor.x, wall_coor.y, map))
 		return (0);
-	while (!IS_WALL_SPRITE(map[((int)wall_coor.x / WALL_SIZE)][((int)wall_coor.y / WALL_SIZE)]))
+	while (map[((int)(wall_coor.x / WALL_SIZE))][((int)(wall_coor.y / WALL_SIZE))] == '0')
 	{
 		wall_coor.x += delta_x;
 		wall_coor.y += delta_y;
 		if (ft_outside_map(wall_coor.x, wall_coor.y, map))
 			return (0);
 	}
-	return (ft_get_magnitude(p_coor, wall_coor));
+	ray->value_bumped = map[((int)wall_coor.x / WALL_SIZE)][((int)wall_coor.y / WALL_SIZE)] - 48;
+	return (ft_get_magnitude(ray->p_coor, wall_coor));
 }
 
-double	ft_get_crosscoor_vertical(t_fcoord p_coor, char **map, double angle)
+double	ft_get_crosscoor_vertical(t_raycast *ray, char **map, double angle)
 {
 	double		delta_x;
 	double		delta_y;
@@ -78,35 +79,35 @@ double	ft_get_crosscoor_vertical(t_fcoord p_coor, char **map, double angle)
 
 	if (angle > 90 && angle < 270)
 	{	
-		delta_y = WALL_SIZE;
+		delta_y = WALL_SIZE + 0.01;
 		delta_x = delta_y * tan(RAD(angle - 180));
 	}
 	else
 	{	
-		delta_y = -WALL_SIZE;
+		delta_y = -WALL_SIZE - 0.01;
 		delta_x = delta_y * tan(RAD(angle));
 	}
-	wall_coor.x = p_coor.x + (delta_x / 2);
-	wall_coor.y = p_coor.y + (delta_y / 2);
-	if (ft_outside_map(wall_coor.x, wall_coor.y, map) || (int)(wall_coor.y / WALL_SIZE) == 0 || (int)(wall_coor.x / WALL_SIZE) == 0)
+	wall_coor.x = ray->p_coor.x + (delta_x / 2);
+	wall_coor.y = ray->p_coor.y + (delta_y / 2);
+	if (ft_outside_map(wall_coor.x, wall_coor.y, map))
 		return (0);
-	while (!IS_WALL_SPRITE(map[((int)wall_coor.x / WALL_SIZE)][((int)wall_coor.y / WALL_SIZE)]))
+	while (map[(int)(wall_coor.x / WALL_SIZE)][(int)(wall_coor.y / WALL_SIZE)] == '0')
 	{
 		wall_coor.x += delta_x;
 		wall_coor.y += delta_y;
 		if (ft_outside_map(wall_coor.x, wall_coor.y, map))
 			return (0);
 	}
-	return (ft_get_magnitude(p_coor, wall_coor));
+	ray->value_bumped = map[((int)wall_coor.x / WALL_SIZE)][((int)wall_coor.y / WALL_SIZE)] - 48;
+	return (ft_get_magnitude(ray->p_coor, wall_coor));
 }
 
 void	ft_get_dist_to_wall(t_raycast *ray, char **map, double angle)
 {
-	(fabs(angle - (double)180) > 1 || fabs(angle - (double)0) > 1 || fabs(angle - 360) > 1) ?
-		ray->dist_cross_hor = ft_get_crosscoor_horizontal(ray->p_coor, map, angle) : 0;
-	((angle - 90) > 1 || fabs(angle - 270) > 1) ?
-		ray->dist_cross_vert = ft_get_crosscoor_vertical(ray->p_coor, map, angle) : 0;
-	printf("\nangle : %f\ndist hor : %f\ndist vert : %f\n", angle,ray->dist_cross_hor, ray->dist_cross_vert);
+	(fabs(angle - 180) > 1 || fabs(angle - 0) > 1 || fabs(angle - 360) > 1) ?
+		ray->dist_cross_hor = ft_get_crosscoor_horizontal(ray, map, angle) : 0;
+	(fabs(angle - 90) > 1 || fabs(angle - 270) > 1) ?
+		ray->dist_cross_vert = ft_get_crosscoor_vertical(ray, map, angle) : 0;
 	if (ray->dist_cross_hor && (ray->dist_cross_hor <= ray->dist_cross_vert || !ray->dist_cross_vert))
 	{	
 		ray->smallest_dist = ray->dist_cross_hor;

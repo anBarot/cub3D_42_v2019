@@ -56,6 +56,7 @@ int		ft_parse_file(t_config *config, char *cub_file)
 		(line[0] == 'F' && line[1] == ' ') ? ft_get_color(line, config) : 0;
 		(line[0] == 'C' && line[1] == ' ') ? ft_get_color(line, config) : 0;
 		(line[0] == '1') ? ft_get_map(config, &line, fd) : 0;
+		free(line);
 	}
 	if (!config->map)
 		return (error_value = MAP_ERROR);

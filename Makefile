@@ -40,14 +40,14 @@ LIB_PATH	=	-L/usr/local/lib
 RM	=	rm -f
 			
 %.o : %.c
-		gcc $(CFLAGS) -c $< -o $@ -I$(INCL)
+		gcc -g $(CFLAGS) -c $< -o $@ -I$(INCL)
 
 all	:	
 		make -C libft
 		make $(NAME)
 
 $(NAME)	: $(OBJS) 
-			gcc  $(OBJS) $(FRAMEWORK) libft.a $(LIBPATH) $(LIB) -o $(NAME) -I$(INCL)
+			gcc -g  $(OBJS) $(FRAMEWORK) libft.a $(LIBPATH) $(LIB) -o $(NAME) -I$(INCL)
 			
 clean	:
 		$(RM) $(OBJS) && make -C libft fclean
