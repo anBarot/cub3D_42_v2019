@@ -1,12 +1,11 @@
-R 1200 900
+R 900 600
 S texture/vulpix-sprite_1.xpm 
 SO texture/gray_stone_wall.xpm 
 NO texture/stone_wall.xpm
 WE texture/leaves_wall.xpm
 EA texture/red_brick_wall.xpm
-F 155,204,55
-C 55,1,255
-// corriger pb couleurs
+F 50,204,55
+C 55,0,255
 // corriger pb si texte dans fichier
 111111111111111111111111111111111111111111111111
 100000000000000000000000000000000000000000000001

@@ -14,10 +14,10 @@
 
 void	ft_move_backandforth(t_config *config, int mv_value)
 {
-	if (NORTH_DIR((int)config->cam_angle) &&
+	if (NORTH_DIR(config->cam_angle) &&
 		config->map[config->player_coord.x - mv_value][config->player_coord.y] == '0')
 			config->player_coord.x -= mv_value;
-	else if (WEST_DIR((int)config->cam_angle) &&
+	else if (WEST_DIR(config->cam_angle) &&
 		config->map[config->player_coord.x][config->player_coord.y - mv_value] == '0')
 		config->player_coord.y -= mv_value;
 	else if (SOUTH_DIR(config->cam_angle) &&

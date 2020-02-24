@@ -1,15 +1,15 @@
 R 1500 900
-S texture/gray_stone_wall.xpm 
-SO texture/gray_stone_wall.xpm 
-NO texture/stone_wall.xpm
-WE texture/leaves_wall.xpm
-EA texture/red_brick_wall.xpm
-C 0,100,255
-F 200,200,100 
+S texture/vulpix-sprite_1.xpm 
+SO texture/space_wall_1.xpm 
+NO texture/space_wall_2.xpm
+WE texture/space_wall_3.xpm
+EA texture/space_wall_4.xpm
+F 50,0,50
+C 0,0,0
 1111111
 1000001
 1011101
 101N101
 1000101
-1111101
+1111121
 1111111

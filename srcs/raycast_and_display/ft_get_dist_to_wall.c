@@ -36,7 +36,8 @@ double	ft_get_magnitude(t_fcoord in_coord, t_fcoord end_coord)
 {
 	double	magnitude;
 	
-	magnitude = sqrt((pow(end_coord.x - in_coord.x, 2)) + (pow(end_coord.y - in_coord.y, 2)));
+	magnitude = sqrt((pow(end_coord.x - in_coord.x, 2)) + 
+	(pow(end_coord.y - in_coord.y, 2)));
 	return (magnitude);
 }
 
@@ -48,12 +49,12 @@ double	ft_get_crosscoor_horizontal(t_raycast *ray, char **map, double angle)
 
 	if (angle > 0 && angle < 180)
 	{	
-		delta_x = -WALL_SIZE  - 0.01;
+		delta_x = -WALL_SIZE  - 0.001;
 		delta_y = delta_x / tan(RAD(angle));
 	}
 	else
 	{	
-		delta_x = WALL_SIZE + 0.01;
+		delta_x = WALL_SIZE + 0.001;
 		delta_y = delta_x / tan(RAD(angle - 180));
 	}
 	wall_coor.x = ray->p_coor.x + (delta_x / 2);
@@ -79,12 +80,12 @@ double	ft_get_crosscoor_vertical(t_raycast *ray, char **map, double angle)
 
 	if (angle > 90 && angle < 270)
 	{	
-		delta_y = WALL_SIZE + 0.01;
+		delta_y = WALL_SIZE + 0.001;
 		delta_x = delta_y * tan(RAD(angle - 180));
 	}
 	else
 	{	
-		delta_y = -WALL_SIZE - 0.01;
+		delta_y = -WALL_SIZE - 0.001;
 		delta_x = delta_y * tan(RAD(angle));
 	}
 	wall_coor.x = ray->p_coor.x + (delta_x / 2);

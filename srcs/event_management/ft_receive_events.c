@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include <X11/Xlib.h>
+#include <X11/Xatom.h>
 
 void	ft_escape_game(t_config *config)
 {
@@ -18,10 +20,10 @@ void	ft_escape_game(t_config *config)
 
 	line = 0;
 	mlx_destroy_window(config->mlx_ptr, config->win_ptr);
-	free(config->path_north_texture);
-	free(config->path_east_texture);
-	free(config->path_south_texture);
-	free(config->path_west_texture);
+	free(config->path_north);
+	free(config->path_east);
+	free(config->path_south);
+	free(config->path_west);
 	free(config->path_sprite);
 	while (config->map[line])
 	{
@@ -48,10 +50,21 @@ int	ft_pressed_key(int keycode, t_config *config)
 	return (1);
 }
 
+// int	ft_pressed_button(int button, int x,int y, t_config *config)
+// {
+// 	return (1);
+// }
+
 int		ft_receive_events(t_config *config)
 {
 	ft_display_screen(config);
 	mlx_key_hook(config->win_ptr, &ft_pressed_key, config);
+	// mlx_mouse_hook (config->win_ptr, &ft_pressed_button, config);
+	if (config->win_ptr == 0)
+	{
+		ft_escape_game(config);
+		exit(EXIT_SUCCESS);
+	}
 	mlx_loop(config->mlx_ptr);
 	return (0);
 }

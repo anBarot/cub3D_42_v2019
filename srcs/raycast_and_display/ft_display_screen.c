@@ -14,8 +14,8 @@
 
 void	ft_draw_column(t_config *config, t_raycast *ray, int col)
 {
-	int			y_coor;
-	t_img_spec	img_tmp;
+	int		y_coor;
+	t_img	img_tmp;
 
 	y_coor = (config->resol.y / 2) - (ray->wall_proj / 2);
 	if (ray->nesw_path == 'S')
@@ -49,7 +49,7 @@ void	ft_get_wallproj(t_config *config, t_raycast *ray, double angle)
 void	ft_display_sprite(t_config *config, t_raycast *ray, double angle)
 {
 	int 		col;
-	t_img_spec	img_tmp;
+	t_img	img_tmp;
 	double		d_angle;
 
 	d_angle = FOV / (double)config->resol.x;
@@ -59,9 +59,8 @@ void	ft_display_sprite(t_config *config, t_raycast *ray, double angle)
 		ft_get_wallproj(config, ray, angle);
 		if (ray->value_bumped == SPRITE)
 		{
-			printf("\nsprite coor : %d,%f\n", col, angle);
 			img_tmp = ft_scalling(config->mlx_ptr, config->img.sprite, ray->wall_proj, ray->wall_proj);
-			mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, img_tmp.img_ptr, col, (config->resol.y / 2) - (ray->wall_proj / 2));
+			mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, img_tmp.img_ptr, col, (config->resol.y / 2) - (ray->wall_proj /3));
 			while (ray->value_bumped == SPRITE)
 			{	
 				col++;

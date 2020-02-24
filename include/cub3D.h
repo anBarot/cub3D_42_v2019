@@ -10,12 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* to do list : 
-		-	creer maps test,
-		-	faire un main de test automatique ou makefile (pr tous projet adaptable),
-		-	verif angles
-		-	create textures
-*/
+// to_dos :
+	// - ft_create_sprite_img
+	// - quitter la enêtre de manière clean
+	// - réparer murs apparaissent en décaler
+	// - ne pas traverser les sprites
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -83,16 +82,16 @@ typedef struct 		s_img_spec
 	int				width;
 	int				height;
 	int				size_line;
-}					t_img_spec;
+}					t_img;
 typedef	struct		s_mlx_img
 {
-	t_img_spec		ceiling;
-	t_img_spec		floor;
-	t_img_spec		north;
-	t_img_spec		south;
-	t_img_spec		west;
-	t_img_spec		east;
-	t_img_spec		sprite;
+	t_img		ceiling;
+	t_img		floor;
+	t_img		north;
+	t_img		south;
+	t_img		west;
+	t_img		east;
+	t_img		sprite;
 	int				bpp;
 	int				endian;
 }					t_mlx_img;
@@ -109,10 +108,10 @@ typedef struct		s_config
 	t_coord			resol;
 	t_color			col_ceil;
 	t_color			col_floor;
-	char			*path_north_texture;
-	char			*path_west_texture;
-	char			*path_east_texture;
-	char			*path_south_texture;
+	char			*path_north;
+	char			*path_west;
+	char			*path_east;
+	char			*path_south;
 	char			*path_sprite;
 	char			**map;
 	t_coord			player_coord;
@@ -142,13 +141,13 @@ enum				e_error
 int			ft_error_msg(int error_value);
 int			ft_initialyse_config(t_config *config);
 void		ft_initialyse_ray(t_raycast *ray);
-int			ft_parse_file(t_config *config, char *cub_file);
+int			ft_init_parsing(t_config *config, char *cub_file);
 void		ft_get_resolution(t_config *config, char *line);
 char		*ft_get_texture_path(char *line);
 void		ft_get_color(char *line, t_config *config);
 void 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
-void		ft_initialyse_img(t_config *config);
+void		ft_create_background(t_config *config);
 void		ft_create_texture(t_config *config);
 int			ft_receive_events(t_config *config);
 void		ft_move_backandforth(t_config *config, int mv_value);
@@ -156,6 +155,6 @@ void		ft_move_lateral(t_config *config, int mv_value);
 void		ft_turn(t_config *config, int angle_value);
 void		ft_display_screen(t_config *config);
 void		ft_get_dist_to_wall(t_raycast *ray, char **map, double angle);
-t_img_spec	ft_scalling(void *mlx_ptr, t_img_spec img_to_scale, int width, int height);
-t_img_spec	ft_wall_slice(void *mlx_ptr, t_img_spec img_to_slice, int col, int size);
+t_img		ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height);
+t_img		ft_wall_slice(void *mlx_ptr, t_img img_to_slice, int col, int size);
 #endif
