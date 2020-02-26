@@ -14,10 +14,10 @@
 
 void	ft_pixel_filling(char *mlx_to_fill, char *mlx_to_extract)
 {
-	mlx_to_fill[0] = mlx_to_extract[0];
-	mlx_to_fill[1] = mlx_to_extract[1];
-	mlx_to_fill[2] = mlx_to_extract[2];
-	mlx_to_fill[3] = mlx_to_extract[3];
+	mlx_to_fill[0] = (unsigned int)mlx_to_extract[0];
+	mlx_to_fill[1] = (unsigned int)mlx_to_extract[1];
+	mlx_to_fill[2] = (unsigned int)mlx_to_extract[2];
+	mlx_to_fill[3] = (unsigned int)mlx_to_extract[3];
 }
 
 t_img	ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height)
@@ -54,7 +54,7 @@ t_img	ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height)
 	return (img);
 }
 
-t_img	ft_img_scaling(void *mlx_ptr, t_img img_arg, t_coord dim)
+t_img	ft_img_enlargement(void *mlx_ptr, t_img img_arg, t_coord dim)
 {
 	t_img		img;
 	t_coord		img_arg_coor;
@@ -93,51 +93,32 @@ t_img	ft_img_scaling(void *mlx_ptr, t_img img_arg, t_coord dim)
 	return (img);
 }
 
-t_img	ft_create_sprite_img(t_img sprite)
-{
-	t_coord	img_coor;
-
-	img_coor.x = 0;
-	img_coor.y = 0;
-	while (img_coor.y < sprite.height)
-	{
-		while (img_coor.x < sprite.width)
-		{
-			img_coor.x++;
-		}
-		img_coor.x = 0;
-		img_coor.y++;
-	}
-	return (sprite);
-}
-
 void	ft_create_texture(t_config *config)
 {
 	config->img.east.img_ptr = mlx_xpm_file_to_image(config->mlx_ptr, 
 	config->path_east, &config->img.east.width, &config->img.east.height);
 	config->img.east.mlx =  mlx_get_data_addr(config->img.east.img_ptr,
 	&(config->img.bpp), &(config->img.east.size_line), &(config->img.endian));
-	config->img.east = ft_img_scaling(config->mlx_ptr, config->img.east, config->resol);
+	config->img.east = ft_img_enlargement(config->mlx_ptr, config->img.east, config->resol);
 	config->img.west.img_ptr = mlx_xpm_file_to_image(config->mlx_ptr,
 	config->path_west, &config->img.west.width, &config->img.west.height);
 	config->img.west.mlx =  mlx_get_data_addr(config->img.west.img_ptr,
 	&(config->img.bpp), &(config->img.west.size_line), &(config->img.endian));
-	config->img.west = ft_img_scaling(config->mlx_ptr, config->img.west, config->resol);
+	config->img.west = ft_img_enlargement(config->mlx_ptr, config->img.west, config->resol);
 	config->img.south.img_ptr = mlx_xpm_file_to_image(config->mlx_ptr,
 	config->path_south, &config->img.south.width, &config->img.south.height);
 	config->img.south.mlx =  mlx_get_data_addr(config->img.south.img_ptr,
 	&(config->img.bpp), &(config->img.south.size_line), &(config->img.endian));
-	config->img.south = ft_img_scaling(config->mlx_ptr, config->img.south, config->resol);
+	config->img.south = ft_img_enlargement(config->mlx_ptr, config->img.south, config->resol);
 	config->img.north.img_ptr = mlx_xpm_file_to_image(config->mlx_ptr,
 	config->path_north, &config->img.north.width, &config->img.north.height);
 	config->img.north.mlx =  mlx_get_data_addr(config->img.north.img_ptr,
 	&(config->img.bpp), &(config->img.north.size_line), &(config->img.endian));
-	config->img.north = ft_img_scaling(config->mlx_ptr, config->img.north, config->resol);
+	config->img.north = ft_img_enlargement(config->mlx_ptr, config->img.north, config->resol);
 	config->img.sprite.img_ptr = mlx_xpm_file_to_image(config->mlx_ptr,
 	config->path_sprite, &config->img.sprite.width, &config->img.sprite.height);
 	config->img.sprite.mlx = mlx_get_data_addr(config->img.sprite.img_ptr,
 	&(config->img.bpp), &(config->img.sprite.size_line), &(config->img.endian));
-	config->img.sprite = ft_img_scaling(config->mlx_ptr, config->img.sprite, config->resol);
 }
 
 t_img	ft_fill_background(t_img img, t_color color, int width, int height)
@@ -147,7 +128,7 @@ t_img	ft_fill_background(t_img img, t_color color, int width, int height)
 	char	*color_str;
 
 	if (!(color_str = ft_calloc(4, 1)))
-		return ;
+		return (img);
 	color_str[0] = color.B;
 	color_str[1] = color.G;
 	color_str[2] = color.R;

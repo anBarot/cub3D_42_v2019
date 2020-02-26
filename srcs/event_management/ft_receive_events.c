@@ -50,21 +50,11 @@ int	ft_pressed_key(int keycode, t_config *config)
 	return (1);
 }
 
-// int	ft_pressed_button(int button, int x,int y, t_config *config)
-// {
-// 	return (1);
-// }
-
 int		ft_receive_events(t_config *config)
 {
-	ft_display_screen(config);
+	ft_display_wall(config);
+	ft_display_sprites(config);
 	mlx_key_hook(config->win_ptr, &ft_pressed_key, config);
-	// mlx_mouse_hook (config->win_ptr, &ft_pressed_button, config);
-	if (config->win_ptr == 0)
-	{
-		ft_escape_game(config);
-		exit(EXIT_SUCCESS);
-	}
 	mlx_loop(config->mlx_ptr);
 	return (0);
 }

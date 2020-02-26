@@ -58,22 +58,14 @@ typedef struct		s_fcoord
 	double			x;
 	double			y;
 }					t_fcoord;
-enum				e_map_value
-{
-					NO_WALL,
-					WALL,
-					SPRITE
-};
 typedef struct		s_raycast
 {
 	double			prop_cste;
 	t_fcoord		p_coor;
-	double 			dist_cross_hor;
-	double 			dist_cross_vert;
-	double			smallest_dist;
-	int				wall_proj;
+	double			dist_obj;
+	int				obj_proj;
 	char			nesw_path;
-	int				value_bumped;
+
 }					t_raycast;
 typedef struct 		s_img_spec
 {
@@ -149,12 +141,13 @@ void 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
 void		ft_create_background(t_config *config);
 void		ft_create_texture(t_config *config);
+void		ft_pixel_filling(char *mlx_to_fill, char *mlx_to_extract);
 int			ft_receive_events(t_config *config);
 void		ft_move_backandforth(t_config *config, int mv_value);
 void		ft_move_lateral(t_config *config, int mv_value);
 void		ft_turn(t_config *config, int angle_value);
-void		ft_display_screen(t_config *config);
-void		ft_get_dist_to_wall(t_raycast *ray, char **map, double angle);
+void		ft_display_wall(t_config *config);
+void		ft_raycast(t_config *config, t_raycast *ray, double angle, char obj);
 t_img		ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height);
-t_img		ft_wall_slice(void *mlx_ptr, t_img img_to_slice, int col, int size);
+void		ft_display_sprites(t_config *config);
 #endif

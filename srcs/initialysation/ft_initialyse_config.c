@@ -30,15 +30,3 @@ int		ft_initialyse_config(t_config *config)
 	config->cam_angle = 0;
 	return (1);
 }
-
-void	ft_initialyse_ray(t_raycast *ray)
-{
-	ray->prop_cste = 0;
-	ray->p_coor.x = 0;
-	ray->p_coor.y = 0;
-	ray->dist_cross_hor = 0;
-	ray->dist_cross_vert = 0;
-	ray->smallest_dist = 0;
-	ray->wall_proj = 0;
-	ray->nesw_path = 0;
-}
