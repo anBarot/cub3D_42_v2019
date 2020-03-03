@@ -37,21 +37,24 @@ void	ft_parse_file(int fd, t_config *config)
 
 	while (get_next_line(fd, &line) == 1 && config->map)
 	{
-		(line[0] == 'R' && line[1] == ' ') ?
-			ft_get_resolution(config, line) : 0;
-		(line[0] == 'N' && line[1] == 'O' && line[2] == ' ') ?
-			config->path_north = ft_get_texture_path(line + 3) : 0;
-		(line[0] == 'S' && line[1] == 'O' && line[2] == ' ') ?
-			config->path_south = ft_get_texture_path(line + 3) : 0;
-		(line[0] == 'W' && line[1] == 'E' && line[2] == ' ') ?
-			config->path_west = ft_get_texture_path(line + 3) : 0;
-		(line[0] == 'E' && line[1] == 'A' && line[2] == ' ') ?
-			config->path_east = ft_get_texture_path(line + 3) : 0;
-		(line[0] == 'S' && line[1] == ' ') ?
-			config->path_sprite = ft_get_texture_path(line + 2) : 0;
-		(line[0] == 'F' && line[1] == ' ') ? ft_get_color(line, config) : 0;
-		(line[0] == 'C' && line[1] == ' ') ? ft_get_color(line, config) : 0;
-		(line[0] == '1') ? ft_get_map(config, &line, fd) : 0;
+		if (line[0] == 'R' && line[1] == ' ')
+			ft_get_resolution(config, line);
+		else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
+			config->path_north = ft_get_texture_path(line + 3);
+		else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
+			config->path_south = ft_get_texture_path(line + 3);
+		else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
+			config->path_west = ft_get_texture_path(line + 3);
+		else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
+			config->path_east = ft_get_texture_path(line + 3);
+		else if (line[0] == 'S' && line[1] == ' ')
+			config->path_sprite = ft_get_texture_path(line + 2);
+		else if (line[0] == 'F' && line[1] == ' ')
+			ft_get_color(line, config);
+		else if (line[0] == 'C' && line[1] == ' ')
+			ft_get_color(line, config);
+		else if (line[0] == '1')
+			ft_get_map(config, &line, fd);
 		free(line);
 	}
 }

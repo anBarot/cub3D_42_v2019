@@ -28,7 +28,7 @@ void	ft_display_sprite(t_config *config, t_img sprite, int x, int y)
 	{
 		while (img_coor.x < sprite.width)
 		{
-			d_pixel = img_coor.x * (config->img.bpp / 8) + sprite.size_line * img_coor.y;
+			d_pixel = img_coor.x * 4 + sprite.size_line * img_coor.y;
 			if (sprite.mlx[d_pixel] <= 0 && img_coor.x < sprite.width)
 			{	
 				img_coor.x++;
@@ -37,7 +37,7 @@ void	ft_display_sprite(t_config *config, t_img sprite, int x, int y)
 			else if (sprite.mlx[d_pixel] > 0 && img_coor.x < sprite.width)
 			{	
 				ft_pixel_filling(color, sprite.mlx + d_pixel);
-				mlx_pixel_put(config->mlx_ptr, config->win_ptr, win_coor.x, win_coor.y, (int)color);
+				mlx_pixel_put(config->mlx_ptr, config->win_ptr, win_coor.x, win_coor.y, (int)(color));
 				img_coor.x++;
 				win_coor.x++;
 			}
@@ -57,6 +57,7 @@ void	ft_display_sprites(t_config *config)
 	double		delta_angle;
 	double		tmp_angle;
 	t_img		img_tmp;
+	double		mem_sprite_dist;
 
 	col = 0;
 	delta_angle = (FOV / (double)config->resol.x);
@@ -72,9 +73,15 @@ void	ft_display_sprites(t_config *config)
 		ft_raycast(config, ray_wall, tmp_angle, '1');
 		if (ray_sprite->dist_obj && ray_sprite->dist_obj < ray_wall->dist_obj)
 		{
+			// mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img.sprite.img_ptr,  col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
+			// ft_display_sprite(config, config->img.sprite, col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
+			if (ray_sprite->obj_proj > config->resol.y)
+				ray_sprite->obj_proj = config->resol.y;
+			// img_tmp = ft_scalling(config->mlx_ptr, config->img.sprite, 300, 500);
 			img_tmp = ft_scalling(config->mlx_ptr, config->img.sprite, ray_sprite->obj_proj, ray_sprite->obj_proj);
 			ft_display_sprite(config, img_tmp, col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
-			while (ray_sprite->dist_obj < ray_wall->dist_obj && col < config->resol.x)
+			mem_sprite_dist = ray_sprite->dist_obj;
+			while (fabs(ray_sprite->dist_obj - mem_sprite_dist) < WALL_SIZE && col < config->resol.x)
 			{
 				col++;
 				tmp_angle += delta_angle;

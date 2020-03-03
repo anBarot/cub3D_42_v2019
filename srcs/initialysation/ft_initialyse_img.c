@@ -22,8 +22,8 @@ void	ft_pixel_filling(char *mlx_to_fill, char *mlx_to_extract)
 
 t_img	ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height)
 {
-	t_img	img;
-	t_coord		prop_cste;
+	t_img		img;
+	t_fcoord	prop_cste;
 	int bpp;
 	int endian;
 	int	y_img;
@@ -44,7 +44,7 @@ t_img	ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height)
 		while (x_img < width)
 		{
 			delta_fill = x_img * (bpp / 8) + img.size_line * y_img;
-			delta_extract = x_img * prop_cste.x * (bpp / 8) + img_to_scale.size_line * prop_cste.y * y_img;
+			delta_extract = (x_img * prop_cste.x * (bpp / 8)) + (img_to_scale.size_line * prop_cste.y * y_img);
 			ft_pixel_filling(img.mlx + delta_fill, img_to_scale.mlx + delta_extract);
 			x_img++;
 		}
