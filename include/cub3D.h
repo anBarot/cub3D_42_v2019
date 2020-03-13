@@ -117,27 +117,34 @@ enum				e_error
 	INVALID_ARG_ERROR,
 	INIT_ERROR,
 	OPEN_FILE_ERROR,
-	MAP_ERROR,
+	IMG_EXTENSION_ERROR,
+	MAP_VALUE_ERROR,
+	MAP_BORDER_ERROR,
+	MAP_OVERFLOW,
 	RESOL_ERROR,
 	COORD_ERROR,
 	MULTIPLAYER_ERROR,
 	NO_PLAYER_ERROR,
 	C_COLOR_ERROR,
 	F_COLOR_ERROR,
-	N_PATH_ERROR,
-	SO_PATH_ERROR,
-	W_PATH_ERROR,
-	E_PATH_ERROR,
-	SP_PATH_ERROR
+	INVALID_PATH_ERROR,
+	NO_RESOL_ERROR,
+	NO_C_COLOR_ERROR,
+	NO_F_COLOR_ERROR,
+	NO_N_PATH_ERROR,
+	NO_SO_PATH_ERROR,
+	NO_W_PATH_ERROR,
+	NO_E_PATH_ERROR,
+	NO_SP_PATH_ERROR,
 };
 int			ft_error_msg(int error_value);
 int			ft_initialyse_config(t_config *config);
 void		ft_initialyse_ray(t_raycast *ray);
 int			ft_init_parsing(t_config *config, char *cub_file);
-void		ft_get_resolution(t_config *config, char *line);
-char		*ft_get_texture_path(char *line);
-void		ft_get_color(char *line, t_config *config);
-void 		ft_get_map(t_config *config, char **line, int fd);
+int			ft_get_resolution(t_config *config, char *line);
+int			ft_get_texture_path(t_config *config, char *line);
+int			ft_get_color(char *line, t_config *config);
+int 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
 void		ft_create_background(t_config *config);
 void		ft_create_texture(t_config *config);

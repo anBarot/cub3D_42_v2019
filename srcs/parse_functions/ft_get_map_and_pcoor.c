@@ -40,7 +40,7 @@ int		ft_get_player_coor(t_config *config)
 		{
 			if (ft_is_char_in_set(config->map[line][col], "WESN"))
 			{
-				if (count_player == 1)
+				if (count_player)
 					return (MULTIPLAYER_ERROR);
 				config->player_coord.x = line;
 				config->player_coord.y = col;
@@ -53,55 +53,78 @@ int		ft_get_player_coor(t_config *config)
 		col = 0;
 		line++;
 	}
-	if (count_player == 0)
+	if (!count_player)
 		return (NO_PLAYER_ERROR);
 	return (NO_ERROR);
 }
 
-int		ft_is_valid_value_mapline(char *map_line)
+int	ft_ckeck_map_border(char **map)
 {
-	int i_str;
-
-	i_str = 0;
-	if (map_line[0] != '1' || map_line[ft_strlen(map_line) - 1] != '1')
-		return (0);
-	while (map_line[i_str])
+	int		line;
+	char	*tmp_str;
+	
+	line = 0;
+	while (map[line])
 	{
-		if (!VALID_MAP_VALUE(map_line[i_str]))
-			return (0);
-		i_str++;
+		tmp_str = ft_strtrim((const char *)map[line], " ");
+		if (tmp_str[0] != '1' || tmp_str[ft_strlen(tmp_str) - 1] != '1')
+			return (MAP_BORDER_ERROR);
+		line++;
+		free(tmp_str);
 	}
-	return (1);
+	return (NO_ERROR);
 }
 
-void	ft_get_map(t_config *config, char **line, int fd)
+int	ft_check_map_value(char **map)
 {
-	int				map_line;
-	unsigned int	line_width;
+	int		line;
+	char	*tmp_str;
+
+	line = 0;
+	tmp_str = ft_remove_in_str(map[0], " 1");
+	if (ft_strlen(tmp_str) > 0)
+		return (MAP_BORDER_ERROR);
+	free(tmp_str);
+	line++;
+	while (map[line + 1])
+	{
+		tmp_str = ft_remove_in_str(map[line], " 012WESN");
+		if (ft_strlen(tmp_str) > 0)
+			return (MAP_VALUE_ERROR);
+		free(tmp_str);
+		line++;
+	}
+	tmp_str = ft_remove_in_str(map[0], " 1");
+	if (ft_strlen(tmp_str) > 0)
+		return (MAP_BORDER_ERROR);
+	free(tmp_str);
+	return (NO_ERROR);
+}
+
+int	ft_get_map(t_config *config, char **line, int fd)
+{
+	int		map_line;
+	int		error_value;
 
 	map_line = 0;
 	config->map[map_line] = ft_strdup(*line);
-	line_width = ft_strlen(config->map[map_line]);
 	map_line++;
-	while (get_next_line(fd, line) == 1 && **line == '1')
+	error_value = 0;
+	while (get_next_line(fd, line) == 1 && (**line == '1' || **line == ' '))
 	{
-		config->map[map_line] = ft_remove_in_str((*line), " ");
-		if (!ft_is_valid_value_mapline(config->map[map_line]) || 
-			map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
-		{
-			config->map = 0;
-			return ;
-		}
+		config->map[map_line] = ft_strdup(*line);
+		if (map_line >= 1000000)
+			return (MAP_OVERFLOW);
 		map_line++;
 		free(*line);
 	}
-	config->map[map_line] = ft_remove_in_str((*line), " ");
-	if (!ft_is_valid_value_mapline(config->map[map_line]) || 
-		map_line > 1000000 || ft_strlen(config->map[map_line]) != line_width)
-	{
-		config->map = 0;
-		return ;
-	}
+	config->map[map_line] = ft_strdup(*line);
+	free(*line);
 	map_line++;
 	config->map[map_line + 1] = '\0';
+	if ((error_value = ft_check_map_value(config->map)))
+		return (error_value);
+	if ((error_value = ft_ckeck_map_border(config->map)))
+		return (error_value);
+	return (NO_ERROR);
 }

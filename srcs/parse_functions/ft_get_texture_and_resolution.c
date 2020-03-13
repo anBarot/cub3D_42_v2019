@@ -37,13 +37,13 @@ int		ft_is_valid_resolution(char *line)
 	return (1);
 }
 
-void		ft_get_resolution(t_config *config, char *line)
+int		ft_get_resolution(t_config *config, char *line)
 {
 	int 	i_line;
 
 	i_line = 0;
 	if (!ft_is_valid_resolution(line))
-		return ;
+		return (RESOL_ERROR);
 	while (!ft_isdigit(line[i_line]))
 		i_line++;
 	config->resol.x = ft_atoi(line + i_line);
@@ -56,23 +56,33 @@ void		ft_get_resolution(t_config *config, char *line)
 		config->resol.x = RESOL_MAX_X;
 	if (config->resol.y > RESOL_MAX_Y)
 		config->resol.y = RESOL_MAX_Y;
+	return (NO_ERROR);
 }
 
-char	*ft_get_texture_path(char *line)
+int		ft_get_texture_path(t_config *config, char *line)
 {
 	char	*path;
 	int 	fd;
 	int		i_line;
 
-	path = ft_remove_in_str(line, " ");
+	path = ft_remove_in_str(line + 2, " ");
 	if ((fd = open(path, O_RDWR)) == -1)
-		return (0);
+		return (INVALID_PATH_ERROR);
 	close(fd);
 	i_line = ft_strlen(line) - 1;
 	while (line[i_line] != '.' && i_line)
 		i_line--;
 	if (ft_strncmp(line + i_line, ".xpm", 4))
-		return (0);
-	else
-		return (path);
+		return (IMG_EXTENSION_ERROR);
+	if (line [0] == 'N')
+		config->path_north = path;
+	else if (line [0] == 'W')
+		config->path_west = path;
+	else if (line [0] == 'E')
+		config->path_east = path;
+	else if (line [0] == 'S' && line[1] == 'O')
+		config->path_south = path;
+	else if (line [0] == 'S')
+		config->path_sprite = path;
+	return (NO_ERROR);
 }

@@ -28,7 +28,7 @@ void	ft_fill_color(t_color color, char cf, t_config *config)
 	}
 }
 
-void		ft_get_color(char *line, t_config *config)
+int		ft_get_color(char *line, t_config *config)
 {
 	int		i_line;
 	t_color	color;
@@ -51,6 +51,12 @@ void		ft_get_color(char *line, t_config *config)
 		i_line++;
 	if (color.R < 0 || color.B < 0 || color.G < 0 || color.R > 255 
 	|| color.G > 255 || color.B > 255 || line[i_line])
-		color.R = -1;
+	{	
+		if (line[0] == 'C')
+			return (C_COLOR_ERROR);
+		else if (line[0] == 'F')
+			return (F_COLOR_ERROR);
+	}
 	ft_fill_color(color, line[0], config);
+	return (NO_ERROR);
 }

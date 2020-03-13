@@ -18,6 +18,12 @@ int		ft_initialyse_config(t_config *config)
 	config->win_ptr = 0;
 	config->resol.x = 0;
 	config->resol.y = 0;
+	config->col_ceil.R = -1;
+	config->col_ceil.B = 0;
+	config->col_ceil.G = 0;
+	config->col_floor.R = -1;
+	config->col_floor.B = 0;
+	config->col_floor.G = 0;
 	config->path_north = 0;
 	config->path_west = 0;
 	config->path_east = 0;
