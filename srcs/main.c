@@ -59,7 +59,6 @@ int 	main(int ac, char **av)
 	printf("\ncoor : %d,%d\n", config->player_coord.x, config->player_coord.y);
 	// fin test parse
 
-
 	config->mlx_ptr = mlx_init();
 	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol.x, config->resol.y, av[1]);
 	ft_create_background(config);

@@ -14,6 +14,7 @@
 
 void	ft_initialyse_ray(t_raycast *ray)
 {
+	ray->center_angle = 0;
 	ray->prop_cste = 0;
 	ray->p_coor.x = 0;
 	ray->p_coor.y = 0;
@@ -103,13 +104,13 @@ void	ft_get_smallest_dist(t_raycast * ray, t_fcoord dist_obj, double angle)
 {
 	if (dist_obj.x && (dist_obj.x <= dist_obj.y || !dist_obj.y))
 	{
-		ray->dist_obj = dist_obj.x;
+		ray->dist_obj = dist_obj.x * cos(RAD(fabs(ray->center_angle - angle)));
 		(angle < (double)180) ? ray->nesw_path = 'N' : 0;
 		(angle > (double)180) ? ray->nesw_path = 'S' : 0;
 	}
 	else
 	{
-		ray->dist_obj = dist_obj.y;
+		ray->dist_obj = dist_obj.y * cos(RAD(fabs(ray->center_angle - angle)));
 		(angle > (double)90 && angle < (double)270) ? ray->nesw_path = 'E' : 0;
 		(angle < (double)90 || angle > (double)270) ? ray->nesw_path = 'W' : 0;
 	}
@@ -120,7 +121,7 @@ void	ft_get_dist_to_obj(t_raycast *ray, char **map, double angle, char obj)
 	t_fcoord	delta;
 	t_fcoord	dist_obj;
 
-	if (fabs(angle - 180) > 1 || fabs(angle - 0) > 1 || fabs(angle - 360) > 1) 
+	if (fabs(angle - 180) > 1 || fabs(angle) > 1 || fabs(angle - 360) > 1) 
 	{	
 		delta = ft_get_delta_hor(delta, angle);
 		dist_obj.x = ft_get_crosscoor(ray, delta, map, obj);

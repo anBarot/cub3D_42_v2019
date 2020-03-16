@@ -60,6 +60,7 @@ typedef struct		s_fcoord
 }					t_fcoord;
 typedef struct		s_raycast
 {
+	double			center_angle;
 	double			prop_cste;
 	t_fcoord		p_coor;
 	double			dist_obj;

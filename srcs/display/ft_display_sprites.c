@@ -59,25 +59,29 @@ void	ft_display_sprites(t_config *config)
 	t_img		img_tmp;
 	double		mem_sprite_dist;
 
-	col = 0;
-	delta_angle = (FOV / (double)config->resol.x);
-	tmp_angle = config->cam_angle;
 	if (!(ray_wall = (t_raycast *)malloc(sizeof(t_raycast))) || 
 	!(ray_sprite = (t_raycast *)malloc(sizeof(t_raycast))))
 		return ;
+	col = 0;
+	delta_angle = (FOV / (double)config->resol.x);
+	tmp_angle = config->cam_angle;
 	ft_initialyse_ray(ray_wall);
 	ft_initialyse_ray(ray_sprite);
+	ray_sprite->center_angle = config->cam_angle + 30;
+	ray_wall->center_angle = config->cam_angle + 30;
+	if (config->cam_angle + 30 > 360)
+	{
+		ray_sprite->center_angle -= 360;
+		ray_wall->center_angle -= 360;
+	}
 	while (col < config->resol.x)
 	{
 		ft_raycast(config, ray_sprite, tmp_angle, '2');
 		ft_raycast(config, ray_wall, tmp_angle, '1');
 		if (ray_sprite->dist_obj && ray_sprite->dist_obj < ray_wall->dist_obj)
 		{
-			// mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img.sprite.img_ptr,  col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
-			// ft_display_sprite(config, config->img.sprite, col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
 			if (ray_sprite->obj_proj > config->resol.y)
 				ray_sprite->obj_proj = config->resol.y;
-			// img_tmp = ft_scalling(config->mlx_ptr, config->img.sprite, 300, 500);
 			img_tmp = ft_scalling(config->mlx_ptr, config->img.sprite, ray_sprite->obj_proj, ray_sprite->obj_proj);
 			ft_display_sprite(config, img_tmp, col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
 			mem_sprite_dist = ray_sprite->dist_obj;

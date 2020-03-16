@@ -47,6 +47,9 @@ void	ft_display_wall(t_config *config)
 	col = 0;
 	delta_angle = (FOV / (double)config->resol.x);
 	tmp_angle = config->cam_angle;
+	ray->center_angle = config->cam_angle + (FOV / 2);
+	if (ray->center_angle > 360)
+		ray->center_angle -= 360;
 	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img.ceiling.img_ptr, 0, 0);
 	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img.floor.img_ptr, 0, config->resol.y / 2);
 	while (col < config->resol.x)
@@ -57,8 +60,6 @@ void	ft_display_wall(t_config *config)
 		tmp_angle += delta_angle;
 		if (tmp_angle > 360)
 			tmp_angle -= 360;
-		else if (tmp_angle < 0)
-			tmp_angle += 360;
 	}
 	free(ray);
 	ft_create_texture(config);
