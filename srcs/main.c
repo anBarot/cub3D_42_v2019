@@ -63,6 +63,14 @@ int 	main(int ac, char **av)
 	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol.x, config->resol.y, av[1]);
 	ft_create_background(config);
 	ft_create_texture(config);
+
+	// test scalling img
+	// t_img tmp_img;
+	// tmp_img = ft_scalling(config->mlx_ptr, config->img.north, 700, 700);
+	// mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, tmp_img.img_ptr, 0, 0);
+	// while(1);
+	// end test scalling
+
 	ft_receive_events(config);
 	return (0);
 }

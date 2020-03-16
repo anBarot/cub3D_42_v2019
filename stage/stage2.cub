@@ -1,6 +1,6 @@
 R 1200 900
 S texture/vulpix_sprite.xpm 
-SO texture/gray_stone_wall.xpm 
+SO texture/medieval_wall.xpm 
 NO texture/stone_wall.xpm
 WE texture/leaves_wall.xpm
 EA texture/red_brick_wall.xpm
