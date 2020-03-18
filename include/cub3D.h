@@ -12,9 +12,8 @@
 
 // to_dos :
 	// - ft_create_sprite_img
-	// - quitter la enêtre de manière clean
-	// - réparer murs apparaissent en décaler
-	// - ne pas traverser les sprites
+	// - quitter la fenêtre de manière clean
+	// - faire l'image de l'écran façon panoramique
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -78,15 +77,14 @@ typedef struct 		s_img_spec
 }					t_img;
 typedef	struct		s_mlx_img
 {
-	t_img		ceiling;
-	t_img		floor;
 	t_img		north;
 	t_img		south;
 	t_img		west;
 	t_img		east;
 	t_img		sprite;
-	int				bpp;
-	int				endian;
+	t_img		screen;
+	int			bpp;
+	int			endian;
 }					t_mlx_img;
 typedef struct		s_color 
 {
@@ -138,8 +136,10 @@ enum				e_error
 	NO_E_PATH_ERROR,
 	NO_SP_PATH_ERROR,
 };
-int			ft_error_msg(int error_value);
 int			ft_initialyse_config(t_config *config);
+int			ft_error_msg(int error_value);
+void		ft_create_screen(t_config *config);
+void		ft_create_texture(t_config *config);
 void		ft_initialyse_ray(t_raycast *ray);
 int			ft_init_parsing(t_config *config, char *cub_file);
 int			ft_get_resolution(t_config *config, char *line);
@@ -147,8 +147,8 @@ int			ft_get_texture_path(t_config *config, char *line);
 int			ft_get_color(char *line, t_config *config);
 int 		ft_get_map(t_config *config, char **line, int fd);
 int			ft_get_player_coor(t_config *config);
-void		ft_create_background(t_config *config);
-void		ft_create_texture(t_config *config);
+void		ft_initialize_screen(t_config *config);
+void		ft_create_screenshot(t_config *config);
 void		ft_pixel_filling(char *mlx_to_fill, char *mlx_to_extract);
 int			ft_receive_events(t_config *config);
 void		ft_move_backandforth(t_config *config, int mv_value);
@@ -158,4 +158,6 @@ void		ft_display_wall(t_config *config);
 void		ft_raycast(t_config *config, t_raycast *ray, double angle, char obj);
 t_img		ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height);
 void		ft_display_sprites(t_config *config);
+void		ft_put_img_to_screen(t_img screen, t_img img, int start_x, int start_y);
+void		ft_escape_game(t_config *config);
 #endif

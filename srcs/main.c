@@ -18,7 +18,7 @@ int		ft_is_valid_arg(const char *av_1, const char *av_2)
 
 	i_ext = ft_strlen(av_1) - 4;
 	if (av_2)
-		if (ft_strncmp(av_2, "-save", 5))
+		if (ft_strncmp(av_2, "-save", 6))
 			return (0);
 	if (i_ext < 1 || ft_strncmp(av_1 + i_ext, ".cub", 4))
 		return (0);
@@ -42,7 +42,6 @@ int 	main(int ac, char **av)
 	if ((error_value = ft_init_parsing(config, av[1])))
 		return (ft_error_msg(error_value));
 
-
 	// test parse
 	printf("\n----.cub is valid----\n");
 	printf("\nresolution : %dx%d\ncolor : F %d%d%d, C %d%d%d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
@@ -61,16 +60,16 @@ int 	main(int ac, char **av)
 
 	config->mlx_ptr = mlx_init();
 	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol.x, config->resol.y, av[1]);
-	ft_create_background(config);
 	ft_create_texture(config);
-
-	// test scalling img
-	// t_img tmp_img;
-	// tmp_img = ft_scalling(config->mlx_ptr, config->img.north, 700, 700);
-	// mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, tmp_img.img_ptr, 0, 0);
-	// while(1);
-	// end test scalling
-
+	ft_create_screen(config);
+	if (ac == 3)
+	{
+		ft_display_wall(config);
+		ft_display_sprites(config);
+		ft_create_screenshot(config);
+		ft_escape_game(config);
+		return (0);
+	}
 	ft_receive_events(config);
 	return (0);
 }

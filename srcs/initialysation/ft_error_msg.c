@@ -17,7 +17,7 @@ int		ft_error_msg(int error_value)
 	(error_value == INVALID_ARG_NBR_ERROR) ? ft_printf
 	("Error\nYou have too many or too few arguments, only the name of the file .cub followed by -save are allowed\n") : 0;
 	(error_value == INVALID_ARG_ERROR) ? ft_printf
-	("Error\nThe file you are trying to read is not valid, check the extension '.cub'\n") : 0;
+	("Error\nThe file you are trying to read is not valid, check the extension '.cub' or the argument '-save'\n") : 0;
 	(error_value == INIT_ERROR) ? ft_printf
 	("Error\nThe programm initialyzation is not possible\n") : 0;
 	(error_value == OPEN_FILE_ERROR) ? ft_printf

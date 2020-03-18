@@ -12,40 +12,32 @@
 
 #include "cub3D.h"
 
-void	ft_display_sprite(t_config *config, t_img sprite, int x, int y)
+void	ft_put_sprite_to_screen(t_config *config, t_img sprite, int start_x, int start_y)
 {
-	t_coord	img_coor;
-	t_coord	win_coor;
-	char	*color;
-	int		d_pixel;
+	t_coord	sprite_coor;
+	t_coord	screen_coor;
+	int		d_sprite;
+	int		d_screen;
 
-	color = ft_calloc(4, 1);
-	img_coor.x = 0;
-	img_coor.y = 0;
-	win_coor.x = x;
-	win_coor.y = y;
-	while (img_coor.y < sprite.height)
+	sprite_coor.x = 0;
+	sprite_coor.y = 0;
+	screen_coor.x = start_x;
+	screen_coor.y = start_y;
+	while (sprite_coor.y < sprite.height)
 	{
-		while (img_coor.x < sprite.width)
+		while (sprite_coor.x < sprite.width)
 		{
-			d_pixel = img_coor.x * 4 + sprite.size_line * img_coor.y;
-			if (sprite.mlx[d_pixel] <= 0 && img_coor.x < sprite.width)
-			{	
-				img_coor.x++;
-				win_coor.x++;
-			}
-			else if (sprite.mlx[d_pixel] > 0 && img_coor.x < sprite.width)
-			{	
-				ft_pixel_filling(color, sprite.mlx + d_pixel);
-				mlx_pixel_put(config->mlx_ptr, config->win_ptr, win_coor.x, win_coor.y, (int)(color));
-				img_coor.x++;
-				win_coor.x++;
-			}
+			d_sprite = sprite_coor.x * 4 + sprite_coor.y * sprite.size_line;
+			d_screen = screen_coor.x * 4 + screen_coor.y * config->img.screen.size_line;
+			if (sprite.mlx[d_sprite] >= 0)
+				ft_pixel_filling(config->img.screen.mlx + d_screen, sprite.mlx + d_sprite);
+			sprite_coor.x++;
+			screen_coor.x++;
 		}
-		img_coor.x = 0;
-		win_coor.x = x;
-		img_coor.y++;
-		win_coor.y++;
+		sprite_coor.x = 0;
+		screen_coor.x = start_x;
+		sprite_coor.y++;
+		screen_coor.y++;
 	}
 }
 
@@ -83,7 +75,8 @@ void	ft_display_sprites(t_config *config)
 			if (ray_sprite->obj_proj > config->resol.y)
 				ray_sprite->obj_proj = config->resol.y;
 			img_tmp = ft_scalling(config->mlx_ptr, config->img.sprite, ray_sprite->obj_proj, ray_sprite->obj_proj);
-			ft_display_sprite(config, img_tmp, col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
+			ft_put_sprite_to_screen(config, img_tmp, col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
+			// ft_put_img_to_screen(config->img.screen, img_tmp, col, config->resol.y / 2 - ray_sprite->obj_proj / 2);
 			mem_sprite_dist = ray_sprite->dist_obj;
 			while (fabs(ray_sprite->dist_obj - mem_sprite_dist) < WALL_SIZE && col < config->resol.x)
 			{

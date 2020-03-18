@@ -141,6 +141,4 @@ void	ft_raycast(t_config *config, t_raycast *ray, double angle, char obj)
 	ft_get_dist_to_obj(ray, config->map, angle, obj);
 	ray->prop_cste = ((WALL_SIZE / 2) * ((config->resol.x /2) / tan(RAD(FOV / 2))));
 	ray->obj_proj = (ray->prop_cste / ray->dist_obj);
-	if (ray->obj_proj > config->resol.y)
-		ray->obj_proj = config->resol.y;
 }

@@ -13,6 +13,8 @@
 NAME	=	Cub3D
 
 SRCS	=	srcs/main.c \
+			srcs/create_screenshot.c \
+			srcs/create_screen.c \
 			srcs/display/ft_display_sprites.c \
 			srcs/display/ft_display_wall.c \
 			srcs/event_management/ft_receive_events.c \
