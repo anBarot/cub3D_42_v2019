@@ -10,25 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parse.h"
+#include "initialize.h"
 
-void	ft_fill_color(t_color color, char cf, t_config *config)
+void	ft_fill_color(t_color color, char cf, t_parse *parse)
 {
 	if (cf == 'C')
 	{
-		config->col_ceil.R = color.R;
-		config->col_ceil.G = color.G;
-		config->col_ceil.B = color.B;
+		parse->col_ceil.R = color.R;
+		parse->col_ceil.G = color.G;
+		parse->col_ceil.B = color.B;
 	}
 	else
 	{
-		config->col_floor.R = color.R;
-		config->col_floor.G = color.G;
-		config->col_floor.B = color.B;
+		parse->col_floor.R = color.R;
+		parse->col_floor.G = color.G;
+		parse->col_floor.B = color.B;
 	}
 }
 
-int		ft_get_color(char *line, t_config *config)
+int		ft_get_color(char *line, t_parse *parse)
 {
 	int		i_line;
 	t_color	color;
@@ -57,6 +58,6 @@ int		ft_get_color(char *line, t_config *config)
 		else if (line[0] == 'F')
 			return (F_COLOR_ERROR);
 	}
-	ft_fill_color(color, line[0], config);
+	ft_fill_color(color, line[0], parse);
 	return (NO_ERROR);
 }

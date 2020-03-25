@@ -1,11 +1,11 @@
 R 1200 900
-S texture/undertale_sprite.xpm 
-SO texture/gray_stone_wall.xpm 
+S texture/vulpix_sprite.xpm 
+SO texture/medieval_wall.xpm 
 NO texture/stone_wall.xpm
 WE texture/leaves_wall.xpm
 EA texture/red_brick_wall.xpm
-F 50,204,55
-C 100,0,100
+F 0,200,50
+C 150,0,250
 111111111111111111111111111111111111111111111111
 100000000000000000001111111111111100000000000001
 100000001000000000000000000000000000000000000001

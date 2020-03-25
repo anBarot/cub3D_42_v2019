@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "parse.h"
+#include "initialize.h"
 
 int		ft_is_valid_resolution(char *line)
 {
@@ -37,7 +38,7 @@ int		ft_is_valid_resolution(char *line)
 	return (1);
 }
 
-int		ft_get_resolution(t_config *config, char *line)
+int		ft_get_resolution(t_parse *parse, char *line)
 {
 	int 	i_line;
 
@@ -46,20 +47,20 @@ int		ft_get_resolution(t_config *config, char *line)
 		return (RESOL_ERROR);
 	while (!ft_isdigit(line[i_line]))
 		i_line++;
-	config->resol.x = ft_atoi(line + i_line);
+	parse->resol.x = ft_atoi(line + i_line);
 	while (ft_isdigit(line[i_line]))
 		i_line++;
 	while (line[i_line] == ' ')
 		i_line++;
-	config->resol.y = ft_atoi(line + i_line);
-	if (config->resol.x > RESOL_MAX_X)
-		config->resol.x = RESOL_MAX_X;
-	if (config->resol.y > RESOL_MAX_Y)
-		config->resol.y = RESOL_MAX_Y;
+	parse->resol.y = ft_atoi(line + i_line);
+	if (parse->resol.x > RESOL_MAX_X)
+		parse->resol.x = RESOL_MAX_X;
+	if (parse->resol.y > RESOL_MAX_Y)
+		parse->resol.y = RESOL_MAX_Y;
 	return (NO_ERROR);
 }
 
-int		ft_get_texture_path(t_config *config, char *line)
+int		ft_get_texture_path(t_parse *parse, char *line)
 {
 	char	*path;
 	int 	fd;
@@ -75,14 +76,14 @@ int		ft_get_texture_path(t_config *config, char *line)
 	if (ft_strncmp(line + i_line, ".xpm", 4))
 		return (IMG_EXTENSION_ERROR);
 	if (line [0] == 'N')
-		config->path_north = path;
+		parse->path_set.north = path;
 	else if (line [0] == 'W')
-		config->path_west = path;
+		parse->path_set.west = path;
 	else if (line [0] == 'E')
-		config->path_east = path;
+		parse->path_set.east = path;
 	else if (line [0] == 'S' && line[1] == 'O')
-		config->path_south = path;
+		parse->path_set.south = path;
 	else if (line [0] == 'S')
-		config->path_sprite = path;
+		parse->path_set.sprite = path;
 	return (NO_ERROR);
 }

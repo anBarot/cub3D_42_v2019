@@ -15,6 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <string.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include "libftprintf.h"
 # define BUFFER_SIZE	15
 
 int			ft_atoi(const char *s);

@@ -13,19 +13,25 @@
 NAME	=	Cub3D
 
 SRCS	=	srcs/main.c \
-			srcs/create_screenshot.c \
-			srcs/create_screen.c \
-			srcs/display/ft_display_sprites.c \
-			srcs/display/ft_display_wall.c \
-			srcs/event_management/ft_receive_events.c \
-			srcs/event_management/moves.c \
+			srcs/event_managment/ft_draw_sprites.c \
+			srcs/event_managment/ft_draw_walls.c \
+			srcs/event_managment/calc_projection.c \
+			srcs/event_managment/ft_receive_events.c \
+			srcs/event_managment/moves.c \
+			srcs/img_treatment/ft_fill_img_with_color.c \
+			srcs/img_treatment/ft_pixel_filling.c \
+			srcs/img_treatment/ft_put_img_to_screen.c \
+			srcs/img_treatment/ft_put_sprite_to_screen.c \
+			srcs/img_treatment/ft_scalling.c \
+			srcs/img_treatment/ft_shift_img.c \
+			srcs/initialysation/create_screenshot.c \
 			srcs/initialysation/ft_error_msg.c \
 			srcs/initialysation/ft_initialyse_config.c \
-			srcs/initialysation/ft_initialyse_img.c \
-			srcs/parse_functions/ft_get_cf_colors.c \
-			srcs/parse_functions/ft_get_map_and_pcoor.c \
-			srcs/parse_functions/ft_get_texture_and_resolution.c \
-			srcs/parse_functions/ft_parse_file.c \
+			srcs/initialysation/initialyse_images.c \
+			srcs/parsing/ft_get_cf_colors.c \
+			srcs/parsing/ft_get_map_and_pcoor.c \
+			srcs/parsing/ft_get_texture_and_resolution.c \
+			srcs/parsing/ft_parse_file.c \
 			srcs/raycast/ft_raycast.c 
 
 OBJS	=	$(SRCS:.c=.o)

@@ -12,6 +12,24 @@
 
 #include "cub3D.h"
 
+void ft_test(t_config *config)
+{
+	printf("\n----.cub is valid----\n");
+	printf("\nresolution : %dx%d\ncolor : F %d%d%d, C %d%d%d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
+	config->parse.resol.x, config->parse.resol.y, config->parse.col_floor.R, config->parse.col_floor.G, config->parse.col_floor.B,
+	config->parse.col_ceil.R, config->parse.col_ceil.G, config->parse.col_ceil.B,
+	config->parse.path_set.north, config->parse.path_set.east, config->parse.path_set.west, 
+	config->parse.path_set.south, config->parse.path_set.sprite);
+	int i = 0;
+	while (config->parse.map_elt.map[i])
+	{
+		printf("\nmap %2d  : %s", i, config->parse.map_elt.map[i]);
+		i++;
+	}
+	printf("\ncoor : %d,%d\n", config->parse.map_elt.p_coord.x, config->parse.map_elt.p_coord.y);
+	printf("\nangle value : %d\n", config->parse.map_elt.cam_angle);
+}
+
 int		ft_is_valid_arg(const char *av_1, const char *av_2)
 {
 	int		i_ext;
@@ -39,37 +57,21 @@ int 	main(int ac, char **av)
 	if (!(config = ft_calloc(sizeof(t_config), 1)) ||
 		!(ft_initialyse_config(config)))
 		return (ft_error_msg(INIT_ERROR));
-	if ((error_value = ft_init_parsing(config, av[1])))
+	if ((error_value = ft_init_parsing(&config->parse, av[1])))
 		return (ft_error_msg(error_value));
-
-	// test parse
-	printf("\n----.cub is valid----\n");
-	printf("\nresolution : %dx%d\ncolor : F %d%d%d, C %d%d%d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
-	config->resol.x, config->resol.y, config->col_floor.R, config->col_floor.G, config->col_floor.B,
-	config->col_ceil.R, config->col_ceil.G, config->col_ceil.B,
-	config->path_north, config->path_east, config->path_west, 
-	config->path_south, config->path_sprite);
-	int i = 0;
-	while (config->map[i])
-	{
-		printf("\nmap %2d  : %s", i, config->map[i]);
-		i++;
-	}
-	printf("\ncoor : %d,%d\n", config->player_coord.x, config->player_coord.y);
-	// fin test parse
-
+	ft_test(config);
 	config->mlx_ptr = mlx_init();
-	config->win_ptr = mlx_new_window(config->mlx_ptr, config->resol.x, config->resol.y, av[1]);
-	ft_create_texture(config);
-	ft_create_screen(config);
+	ft_create_texture(config->mlx_ptr, &config->img_set, config->parse.path_set);
+	ft_create_screen(config->mlx_ptr, &config->img_set.screen, config->parse.resol);
+	ft_initialize_screen(&config->img_set.screen, config->parse.col_ceil, config->parse.col_floor);
+	ft_draw_walls(config);
+	ft_draw_sprites(config);
 	if (ac == 3)
 	{
-		ft_display_wall(config);
-		ft_display_sprites(config);
-		ft_create_screenshot(config);
+		ft_create_screenshot(config->img_set.screen);
 		ft_escape_game(config);
 		return (0);
 	}
-	ft_receive_events(config);
-	return (0);
+	config->win_ptr = mlx_new_window(config->mlx_ptr, config->parse.resol.x, config->parse.resol.y, av[1]);
+	return (ft_receive_events(config));
 }
