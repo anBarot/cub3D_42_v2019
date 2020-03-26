@@ -21,6 +21,7 @@ void	ft_draw_sprites(t_config *config)
 	double		tmp_angle;
 	int			obj_proj;
 	t_img		tmp_img;
+	int			mem_dist;
 
 	ft_initialyse_ray(&wall_ray);
 	ft_initialyse_ray(&sprite_ray);
@@ -36,9 +37,10 @@ void	ft_draw_sprites(t_config *config)
 		ft_raycast(&sprite_ray, config->parse.map_elt.map, tmp_angle, '2');
 		if (sprite_ray.dist_obj && sprite_ray.dist_obj < wall_ray.dist_obj)
 		{
+			mem_dist = sprite_ray.dist_obj;
 			col_2 = col;
 			obj_proj = ft_calc_projection(sprite_ray.dist_obj, tmp_angle, config->parse.map_elt.cam_angle, config->parse.resol.x);
-			while (sprite_ray.dist_obj && sprite_ray.dist_obj < wall_ray.dist_obj && col < config->parse.resol.x)
+			while (abs(sprite_ray.dist_obj - mem_dist) < SQUARE_SIZE && sprite_ray.dist_obj < wall_ray.dist_obj && col < config->parse.resol.x)
 			{
 				col++;
 				tmp_angle +=  (FOV / (double)config->parse.resol.x);
