@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 // todos :
-// 	- corriger put sprite to screen function : image a droite passe a gauche
-// 	- corriger le deplacement des sprites avec deplacment du joueur
+// 	- faire check sprites en arriere plan
 
 #ifndef CUB3D_H
 # define CUB3D_H
