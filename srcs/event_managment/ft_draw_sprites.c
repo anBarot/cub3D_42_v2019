@@ -48,8 +48,13 @@ void	ft_draw_sprites(t_config *config)
 				ft_raycast(&sprite_ray, config->parse.map_elt.map, tmp_angle, '2');
 			}
 			tmp_img = ft_scalling(config->mlx_ptr, config->img_set.sprite, obj_proj, obj_proj);
-			tmp_img = ft_shift_img(config->mlx_ptr, tmp_img, tmp_img.width - (col - col_2), 0);
-			ft_put_sprite_to_screen(config->img_set.screen, tmp_img, col_2, (config->parse.resol.y / 2) - (obj_proj / 2));
+			if ((col - col_2) < tmp_img.width && col != config->parse.resol.x)
+			{
+				tmp_img = ft_shift_img(config->mlx_ptr, tmp_img, tmp_img.width - (col - col_2), 0);
+				ft_put_sprite_to_screen(config->img_set.screen, tmp_img, 0, (config->parse.resol.y / 2) - (obj_proj / 2));
+			}
+			else
+				ft_put_sprite_to_screen(config->img_set.screen, tmp_img, col_2, (config->parse.resol.y / 2) - (obj_proj / 2));
 		}
 		else
 		{
