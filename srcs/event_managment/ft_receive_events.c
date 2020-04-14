@@ -6,18 +6,16 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:14:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 13:59:30 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 15:44:26 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
-
-#include	"mlx_int.h"
+#include "mlx_int.h"
 
 extern int	(*(mlx_int_param_event[]))();
-
 
 void	ft_escape_game(t_config *config)
 {
@@ -48,19 +46,26 @@ void	ft_escape_game(t_config *config)
 	exit(EXIT_SUCCESS);
 }
 
-int	ft_pressed_key(int keycode, t_config *config)
+int		ft_pressed_key(int keycode, t_config *config)
 {
-	if (UPKEY1 == keycode || UPKEY2 == keycode) ? ft_move_backandforth(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1) : 0;
-	(DOWNKEY1 == keycode || DOWNKEY2 == keycode) ? ft_move_backandforth(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1) : 0;
-	(LEFTKEY == keycode) ? ft_turn(&config->parse.map_elt.cam_angle, -10) : 0;
-	(RIGHTKEY == keycode) ? ft_turn(&config->parse.map_elt.cam_angle, +10) : 0;
-	(RIGHT_LAT_KEY == keycode) ? ft_move_lateral(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1) : 0;
-	(LEFT_LAT_KEY == keycode) ? ft_move_lateral(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1) : 0;
+	if (UPKEY1 == keycode || UPKEY2 == keycode) 
+		ft_move_backandforth(config->parse.map_elt.map, 
+		&config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1);
+	if (DOWNKEY1 == keycode || DOWNKEY2 == keycode)
+		ft_move_backandforth(config->parse.map_elt.map,
+		&config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1);
+	if (LEFTKEY == keycode)
+		ft_turn(&config->parse.map_elt.cam_angle, -10);
+	if (RIGHTKEY == keycode)
+		ft_turn(&config->parse.map_elt.cam_angle, +10);
+	if (RIGHT_LAT_KEY == keycode)
+		ft_move_lateral(config->parse.map_elt.map,
+		&config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1);
+	if (LEFT_LAT_KEY == keycode)
+		ft_move_lateral(config->parse.map_elt.map,
+		&config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1);
 	if (keycode == ESCAPEKEY)
-	{
 		ft_escape_game(config);
-		exit(EXIT_SUCCESS);
-	}
 	ft_initialize_screen(&config->img_set.screen, config->parse.col_ceil, config->parse.col_floor);
 	ft_draw_walls(config);
 	ft_draw_sprites(config);
@@ -72,7 +77,7 @@ int		mlx_loop_2(t_xvar *xvar, t_config *config)
 {
 	XEvent		ev;
 	t_win_list	*win;
-	Atom wm_delete_window;
+	Atom		wm_delete_window;
 
 	xvar->do_flush = 0;
 	win = xvar->win_list;
@@ -88,10 +93,7 @@ int		mlx_loop_2(t_xvar *xvar, t_config *config)
 	  		while (win && (win->window!=ev.xany.window))
 	  			win = win->next;
 			if ((Atom)ev.xclient.data.l[0] == wm_delete_window)
-			{
 			 	ft_escape_game(config);
-			 	exit(EXIT_SUCCESS);
-      		}
 			if (win && ev.type < MLX_MAX_EVENT)
 	    	{
 				if (win->hooks[ev.type].hook)

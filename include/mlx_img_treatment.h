@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 12:44:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 13:40:16 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 16:42:50 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ typedef struct		s_color
 void				ft_pixel_filling(char *mlx_to_fill, char *mlx_to_extract);
 t_img_2				ft_scalling(void *mlx_ptr, t_img_2 img_to_scale, int width,
 					int height);
-void				ft_put_img_to_screen(t_img_2 screen, t_img_2 img, int start_x,
-					int start_y);
+void				ft_put_img_to_screen(t_img_2 screen, t_img_2 img,
+					int start_x, int start_y);
 void				ft_put_sprite_to_screen(t_img_2 screen, t_img_2 sprite,
 					int start_x, int start_y);
-void				ft_fill_img_with_color(t_img_2 *img, t_color color,
+void				ft_draw_square(t_img_2 *img, t_color color,
 					t_coord starting_point, t_coord dim);
 t_img_2				ft_shift_img(void *mlx_ptr, t_img_2 img, int x, int y);
 #endif

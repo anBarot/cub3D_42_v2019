@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 13:40:03 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 14:50:07 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ enum				e_error
 	MAP_OVERFLOW,
 	RESOL_ERROR,
 	COORD_ERROR,
+	BAD_LINE_ERROR,
 	MULTIPLAYER_ERROR,
 	NO_PLAYER_ERROR,
 	C_COLOR_ERROR,

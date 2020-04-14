@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:11:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 14:51:23 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 15:08:47 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_error_msg_3(int error_value)
 	(error_value == NO_C_COLOR_ERROR) ?
 	ft_printf("Error\nThe ceiling color is missing, add the line \
 'C RRR,GGG,BBB'\n") : 0;
+	(error_value == BAD_LINE_ERROR) ?
+	ft_printf("Error\nA line isn't valid!\n") : 0;
 	(error_value == NO_F_COLOR_ERROR) ?
 	ft_printf("Error\nThe floor color is missing, add the line \
 'F RRR,GGG,BBB'\n") : 0;

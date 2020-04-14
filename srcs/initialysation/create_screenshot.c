@@ -55,15 +55,21 @@ void	ft_copy_mlx_string(t_config *config, int fd)
 	}
 }
 
-void	ft_create_screenshot(t_config *config, char *title)
+void	ft_create_screenshot(t_config *config, char *av1)
 {
 	int		fd;
 	char	*file_name;
+	char	*tmp;
+	char	*tmp2;
 
-	file_name = ft_strjoin(title, ".bmp", 0);
+	tmp = ft_substr(av1, 6, 7);
+	tmp2 = ft_strtrim(tmp, ".cub");
+	file_name = ft_strjoin(tmp2, ".bmp", 0);
 	fd = open(file_name, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	ft_create_bmp_header(config, fd);
 	ft_copy_mlx_string(config, fd);
 	free(file_name);
+	free(tmp);
+	free(tmp2);
 	close(fd);
 }

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_shift_img.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 16:44:57 by abarot            #+#    #+#             */
+/*   Updated: 2020/04/14 16:45:03 by abarot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "mlx_img_treatment.h"
 
-t_img_2	ft_shift_img(void *mlx_ptr, t_img_2 img, int x, int y)
+t_img_2		ft_shift_img(void *mlx_ptr, t_img_2 img, int x, int y)
 {
 	t_img_2	n_img;
 	t_coord	img_coord;

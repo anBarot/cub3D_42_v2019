@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initialyse_images.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 15:44:21 by abarot            #+#    #+#             */
+/*   Updated: 2020/04/14 16:42:50 by abarot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "initialize.h"
 
 void	ft_initialize_screen(t_img_2 *screen, t_color c_color, t_color f_color)
@@ -9,12 +21,12 @@ void	ft_initialize_screen(t_img_2 *screen, t_color c_color, t_color f_color)
 	coor_to_fill.y = 0;
 	dim.x = screen->width;
 	dim.y = screen->height / 2;
-	ft_fill_img_with_color(screen, c_color, coor_to_fill, dim);
+	ft_draw_square(screen, c_color, coor_to_fill, dim);
 	coor_to_fill.x = 0;
 	coor_to_fill.y = screen->height / 2;
 	dim.x = screen->width;
 	dim.y = screen->height;
-	ft_fill_img_with_color(screen, f_color, coor_to_fill, dim);
+	ft_draw_square(screen, f_color, coor_to_fill, dim);
 }
 
 void	ft_create_screen(void *mlx_ptr, t_img_2 *screen, t_coord resol)

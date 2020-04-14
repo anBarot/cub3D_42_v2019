@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 12:49:25 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 16:08:14 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,32 +29,46 @@ int	ft_check_missing_elt(t_parse parse)
 	return (error_value);
 }
 
+void	ft_parse_condition(char *line, t_parse *parse, char *tmp,
+							int *error_value)
+{
+	if (line[0] == 'R' && line[1] == ' ')
+		*error_value = ft_get_resolution(parse, line);
+	else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
+		*error_value = ft_get_texture_path(parse, line);
+	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
+		*error_value = ft_get_texture_path(parse, line);
+	else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
+		*error_value = ft_get_texture_path(parse, line);
+	else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
+		*error_value = ft_get_texture_path(parse, line);
+	else if (line[0] == 'S' && line[1] == ' ')
+		*error_value = ft_get_texture_path(parse, line);
+	else if (line[0] == 'F' && line[1] == ' ')
+		*error_value = ft_get_color(line, parse);
+	else if (line[0] == 'C' && line[1] == ' ')
+		*error_value = ft_get_color(line, parse);
+	else if (tmp[0] != '1' && tmp[0] != '\0')
+		*error_value = BAD_LINE_ERROR;
+}
+
 int		ft_parse_file(int fd, t_parse *parse)
 {
 	char	*line;
+	char	*tmp;
 	int		error_value;
 
 	error_value = 0;
 	while (get_next_line(fd, &line) == 1 && !error_value)
 	{
-		if (line[0] == 'R' && line[1] == ' ')
-			error_value = ft_get_resolution(parse, line);
-		else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')
-			error_value = ft_get_texture_path(parse, line);
-		else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')
-			error_value = ft_get_texture_path(parse, line);
-		else if (line[0] == 'W' && line[1] == 'E' && line[2] == ' ')
-			error_value = ft_get_texture_path(parse, line);
-		else if (line[0] == 'E' && line[1] == 'A' && line[2] == ' ')
-			error_value = ft_get_texture_path(parse, line);
-		else if (line[0] == 'S' && line[1] == ' ')
-			error_value = ft_get_texture_path(parse, line);
-		else if (line[0] == 'F' && line[1] == ' ')
-			error_value = ft_get_color(line, parse);
-		else if (line[0] == 'C' && line[1] == ' ')
-			error_value = ft_get_color(line, parse);
-		else
+		tmp = ft_strtrim(line, " ");
+		ft_parse_condition(line, parse, tmp, &error_value);
+		if (tmp[0] == '1')
+		{	
+			free(tmp);
 			break;
+		}
+		free(tmp);
 		free(line);
 	}
 	if (error_value)

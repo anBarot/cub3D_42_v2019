@@ -1,11 +1,22 @@
-#include "mlx_img_treatment.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_put_img_to_screen.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 16:08:45 by abarot            #+#    #+#             */
+/*   Updated: 2020/04/14 16:09:38 by abarot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "mlx_img_treatment.h"
 
 void	ft_init_img_coord(t_coord *img_c, t_coord *screen_c, int s_x, int s_y)
 {
 	img_c->x = 0;
 	img_c->y = 0;
-	if (s_x < 0) 
+	if (s_x < 0)
 	{
 		img_c->x = (-s_x);
 		s_x = 0;
@@ -19,7 +30,8 @@ void	ft_init_img_coord(t_coord *img_c, t_coord *screen_c, int s_x, int s_y)
 	screen_c->y = s_y;
 }
 
-void	ft_put_img_to_screen(t_img_2 screen, t_img_2 img, int start_x, int start_y)
+void	ft_put_img_to_screen(t_img_2 screen, t_img_2 img, int start_x,
+							int start_y)
 {
 	t_coord img_coor;
 	t_coord screen_coor;
