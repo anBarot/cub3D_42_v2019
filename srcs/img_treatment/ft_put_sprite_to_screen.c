@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:09:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 16:12:32 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 19:02:45 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_put_sprite_to_screen(t_img_2 screen, t_img_2 sprite, int start_x,
 				break ;
 			i_sprite = sprite_coor.x * 4 + sprite_coor.y * sprite.size_line;
 			i_screen = screen_coor.x * 4 + screen_coor.y * screen.size_line;
-			if (sprite.mlx[i_sprite] >= 0)
+			if (sprite.mlx[i_sprite] != sprite.mlx[0])
 				ft_pixel_filling(screen.mlx + i_screen, sprite.mlx + i_sprite);
 			sprite_coor.x++;
 			screen_coor.x++;

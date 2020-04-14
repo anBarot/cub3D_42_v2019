@@ -1,13 +1,14 @@
 R 1500 900
-S texture/gray_stone_wall.xpm 
+S texture/mog_sprite.xpm 
 SO texture/gray_stone_wall.xpm 
 NO texture/stone_wall.xpm
 WE texture/leaves_wall.xpm
 EA texture/red_brick_wall.xpm
 C 0,100,255
 F 200,200,100 
+
 111111
+102001
 100001
-100001
-10S001
+10N001
 111111

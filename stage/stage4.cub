@@ -1,5 +1,5 @@
-R 1500 900
-S texture/vulpix_sprite.xpm 
+R 600 500
+S texture/alien_sprite.xpm 
 SO texture/space_wall_1.xpm 
 NO texture/space_wall_2.xpm
 WE texture/space_wall_3.xpm

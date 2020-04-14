@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 17:48:27 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 18:12:49 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_fill_player_info(t_map *map_elt, int *count_player, int line,
 	*count_player = *count_player + 1;
 }
 
-int		ft_get_player_coor(t_parse *parse)
+int		ft_get_player_coor(t_map *map_elt)
 {
 	int		col;
 	int		line;
@@ -45,15 +45,15 @@ int		ft_get_player_coor(t_parse *parse)
 	line = 0;
 	col = 0;
 	count_player = 0;
-	while (parse->map_elt.map[line])
+	while (map_elt->map[line])
 	{
-		while (parse->map_elt.map[line][col])
+		while (map_elt->map[line][col])
 		{
-			if (ft_is_char_in_set(parse->map_elt.map[line][col], "WESN"))
+			if (ft_is_char_in_set(map_elt->map[line][col], "WESN"))
 			{
 				if (count_player)
 					return (MULTIPLAYER_ERROR);
-				ft_fill_player_info(&parse->map_elt, &count_player, line, col);
+				ft_fill_player_info(map_elt, &count_player, line, col);
 			}
 			col++;
 		}
@@ -65,30 +65,30 @@ int		ft_get_player_coor(t_parse *parse)
 	return (NO_ERROR);
 }
 
-int		ft_get_map(t_parse *parse, char **line, int fd)
+int		ft_get_map(t_map *map_elt, char **line, int fd)
 {
 	int		map_line;
 	int		error_value;
 
 	map_line = 0;
-	parse->map_elt.map[map_line] = ft_strdup(*line);
+	map_elt->map[map_line] = ft_strdup(*line);
 	map_line++;
 	error_value = 0;
 	while (get_next_line(fd, line) == 1 && (**line == '1' || **line == ' '))
 	{
-		parse->map_elt.map[map_line] = ft_strdup(*line);
+		map_elt->map[map_line] = ft_strdup(*line);
 		if (map_line >= 1000000)
 			return (MAP_OVERFLOW);
 		map_line++;
 		free(*line);
 	}
-	parse->map_elt.map[map_line] = ft_strdup(*line);
+	map_elt->map[map_line] = ft_strdup(*line);
 	free(*line);
 	map_line++;
-	parse->map_elt.map[map_line + 1] = '\0';
-	if ((error_value = ft_check_map_value(parse->map_elt.map)))
+	map_elt->map[map_line + 1] = '\0';
+	if ((error_value = ft_check_map_value(map_elt->map)))
 		return (error_value);
-	if ((error_value = ft_ckeck_map_border(parse->map_elt.map)))
+	if ((error_value = ft_ckeck_map_border(map_elt->map)))
 		return (error_value);
 	return (NO_ERROR);
 }

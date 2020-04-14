@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 13:40:59 by abarot            #+#    #+#              #
-#    Updated: 2020/04/14 17:37:53 by abarot           ###   ########.fr        #
+#    Updated: 2020/04/14 18:17:00 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,9 @@ SRCS	=	srcs/main.c \
 
 OBJS	=	$(SRCS:.c=.o)
 
-CFLAGS	=	-Wall -Wextra #-Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
 INCL	=	include
-
-FRAMEWORK = #-framework OpenGL -framework AppKit 
 
 LIB 	=  -lm -lXext -lX11  -lbsd
 

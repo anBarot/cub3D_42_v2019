@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 17:59:32 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 18:12:36 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		ft_parse_file(int fd, t_parse *parse)
 	if (error_value)
 		return (error_value);
 	if (!(error_value = ft_check_missing_elt(*parse)))
-		error_value = ft_get_map(parse, &line, fd);
+		error_value = ft_get_map(&parse->map_elt, &line, fd);
 	return (error_value);
 }
 
@@ -88,7 +88,7 @@ int		ft_init_parsing(t_parse *parse, char *cub_file)
 		return (OPEN_FILE_ERROR);
 	if ((error_value = ft_parse_file(fd, parse)))
 		return (error_value);
-	if ((error_value = ft_get_player_coor(parse)))
+	if ((error_value = ft_get_player_coor(&parse->map_elt)))
 		return (error_value);
 	close(fd);
 	return (error_value);
