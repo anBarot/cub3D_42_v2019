@@ -6,18 +6,18 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/13 16:46:20 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 13:53:02 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void ft_test(t_config *config)
 {
 	printf("\n----.cub is valid----\n");
 	printf("\nresolution : %dx%d\ncolor : F %d%d%d, C %d%d%d\npaths : \nN : %s\nE : %s\nW : %s\nS : %s\nSp : %s\n",
-	config->parse.resol.x, config->parse.resol.y, config->parse.col_floor.R, config->parse.col_floor.G, config->parse.col_floor.B,
-	config->parse.col_ceil.R, config->parse.col_ceil.G, config->parse.col_ceil.B,
+	config->parse.resol.x, config->parse.resol.y, config->parse.col_floor.r, config->parse.col_floor.g, config->parse.col_floor.b,
+	config->parse.col_ceil.r, config->parse.col_ceil.g, config->parse.col_ceil.b,
 	config->parse.path_set.north, config->parse.path_set.east, config->parse.path_set.west, 
 	config->parse.path_set.south, config->parse.path_set.sprite);
 	int i = 0;
@@ -68,7 +68,7 @@ int 	main(int ac, char **av)
 	ft_draw_sprites(config);
 	if (ac == 3)
 	{
-		ft_create_screenshot(config);
+		ft_create_screenshot(config, ft_strtrim(ft_substr(av[1], 6, 7), ".cub"));
 		ft_escape_game(config);
 		return (0);
 	}

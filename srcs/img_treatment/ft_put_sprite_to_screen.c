@@ -20,7 +20,7 @@ void	ft_init_coord_sprite(t_coord *sprite, t_coord *screen, int s_x, int s_y)
 	screen->y = s_y;
 }
 
-void	ft_put_sprite_to_screen(t_img screen, t_img sprite, int start_x, int start_y)
+void	ft_put_sprite_to_screen(t_img_2 screen, t_img_2 sprite, int start_x, int start_y)
 {
 	t_coord	sprite_coor;
 	t_coord	screen_coor;

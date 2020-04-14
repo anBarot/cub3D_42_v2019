@@ -1,8 +1,8 @@
 #include "mlx_img_treatment.h"
 
-t_img	ft_shift_img(void *mlx_ptr, t_img img, int x, int y)
+t_img_2	ft_shift_img(void *mlx_ptr, t_img_2 img, int x, int y)
 {
-	t_img	n_img;
+	t_img_2	n_img;
 	t_coord	img_coord;
 	t_coord img_coord_start;
 	t_coord	n_img_coord;

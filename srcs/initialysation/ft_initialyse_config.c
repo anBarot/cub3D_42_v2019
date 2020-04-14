@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:51:47 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 13:42:03 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 12:48:20 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int		ft_initialyse_config(t_config *config)
 	config->win_ptr = 0;
 	config->parse.resol.x = 0;
 	config->parse.resol.y = 0;
-	config->parse.col_ceil.R = -1;
-	config->parse.col_ceil.B = 0;
-	config->parse.col_ceil.G = 0;
-	config->parse.col_floor.R = -1;
-	config->parse.col_floor.B = 0;
-	config->parse.col_floor.G = 0;
+	config->parse.col_ceil.r = -1;
+	config->parse.col_ceil.b = 0;
+	config->parse.col_ceil.g = 0;
+	config->parse.col_floor.r = -1;
+	config->parse.col_floor.b = 0;
+	config->parse.col_floor.g = 0;
 	config->parse.path_set.north = 0;
 	config->parse.path_set.west = 0;
 	config->parse.path_set.east = 0;

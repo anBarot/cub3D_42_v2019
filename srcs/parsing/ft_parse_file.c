@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 14:09:38 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 12:49:25 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	ft_check_missing_elt(t_parse parse)
 
 	error_value = 0;
 	(!(parse.resol.x) || !(parse.resol.y)) ? error_value = NO_RESOL_ERROR : 0;
-	(parse.col_ceil.R == -1) ? error_value = NO_C_COLOR_ERROR : 0;
-	(parse.col_floor.R == -1) ? error_value = NO_F_COLOR_ERROR : 0;
+	(parse.col_ceil.r == -1) ? error_value = NO_C_COLOR_ERROR : 0;
+	(parse.col_floor.r == -1) ? error_value = NO_F_COLOR_ERROR : 0;
 	(!(parse.path_set.north)) ? error_value = NO_N_PATH_ERROR : 0;
 	(!(parse.path_set.west)) ? error_value = NO_W_PATH_ERROR : 0;
 	(!(parse.path_set.east)) ? error_value = NO_E_PATH_ERROR : 0;

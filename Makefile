@@ -6,11 +6,11 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 13:40:59 by abarot            #+#    #+#              #
-#    Updated: 2020/01/31 15:17:02 by abarot           ###   ########.fr        #
+#    Updated: 2020/04/14 12:36:29 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	Cub3D
+NAME	=	Cub3d
 
 SRCS	=	srcs/main.c \
 			srcs/event_managment/ft_draw_sprites.c \
@@ -42,7 +42,7 @@ INCL	=	include
 
 FRAMEWORK = #-framework OpenGL -framework AppKit 
 
-LIB 	= -lmlx  -lm -lXext -lX11  -lbsd
+LIB 	=  -lm -lXext -lX11  -lbsd
 
 LIB_PATH	=	-L/usr/local/lib
 
@@ -56,7 +56,7 @@ all	:
 		make $(NAME)
 
 $(NAME)	: $(OBJS) 
-			gcc -g  $(OBJS) $(FRAMEWORK) libft.a $(LIBPATH) $(LIB) -o $(NAME) -I$(INCL)
+			gcc -g  $(OBJS) $(FRAMEWORK) lib/libft.a lib/libmlx.a $(LIBPATH) $(LIB) -o $(NAME) -I$(INCL)
 			
 clean	:
 		$(RM) $(OBJS) && make -C libft fclean

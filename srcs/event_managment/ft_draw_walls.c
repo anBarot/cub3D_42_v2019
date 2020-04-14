@@ -6,15 +6,15 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/13 11:41:49 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 13:53:57 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_draw_column(t_config *config, char path, int col_height, int col)
 {
-	t_img	img_tmp;
+	t_img_2	img_tmp;
 
 	if (path == 'S')
 	{

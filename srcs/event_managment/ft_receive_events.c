@@ -6,13 +6,18 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:14:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/13 17:24:37 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 13:59:30 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
+
+#include	"mlx_int.h"
+
+extern int	(*(mlx_int_param_event[]))();
+
 
 void	ft_escape_game(t_config *config)
 {
@@ -40,17 +45,18 @@ void	ft_escape_game(t_config *config)
 	free(config->win_ptr);
 	free(config->mlx_ptr);
 	free(config);
+	exit(EXIT_SUCCESS);
 }
 
 int	ft_pressed_key(int keycode, t_config *config)
 {
-	(UPKEY(keycode)) ? ft_move_backandforth(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1) : 0;
-	(DOWNKEY(keycode)) ? ft_move_backandforth(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1) : 0;
-	(LEFTKEY(keycode)) ? ft_turn(&config->parse.map_elt.cam_angle, -10) : 0;
-	(RIGHTKEY(keycode)) ? ft_turn(&config->parse.map_elt.cam_angle, +10) : 0;
-	(RIGHT_LAT_KEY(keycode)) ? ft_move_lateral(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1) : 0;
-	(LEFT_LAT_KEY(keycode)) ? ft_move_lateral(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1) : 0;
-	if (ESCAPEKEY(keycode))
+	if (UPKEY1 == keycode || UPKEY2 == keycode) ? ft_move_backandforth(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1) : 0;
+	(DOWNKEY1 == keycode || DOWNKEY2 == keycode) ? ft_move_backandforth(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1) : 0;
+	(LEFTKEY == keycode) ? ft_turn(&config->parse.map_elt.cam_angle, -10) : 0;
+	(RIGHTKEY == keycode) ? ft_turn(&config->parse.map_elt.cam_angle, +10) : 0;
+	(RIGHT_LAT_KEY == keycode) ? ft_move_lateral(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, +1) : 0;
+	(LEFT_LAT_KEY == keycode) ? ft_move_lateral(config->parse.map_elt.map, &config->parse.map_elt.p_coord, config->parse.map_elt.cam_angle, -1) : 0;
+	if (keycode == ESCAPEKEY)
 	{
 		ft_escape_game(config);
 		exit(EXIT_SUCCESS);
@@ -62,38 +68,44 @@ int	ft_pressed_key(int keycode, t_config *config)
 	return (1);
 }
 
-int	ft_xsignal_managt(t_config *config)
+int		mlx_loop_2(t_xvar *xvar, t_config *config)
 {
-	Display* display = XOpenDisplay(NULL);
-   Window window;
+	XEvent		ev;
+	t_win_list	*win;
+	Atom wm_delete_window;
 
-	window = *((Window *)config->win_ptr);
-   Atom wmDeleteMessage = XInternAtom(display, "WM_DELETE_WINDOW", False);
-   XSetWMProtocols(display, window, &wmDeleteMessage, 0);
-
-   XMapWindow(display, window);
-
-   while (True) {
-      XEvent event;
-      XNextEvent(display, &event);
-
-      if (event.type == ClientMessage &&
-          event.xclient.data.l[0] == wmDeleteMessage) {
-		 ft_escape_game(config);
-		 exit(EXIT_SUCCESS);
-      }
-		else 
-			break;
-   }
-   XCloseDisplay(display);
-	return (0);
+	xvar->do_flush = 0;
+	win = xvar->win_list;
+	XMapWindow(xvar->display, *(Window *)win);
+	wm_delete_window = XInternAtom(xvar->display, "WM_DELETE_WINDOW", False);
+	XSetWMProtocols(xvar->display, *(Window *)win, &wm_delete_window, 1);
+ 	while (42)
+    {
+    	while (!xvar->loop_hook || XPending(xvar->display))
+		{
+	  		XNextEvent(xvar->display,&ev);
+	  		win = xvar->win_list;
+	  		while (win && (win->window!=ev.xany.window))
+	  			win = win->next;
+			if ((Atom)ev.xclient.data.l[0] == wm_delete_window)
+			{
+			 	ft_escape_game(config);
+			 	exit(EXIT_SUCCESS);
+      		}
+			if (win && ev.type < MLX_MAX_EVENT)
+	    	{
+				if (win->hooks[ev.type].hook)
+	    			mlx_int_param_event[ev.type](xvar, &ev, win);
+			}
+		}
+    	xvar->loop_hook(xvar->loop_param);
+    }
 }
 
 int		ft_receive_events(t_config *config)
 {
 	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img_set.screen.img_ptr, 0, 0);
 	mlx_key_hook(config->win_ptr, &ft_pressed_key, config);
-	mlx_expose_hook(config->win_ptr, &ft_xsignal_managt, config);
-	mlx_loop(config->mlx_ptr);
+	mlx_loop_2(config->mlx_ptr, config);
 	return (0);
 }

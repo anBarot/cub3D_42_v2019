@@ -6,11 +6,11 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 12:18:43 by abarot            #+#    #+#              #
-#    Updated: 2020/01/31 12:14:53 by abarot           ###   ########.fr        #
+#    Updated: 2020/04/14 12:35:34 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	../libft.a
+NAME	=	../lib/libft.a
 
 SRCS	=	ft_addtoa.c ft_atoi.c ft_bzero.c ft_calloc.c ft_char_to_str.c \
 			ft_hextoa.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft_isdigit.c \

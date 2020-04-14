@@ -1,15 +1,15 @@
 #include "mlx_img_treatment.h"
 
-void	ft_fill_img_with_color(t_img *img, t_color color, t_coord starting_point, t_coord dim)
+void	ft_fill_img_with_color(t_img_2 *img, t_color color, t_coord starting_point, t_coord dim)
 {
 	int		delta_img;
 	char	*color_str;
 
 	if (!(color_str = ft_calloc(4, 1)))
 		return ;
-	color_str[0] = color.B;
-	color_str[1] = color.G;
-	color_str[2] = color.R;
+	color_str[0] = color.b;
+	color_str[1] = color.g;
+	color_str[2] = color.r;
 	while (starting_point.y < dim.y)
 	{
 		while (starting_point.x < dim.x)

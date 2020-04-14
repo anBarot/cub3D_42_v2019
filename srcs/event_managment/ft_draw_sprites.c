@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3d.h"
 
 void	ft_draw_sprites(t_config *config)
 {
@@ -20,7 +20,7 @@ void	ft_draw_sprites(t_config *config)
 	int			col_2;
 	double		tmp_angle;
 	int			obj_proj;
-	t_img		tmp_img;
+	t_img_2		tmp_img;
 	int			mem_dist;
 
 	ft_initialyse_ray(&wall_ray);

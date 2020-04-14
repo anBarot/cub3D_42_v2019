@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   raycast.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 15:10:11 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 12:59:00 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 # include <math.h>
 # include "libft.h"
 # include "math_struct.h"
-# ifndef SQUARE_SIZE
-#  define SQUARE_SIZE			64
-# endif
+# define SQUARE_SIZE		64
 
 typedef struct		s_raycast
 {
@@ -25,6 +23,7 @@ typedef struct		s_raycast
 	double			dist_obj;
 	char			nesw_path;
 }					t_raycast;
-void		ft_initialyse_ray(t_raycast *ray);
-void		ft_raycast(t_raycast *ray, char **map, double angle, char obj);
+void				ft_initialyse_ray(t_raycast *ray);
+void				ft_raycast(t_raycast *ray, char **map, double angle,
+					char obj);
 #endif

@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_scalling.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 14:58:41 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 13:41:18 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_img_treatment.h"
 
-t_img	ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height)
+t_img_2	ft_scalling(void *mlx_ptr, t_img_2 img_to_scale, int width, int height)
 {
-	t_img		img;
+	t_img_2		img;
 	t_fcoord	prop_cste;
 	t_coord		img_coord;
 	int delta_fill;

@@ -1,6 +1,6 @@
 #include "initialize.h"
 
-void	ft_initialize_screen(t_img *screen, t_color c_color, t_color f_color)
+void	ft_initialize_screen(t_img_2 *screen, t_color c_color, t_color f_color)
 {
 	t_coord coor_to_fill;
 	t_coord dim;
@@ -17,7 +17,7 @@ void	ft_initialize_screen(t_img *screen, t_color c_color, t_color f_color)
 	ft_fill_img_with_color(screen, f_color, coor_to_fill, dim);
 }
 
-void	ft_create_screen(void *mlx_ptr, t_img *screen, t_coord resol)
+void	ft_create_screen(void *mlx_ptr, t_img_2 *screen, t_coord resol)
 {
 	screen->width = resol.x;
 	screen->height = resol.y;
@@ -26,7 +26,7 @@ void	ft_create_screen(void *mlx_ptr, t_img *screen, t_coord resol)
 	&screen->size_line, &screen->endian);
 }
 
-void	ft_create_one_texture(void *mlx_ptr, t_img *img, char *path)
+void	ft_create_one_texture(void *mlx_ptr, t_img_2 *img, char *path)
 {
 	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, path, &img->width,
 	&img->height);

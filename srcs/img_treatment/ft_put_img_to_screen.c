@@ -19,7 +19,7 @@ void	ft_init_img_coord(t_coord *img_c, t_coord *screen_c, int s_x, int s_y)
 	screen_c->y = s_y;
 }
 
-void	ft_put_img_to_screen(t_img screen, t_img img, int start_x, int start_y)
+void	ft_put_img_to_screen(t_img_2 screen, t_img_2 img, int start_x, int start_y)
 {
 	t_coord img_coor;
 	t_coord screen_coor;
