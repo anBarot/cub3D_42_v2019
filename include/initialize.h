@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   initialize.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 15:10:11 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/13 16:46:46 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,5 @@ int			ft_error_msg(int error_value);
 void		ft_create_texture(void *mlx_ptr, t_img_set *img, t_path_set path);
 void		ft_create_screen(void *mlx_ptr, t_img *screen, t_coord resol);
 void		ft_initialize_screen(t_img *screen, t_color c_color, t_color f_color);
-void		ft_create_screenshot(t_img screen);
+void		ft_create_screenshot(t_config *config);
 #endif

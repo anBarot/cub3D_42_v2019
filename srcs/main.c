@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 14:58:41 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/13 16:46:20 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int 	main(int ac, char **av)
 	ft_draw_sprites(config);
 	if (ac == 3)
 	{
-		ft_create_screenshot(config->img_set.screen);
+		ft_create_screenshot(config);
 		ft_escape_game(config);
 		return (0);
 	}

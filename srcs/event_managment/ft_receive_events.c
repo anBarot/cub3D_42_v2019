@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:14:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 15:27:32 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/13 17:24:37 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_escape_game(t_config *config)
 	int line;
 
 	line = 0;
-	mlx_destroy_window(config->mlx_ptr, config->win_ptr);
+	if (config->win_ptr)
+		mlx_destroy_window(config->mlx_ptr, config->win_ptr);
 	mlx_destroy_image(config->mlx_ptr, config->img_set.west.img_ptr);
 	mlx_destroy_image(config->mlx_ptr, config->img_set.east.img_ptr);
 	mlx_destroy_image(config->mlx_ptr, config->img_set.north.img_ptr);
@@ -61,10 +62,38 @@ int	ft_pressed_key(int keycode, t_config *config)
 	return (1);
 }
 
+int	ft_xsignal_managt(t_config *config)
+{
+	Display* display = XOpenDisplay(NULL);
+   Window window;
+
+	window = *((Window *)config->win_ptr);
+   Atom wmDeleteMessage = XInternAtom(display, "WM_DELETE_WINDOW", False);
+   XSetWMProtocols(display, window, &wmDeleteMessage, 0);
+
+   XMapWindow(display, window);
+
+   while (True) {
+      XEvent event;
+      XNextEvent(display, &event);
+
+      if (event.type == ClientMessage &&
+          event.xclient.data.l[0] == wmDeleteMessage) {
+		 ft_escape_game(config);
+		 exit(EXIT_SUCCESS);
+      }
+		else 
+			break;
+   }
+   XCloseDisplay(display);
+	return (0);
+}
+
 int		ft_receive_events(t_config *config)
 {
 	mlx_put_image_to_window(config->mlx_ptr, config->win_ptr, config->img_set.screen.img_ptr, 0, 0);
 	mlx_key_hook(config->win_ptr, &ft_pressed_key, config);
+	mlx_expose_hook(config->win_ptr, &ft_xsignal_managt, config);
 	mlx_loop(config->mlx_ptr);
 	return (0);
 }
