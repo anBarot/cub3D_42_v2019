@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 13:40:59 by abarot            #+#    #+#              #
-#    Updated: 2020/04/14 16:42:50 by abarot           ###   ########.fr        #
+#    Updated: 2020/04/14 17:37:53 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,9 +30,11 @@ SRCS	=	srcs/main.c \
 			srcs/initialysation/initialyse_images.c \
 			srcs/parsing/ft_get_cf_colors.c \
 			srcs/parsing/ft_get_map_and_pcoor.c \
+			srcs/parsing/ft_check_map.c \
 			srcs/parsing/ft_get_texture_and_resolution.c \
 			srcs/parsing/ft_parse_file.c \
-			srcs/raycast/ft_raycast.c 
+			srcs/raycast/ft_raycast.c \
+			srcs/raycast/ft_raycast_2.c
 
 OBJS	=	$(SRCS:.c=.o)
 

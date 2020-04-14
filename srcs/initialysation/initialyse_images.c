@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 15:44:21 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 16:42:50 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:25:48 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ void	ft_create_one_texture(void *mlx_ptr, t_img_2 *img, char *path)
 {
 	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, path, &img->width,
 	&img->height);
-	img->mlx =  mlx_get_data_addr(img->img_ptr, &(img->bpp), &(img->size_line),
+	img->mlx = mlx_get_data_addr(img->img_ptr, &(img->bpp), &(img->size_line),
 	&(img->endian));
 }
 
-void	ft_create_texture(void *mlx_ptr, t_img_set *img_set, t_path_set path_set)
+void	ft_create_texture(void *mlx_ptr, t_img_set *img_set,
+							t_path_set path_set)
 {
 	ft_create_one_texture(mlx_ptr, &img_set->east, path_set.east);
 	ft_create_one_texture(mlx_ptr, &img_set->north, path_set.north);

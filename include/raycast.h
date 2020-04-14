@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 12:59:00 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:06:46 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ typedef struct		s_raycast
 void				ft_initialyse_ray(t_raycast *ray);
 void				ft_raycast(t_raycast *ray, char **map, double angle,
 					char obj);
+int					ft_outside_map(double x, double y, char **map);
+double				ft_get_magnitude(t_fcoord in_coord, t_fcoord end_coord);
 #endif

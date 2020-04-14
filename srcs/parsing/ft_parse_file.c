@@ -6,14 +6,14 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 16:08:14 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:59:32 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "initialize.h"
 
-int	ft_check_missing_elt(t_parse parse)
+int		ft_check_missing_elt(t_parse parse)
 {
 	int error_value;
 
@@ -64,9 +64,9 @@ int		ft_parse_file(int fd, t_parse *parse)
 		tmp = ft_strtrim(line, " ");
 		ft_parse_condition(line, parse, tmp, &error_value);
 		if (tmp[0] == '1')
-		{	
+		{
 			free(tmp);
-			break;
+			break ;
 		}
 		free(tmp);
 		free(line);

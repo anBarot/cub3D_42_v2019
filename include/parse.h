@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 14:32:14 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:41:10 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,6 @@ int					ft_get_texture_path(t_parse *parse, char *line);
 int					ft_get_color(char *line, t_parse *parse);
 int					ft_get_map(t_parse *parse, char **line, int fd);
 int					ft_get_player_coor(t_parse *parse);
+int					ft_ckeck_map_border(char **map);
+int					ft_check_map_value(char **map);
 #endif

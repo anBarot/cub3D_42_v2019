@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:31:34 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 12:15:21 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:15:14 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ char		*ft_hextoa(unsigned n);
 int			get_next_line(int fd, char **line);
 char		*ft_remove_in_str(char *str, char *char_set);
 int			ft_is_char_in_set(char c, char *char_set);
+int			ft_count_line(char **map);
 #endif

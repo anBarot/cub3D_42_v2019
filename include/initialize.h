@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 14:50:07 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:18:46 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ typedef struct		s_config
 	t_parse			parse;
 	t_img_set		img_set;
 }					t_config;
+typedef struct		s_header
+{
+	int				size; 
+	int				reserved; 
+	int				offset_bits; 
+	int				header_bytes; 
+	int				planes;
+}					t_header;
 
 int					ft_initialyse_config(t_config *config);
 int					ft_error_msg(int error_value);

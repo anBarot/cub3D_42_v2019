@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_map.c                                       :+:      :+:    :+:   */
+/*   ft_get_map_and_pcoor.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 14:03:06 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:48:27 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 #include "initialize.h"
 
-double		ft_get_camangle(char dir)
+double	ft_get_camangle(char dir)
 {
 	if (dir == 'N')
 		return (60);
@@ -26,10 +26,20 @@ double		ft_get_camangle(char dir)
 	return (0);
 }
 
+void	ft_fill_player_info(t_map *map_elt, int *count_player, int line,
+							int col)
+{
+	map_elt->p_coord.x = line;
+	map_elt->p_coord.y = col;
+	map_elt->cam_angle = ft_get_camangle(map_elt->map[line][col]);
+	map_elt->map[line][col] = '0';
+	*count_player = *count_player + 1;
+}
+
 int		ft_get_player_coor(t_parse *parse)
 {
 	int		col;
-	int 	line;
+	int		line;
 	int		count_player;
 
 	line = 0;
@@ -43,11 +53,7 @@ int		ft_get_player_coor(t_parse *parse)
 			{
 				if (count_player)
 					return (MULTIPLAYER_ERROR);
-				parse->map_elt.p_coord.x = line;
-				parse->map_elt.p_coord.y = col;
-				parse->map_elt.cam_angle = ft_get_camangle(parse->map_elt.map[line][col]);
-				parse->map_elt.map[line][col] = '0';
-				count_player++;
+				ft_fill_player_info(&parse->map_elt, &count_player, line, col);
 			}
 			col++;
 		}
@@ -59,50 +65,7 @@ int		ft_get_player_coor(t_parse *parse)
 	return (NO_ERROR);
 }
 
-int	ft_ckeck_map_border(char **map)
-{
-	int		line;
-	char	*tmp_str;
-	
-	line = 0;
-	while (map[line])
-	{
-		tmp_str = ft_strtrim((const char *)map[line], " ");
-		if (tmp_str[0] != '1' || tmp_str[ft_strlen(tmp_str) - 1] != '1')
-			return (MAP_BORDER_ERROR);
-		line++;
-		free(tmp_str);
-	}
-	return (NO_ERROR);
-}
-
-int	ft_check_map_value(char **map)
-{
-	int		line;
-	char	*tmp_str;
-
-	line = 0;
-	tmp_str = ft_remove_in_str(map[0], " 1");
-	if (ft_strlen(tmp_str) > 0)
-		return (MAP_BORDER_ERROR);
-	free(tmp_str);
-	line++;
-	while (map[line + 1])
-	{
-		tmp_str = ft_remove_in_str(map[line], " 012WESN");
-		if (ft_strlen(tmp_str) > 0)
-			return (MAP_VALUE_ERROR);
-		free(tmp_str);
-		line++;
-	}
-	tmp_str = ft_remove_in_str(map[0], " 1");
-	if (ft_strlen(tmp_str) > 0)
-		return (MAP_BORDER_ERROR);
-	free(tmp_str);
-	return (NO_ERROR);
-}
-
-int	ft_get_map(t_parse *parse, char **line, int fd)
+int		ft_get_map(t_parse *parse, char **line, int fd)
 {
 	int		map_line;
 	int		error_value;

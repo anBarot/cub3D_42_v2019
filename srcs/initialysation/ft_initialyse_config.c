@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:51:47 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 12:48:20 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/14 17:24:34 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		ft_initialyse_config(t_config *config)
 	config->parse.path_set.east = 0;
 	config->parse.path_set.south = 0;
 	config->parse.path_set.sprite = 0;
-	if (!(config->parse.map_elt.map = 
+	if (!(config->parse.map_elt.map =
 		(char **)ft_calloc(sizeof(char *), 1000000)))
 		return (0);
 	config->parse.map_elt.p_coord.x = 0;

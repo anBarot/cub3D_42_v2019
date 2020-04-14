@@ -1,18 +1,21 @@
-#include "initialize.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_screenshot.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 17:16:31 by abarot            #+#    #+#             */
+/*   Updated: 2020/04/14 17:19:14 by abarot           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct s_header
-{
-	int		size; 
-	int		reserved; 
-	int		offset_bits; 
-	int		header_bytes; 
-	int		planes;
-}			t_header;
+#include "initialize.h"
 
 void	ft_create_bmp_header(t_config *config, int fd)
 {
-	int count;
-	t_header head;
+	int			count;
+	t_header	head;
 
 	count = 7;
 	head.size = 4 * config->parse.resol.x * config->parse.resol.y;
@@ -35,9 +38,9 @@ void	ft_create_bmp_header(t_config *config, int fd)
 
 void	ft_copy_mlx_string(t_config *config, int fd)
 {
-	int col;
-	int line;
-	int	i_towrite;
+	int		col;
+	int		line;
+	int		i_towrite;
 
 	col = 0;
 	line = config->parse.resol.y;
