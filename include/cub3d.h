@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 12:32:08 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 14:42:25 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@
 # include <mlx.h>
 # include "libft.h"
 # define WALL_SIZE				64
+# define WALL_RATIO				1
 # define FOV 					60
-# define NORTH_DIR(value)		((value >= 45 && value < 135) ? 1 : 0)
-# define EAST_DIR(value)		((value >= 135 && value < 225) ? 1 : 0)
-# define SOUTH_DIR(value)		((value >= 225 && value < 315) ? 1 : 0)
-# define WEST_DIR(value)		((value >= 315 || value < 45) ? 1 : 0)
 # define LEFT_LAT_KEY	        113
 # define RIGHT_LAT_KEY      	100
 # define LEFTKEY			    65361

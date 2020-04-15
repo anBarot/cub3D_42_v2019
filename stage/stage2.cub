@@ -1,4 +1,4 @@
-R 1200 900
+R 900 600
 S texture/blackmage_sprite.xpm 
 SO texture/wood_wall.xpm 
 NO texture/stone_wall.xpm

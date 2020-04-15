@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 17:18:46 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 10:15:13 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ typedef struct		s_config
 }					t_config;
 typedef struct		s_header
 {
-	int				size; 
-	int				reserved; 
-	int				offset_bits; 
-	int				header_bytes; 
+	int				size;
+	int				reserved;
+	int				offset_bits;
+	int				header_bytes;
 	int				planes;
 }					t_header;
 
@@ -75,6 +75,8 @@ int					ft_initialyse_config(t_config *config);
 int					ft_error_msg(int error_value);
 void				ft_create_texture(void *mlx_ptr, t_img_set *img,
 					t_path_set path);
+void				ft_create_fc(void *mlx_ptr, t_img_2 *img, t_parse parse,
+					t_color col);
 void				ft_create_screen(void *mlx_ptr, t_img_2 *screen,
 					t_coord resol);
 void				ft_initialize_screen(t_img_2 *screen, t_color c_color,

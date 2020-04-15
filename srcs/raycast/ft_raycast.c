@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 15:32:44 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 17:13:44 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 11:50:24 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ t_fcoord	ft_get_delta_hor(t_fcoord delta, double angle)
 	if (angle > 0 && angle < 180)
 	{
 		delta.x = -SQUARE_SIZE - 0.0001;
-		delta.y = delta.x / tan(RAD(angle));
+		delta.y = delta.x / tan((M_PI / 180) * (angle));
 	}
 	else
 	{
 		delta.x = SQUARE_SIZE + 0.0001;
-		delta.y = delta.x / tan(RAD(angle - 180));
+		delta.y = delta.x / tan((M_PI / 180) * (angle - 180));
 	}
 	return (delta);
 }
@@ -32,12 +32,12 @@ t_fcoord	ft_get_delta_vert(t_fcoord delta, double angle)
 	if (angle > 90 && angle < 270)
 	{
 		delta.y = SQUARE_SIZE + 0.0001;
-		delta.x = delta.y * tan(RAD(angle - 180));
+		delta.x = delta.y * tan((M_PI / 180) * (angle - 180));
 	}
 	else
 	{
 		delta.y = -SQUARE_SIZE - 0.0001;
-		delta.x = delta.y * tan(RAD(angle));
+		delta.x = delta.y * tan((M_PI / 180) * (angle));
 	}
 	return (delta);
 }

@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 13:40:59 by abarot            #+#    #+#              #
-#    Updated: 2020/04/14 18:17:00 by abarot           ###   ########.fr        #
+#    Updated: 2020/04/15 15:55:34 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,8 @@ SRCS	=	srcs/main.c \
 			srcs/event_managment/moves.c \
 			srcs/img_treatment/ft_draw_square.c \
 			srcs/img_treatment/ft_pixel_filling.c \
-			srcs/img_treatment/ft_put_img_to_screen.c \
-			srcs/img_treatment/ft_put_sprite_to_screen.c \
+			srcs/img_treatment/ft_put_to_screen.c \
 			srcs/img_treatment/ft_scalling.c \
-			srcs/img_treatment/ft_shift_img.c \
 			srcs/initialysation/create_screenshot.c \
 			srcs/initialysation/ft_error_msg.c \
 			srcs/initialysation/ft_initialyse_config.c \

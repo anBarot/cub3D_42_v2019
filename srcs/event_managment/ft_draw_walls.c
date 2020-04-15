@@ -6,38 +6,62 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 13:53:57 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 14:37:42 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_draw_column(t_config *config, char path, int col_height, int col)
+void	ft_set_texture(t_img_set *img_set, int col, char path, char c)
+{
+	if (c == '+')
+	{
+		if (path == 'S') 
+			img_set->south.mlx = img_set->south.mlx + ((col % img_set->south.width) * 4);
+		if (path == 'N') 
+			img_set->north.mlx = img_set->north.mlx + ((col % img_set->north.width) * 4);
+		if (path == 'W') 
+			img_set->west.mlx = img_set->west.mlx + ((col % img_set->west.width) * 4);
+		if (path == 'E') 
+			img_set->east.mlx = img_set->east.mlx + ((col % img_set->east.width) * 4);
+	}
+	if (c == '-')
+	{
+		if (path == 'S') 
+			img_set->south.mlx = img_set->south.mlx - ((col % img_set->south.width) * 4);
+		if (path == 'N') 
+			img_set->north.mlx = img_set->north.mlx - ((col % img_set->north.width) * 4);
+		if (path == 'W') 
+			img_set->west.mlx = img_set->west.mlx - ((col % img_set->west.width) * 4);
+		if (path == 'E') 
+			img_set->east.mlx = img_set->east.mlx - ((col % img_set->east.width) * 4);
+	}
+}
+
+t_img_2	ft_set_wall_img(char path, void *mlx_ptr, t_img_set *img_set, int height)
 {
 	t_img_2	img_tmp;
 
 	if (path == 'S')
-	{
-		img_tmp = ft_scalling(config->mlx_ptr, config->img_set.south, 1, col_height);
-		config->img_set.south.mlx = config->img_set.south.mlx + 4;
-	}
+		img_tmp = ft_scalling(mlx_ptr, img_set->south, 1, height);
 	else if (path == 'E')
-	{
-		img_tmp = ft_scalling(config->mlx_ptr, config->img_set.east, 1, col_height);
-		config->img_set.east.mlx = config->img_set.east.mlx + 4;
-	}
+		img_tmp = ft_scalling(mlx_ptr, img_set->east, 1, height);
 	else if (path == 'N')
-	{	
-		img_tmp = ft_scalling(config->mlx_ptr, config->img_set.north, 1, col_height);
-		config->img_set.north.mlx = config->img_set.north.mlx + 4;
-	}
+		img_tmp = ft_scalling(mlx_ptr, img_set->north, 1, height);
 	else if (path == 'W')
-	{	
-		img_tmp = ft_scalling(config->mlx_ptr, config->img_set.west, 1, col_height);
-		config->img_set.west.mlx = config->img_set.west.mlx + 4;
-	}
+		img_tmp = ft_scalling(mlx_ptr, img_set->west, 1, height);
+	return (img_tmp);
+}
+
+void	ft_draw_column(t_config *config, char path, int col_height, int col)
+{
+	t_img_2	img_tmp;
+
+	ft_set_texture(&config->img_set, col, path, '+');
+	img_tmp = ft_set_wall_img(path, config->mlx_ptr, &config->img_set, col_height);
 	ft_put_img_to_screen(config->img_set.screen, img_tmp, col, config->parse.resol.y / 2 - img_tmp.height / 2);
 	mlx_destroy_image(config->mlx_ptr, img_tmp.img_ptr);
+	ft_set_texture(&config->img_set, col, path, '-');
 }
 
 void	ft_draw_walls(t_config *config)
@@ -62,5 +86,4 @@ void	ft_draw_walls(t_config *config)
 		if (tmp_angle > 360)
 			tmp_angle -= 360;
 	}
-	ft_create_texture(config->mlx_ptr, &config->img_set, config->parse.path_set);
 }

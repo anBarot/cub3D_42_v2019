@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 12:44:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 16:42:50 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 16:19:35 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ void				ft_put_sprite_to_screen(t_img_2 screen, t_img_2 sprite,
 					int start_x, int start_y);
 void				ft_draw_square(t_img_2 *img, t_color color,
 					t_coord starting_point, t_coord dim);
-t_img_2				ft_shift_img(void *mlx_ptr, t_img_2 img, int x, int y);
 #endif
