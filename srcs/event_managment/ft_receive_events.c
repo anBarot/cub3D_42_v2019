@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:14:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 18:07:27 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 18:17:42 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 #include "mlx_int.h"
-
-extern int (*(g_mlx_int_param_event[]))();
 
 void	ft_escape_game(t_config *config)
 {
@@ -76,7 +74,8 @@ int		ft_pressed_key(int key, t_config *cf)
 
 int		mlx_loop_2(t_xvar *xvar, t_config *config)
 {
-	t_loop lp;
+	t_loop		lp;
+	extern int	(*(mlx_int_param_event[]))();
 
 	xvar->do_flush = 0;
 	lp.win = xvar->win_list;
@@ -94,10 +93,8 @@ int		mlx_loop_2(t_xvar *xvar, t_config *config)
 			if ((Atom)lp.ev.xclient.data.l[0] == lp.wm_delete_window)
 				ft_escape_game(config);
 			if (lp.win && lp.ev.type < MLX_MAX_EVENT)
-			{
 				if (lp.win->hooks[lp.ev.type].hook)
-					g_mlx_int_param_event[lp.ev.type](xvar, &lp.ev, lp.win);
-			}
+					mlx_int_param_event[lp.ev.type](xvar, &lp.ev, lp.win);
 		}
 		xvar->loop_hook(xvar->loop_param);
 	}

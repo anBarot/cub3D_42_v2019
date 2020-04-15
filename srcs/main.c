@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 17:16:21 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 18:20:51 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		ft_is_valid_arg(const char *av_1, const char *av_2)
 
 	i_ext = ft_strlen(av_1) - 4;
 	if (av_2)
-		if (ft_strncmp(av_2, "--save", 6))
+		if (ft_strncmp(av_2, "--save", 7))
 			return (0);
 	if (i_ext < 1 || ft_strncmp(av_1 + i_ext, ".cub", 4))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 18:08:18 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 18:10:49 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include "raycast.h"
 # include <mlx.h>
 # include "libft.h"
+# include <X11/Xlib.h>
+# include <X11/Xatom.h>
+# include "mlx_int.h"
 # define WALL_SIZE				64
 # define WALL_RATIO				1
 # define FOV 					60
