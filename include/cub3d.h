@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 14:42:25 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 18:08:18 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,38 @@
 # define DOWNKEY2			    115
 # define ESCAPEKEY		        65307
 
-int			ft_receive_events(t_config *config);
-void		ft_move_backandforth(char **map, t_coord *p_coord,
-			int angle, int mv_value);
-void		ft_move_lateral(char **map, t_coord *p_coord, int angle,
-			int mv_value);
-void		ft_turn(int *angle, int value);
-void		ft_draw_walls(t_config *config);
-void		ft_draw_sprites(t_config *config);
-int			ft_calc_projection(int dist_obj, double tmp_angle, int cam_angle,
-			int resol_x);
-void		ft_escape_game(t_config *config);
+typedef struct	s_drsprites
+{
+	t_raycast	sprite_ray;
+	t_raycast	wall_ray;
+	double		angle;
+	int			col;
+}				t_drsprites;
+
+typedef struct	s_drsprites_2
+{
+	int			col;
+	int			mem_dist;
+	int			obj_proj;
+	t_img_2		tmp_img;
+}				t_drsprites_2;
+
+typedef struct	s_loop
+{
+	XEvent		ev;
+	t_win_list	*win;
+	Atom		wm_delete_window;
+}				t_loop;
+
+int				ft_receive_events(t_config *config);
+void			ft_move_backandforth(char **map, t_coord *p_coord,
+				int angle, int mv_value);
+void			ft_move_lateral(char **map, t_coord *p_coord, int angle,
+				int mv_value);
+void			ft_turn(int *angle, int value);
+void			ft_draw_walls(t_config *config);
+void			ft_draw_sprites(t_config *config);
+int				ft_calc_projection(int dist_obj, double tmp_angle,
+				int cam_angle, int resol_x);
+void			ft_escape_game(t_config *config);
 #endif

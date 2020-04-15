@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 14:27:46 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 14:37:30 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 16:40:27 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,21 @@ void	ft_init_img_coord(t_coord *img_c, t_coord *screen_c, int s_x, int s_y)
 	}
 }
 
-void	ft_reset_coor_putscreen(t_coord *img_coor, t_coord *screen_coor, int start_x)
+void	ft_reset_coor_putscreen(t_coord *img_coor, t_coord *scr_c, int start_x)
 {
 	if (start_x < 0)
 	{
 		img_coor->x = -start_x;
-		screen_coor->x = 0;
+		scr_c->x = 0;
 	}
 	else
 	{
 		img_coor->x = 0;
-		screen_coor->x = start_x;
+		scr_c->x = start_x;
 	}
 	img_coor->y = img_coor->y + 1;
-	screen_coor->y = screen_coor->y + 1;
+	scr_c->y = scr_c->y + 1;
 }
-
 
 void	ft_put_sprite_to_screen(t_img_2 screen, t_img_2 sprite, int start_x,
 								int start_y)
@@ -95,7 +94,5 @@ void	ft_put_img_to_screen(t_img_2 screen, t_img_2 img, int start_x,
 			screen_coor.x++;
 		}
 		ft_reset_coor_putscreen(&img_coor, &screen_coor, start_x);
-		if (img_coor.y > img.height)
-			img_coor.y = 0;
 	}
 }

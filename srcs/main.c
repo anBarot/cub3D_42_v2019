@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 20:19:17 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 17:16:21 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	ft_get_screen(t_config *config)
 	config->parse.path_set);
 	ft_create_screen(config->mlx_ptr, &config->img_set.screen,
 	config->parse.resol);
-	ft_initialize_screen(&config->img_set.screen, config->parse.col_ceil,
-	config->parse.col_floor);
+	ft_create_background(config, &config->img_set.background,
+	config->parse.col_ceil, config->parse.col_floor);
+	ft_put_img_to_screen(config->img_set.screen,
+	config->img_set.background, 0, 0);
 	ft_draw_walls(config);
 	ft_draw_sprites(config);
 }

@@ -6,27 +6,34 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 15:44:21 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 14:42:12 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/15 17:16:42 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "initialize.h"
 
-void	ft_initialize_screen(t_img_2 *screen, t_color c_color, t_color f_color)
+void	ft_create_background(t_config *config, t_img_2 *bckg_img,
+								t_color c_color, t_color f_color)
 {
 	t_coord coor_to_fill;
 	t_coord dim;
 
+	bckg_img->width = config->parse.resol.x;
+	bckg_img->height = config->parse.resol.y;
+	bckg_img->img_ptr = mlx_new_image(config->mlx_ptr, bckg_img->width,
+	bckg_img->height);
+	bckg_img->mlx = mlx_get_data_addr(bckg_img->img_ptr, &bckg_img->bpp,
+	&bckg_img->size_line, &bckg_img->endian);
 	coor_to_fill.x = 0;
 	coor_to_fill.y = 0;
-	dim.x = screen->width;
-	dim.y = screen->height / 2;
-	ft_draw_square(screen, c_color, coor_to_fill, dim);
+	dim.x = bckg_img->width;
+	dim.y = bckg_img->height / 2;
+	ft_draw_square(bckg_img, c_color, coor_to_fill, dim);
 	coor_to_fill.x = 0;
-	coor_to_fill.y = screen->height / 2;
-	dim.x = screen->width;
-	dim.y = screen->height;
-	ft_draw_square(screen, f_color, coor_to_fill, dim);
+	coor_to_fill.y = bckg_img->height / 2;
+	dim.x = bckg_img->width;
+	dim.y = bckg_img->height;
+	ft_draw_square(bckg_img, f_color, coor_to_fill, dim);
 }
 
 void	ft_create_screen(void *mlx_ptr, t_img_2 *screen, t_coord resol)
