@@ -1,14 +1,19 @@
 R 1500 900
-S texture/mog_sprite.xpm 
-SO texture/gray_stone_wall.xpm 
-NO texture/stone_wall.xpm
-WE texture/leaves_wall.xpm
-EA texture/red_brick_wall.xpm
-C 0,100,255
-F 200,200,100 
+S texture/ACtomnook_sprite.xpm 
+SO texture/AC_wall1.xpm 
+NO texture/AC_wall2.xpm
+WE texture/AC_wall3.xpm
+EA texture/AC_wall4.xpm
+C 0,0,153
+F 153,51,0 
 
-111111
-102001
-100001
-10N001
-111111
+
+          1111111   
+        11110001111
+   11111110000100111 
+  110000000200000011111
+ 11000000000000002110011
+11111100000S00001111111
+1100002000000000111
+100000000000000100111111
+11111111111111111111

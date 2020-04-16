@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 18:12:36 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/16 15:08:44 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	ft_parse_condition(char *line, t_parse *parse, char *tmp,
 	else if (line[0] == 'S' && line[1] == ' ')
 		*error_value = ft_get_texture_path(parse, line);
 	else if (line[0] == 'F' && line[1] == ' ')
-		*error_value = ft_get_color(line, parse);
+		*error_value = ft_get_color(line, parse, *error_value);
 	else if (line[0] == 'C' && line[1] == ' ')
-		*error_value = ft_get_color(line, parse);
+		*error_value = ft_get_color(line, parse, *error_value);
 	else if (tmp[0] != '1' && tmp[0] != '\0')
 		*error_value = BAD_LINE_ERROR;
 }

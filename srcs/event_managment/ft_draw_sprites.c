@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 17:44:09 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/16 13:37:20 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,21 @@ void	ft_init_rays(t_coord p_coord, t_raycast *wall_ray,
 	sprite_ray->p_coor.y = (p_coord.y * WALL_SIZE) + (WALL_SIZE / 2);
 }
 
+void	ft_init_ds2(t_drsprites_2 *ds_2, t_config cf, t_drsprites ds)
+{
+	ds_2->col = ds.col;
+	ds_2->mem_dist = ds.sprite_ray.dist_obj;
+	ds_2->obj_proj = ft_calc_projection(ds.sprite_ray.dist_obj, ds.angle,
+	cf.parse.map_elt.cam_angle, cf.parse.resol.x);
+	ds_2->tmp_img = ft_scalling(cf.mlx_ptr, cf.img_set.sprite,
+	ds_2->obj_proj, ds_2->obj_proj);
+}
+
 void	ft_put_tmp_img(t_config *cf, t_drsprites *ds)
 {
 	t_drsprites_2 ds_2;
 
-	ds_2.col = ds->col;
-	ds_2.mem_dist = ds->sprite_ray.dist_obj;
-	ds_2.obj_proj = ft_calc_projection(ds->sprite_ray.dist_obj, ds->angle,
-	cf->parse.map_elt.cam_angle, cf->parse.resol.x);
-	ds_2.tmp_img = ft_scalling(cf->mlx_ptr, cf->img_set.sprite,
-	ds_2.obj_proj, ds_2.obj_proj);
+	ft_init_ds2(&ds_2, *cf, *ds);
 	while (abs(ds->sprite_ray.dist_obj - ds_2.mem_dist) <
 	SQUARE_SIZE && ds->sprite_ray.dist_obj < ds->wall_ray.dist_obj &&
 	ds->col < cf->parse.resol.x)
@@ -55,7 +60,12 @@ void	ft_put_tmp_img(t_config *cf, t_drsprites *ds)
 			ds_2.tmp_img.mlx += 4;
 			ds_2.tmp_img.width--;
 		}
-	ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col,
+	if (ds_2.col == 0)
+		ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col,
+	(cf->parse.resol.y / 2) - (ds_2.obj_proj / 2));
+	else
+		ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col
+		+ ds_2.tmp_img.width / 2,
 	(cf->parse.resol.y / 2) - (ds_2.obj_proj / 2));
 	mlx_destroy_image(cf->mlx_ptr, ds_2.tmp_img.img_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:31:34 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 17:15:14 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/16 17:13:52 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int			ft_isalnum(int c);
 int			ft_isalpha(int c);
 int			ft_isascii(int c);
 int			ft_isdigit(int c);
+int			ft_is_empty(char c);
 int			ft_isprint(int c);
 void		*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void		*ft_memchr(const void *s, int c, size_t n);

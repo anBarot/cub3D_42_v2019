@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 18:12:49 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/16 16:21:33 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		ft_get_map(t_map *map_elt, char **line, int fd)
 	map_elt->map[map_line] = ft_strdup(*line);
 	map_line++;
 	error_value = 0;
-	while (get_next_line(fd, line) == 1 && (**line == '1' || **line == ' '))
+	while (get_next_line(fd, line) == 1)
 	{
 		map_elt->map[map_line] = ft_strdup(*line);
 		if (map_line >= 1000000)

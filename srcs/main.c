@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 18:20:51 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/16 13:12:18 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		main(int ac, char **av)
 		ft_create_screenshot(config, av[1]);
 		ft_escape_game(config);
 	}
+	mlx_do_key_autorepeatoff(config->mlx_ptr);
 	config->win_ptr = mlx_new_window(config->mlx_ptr, config->parse.resol.x,
 	config->parse.resol.y, av[1]);
 	return (ft_receive_events(config));

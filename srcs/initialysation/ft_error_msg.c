@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:11:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 18:21:46 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/16 16:59:48 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		ft_error_msg(int error_value)
 	ft_printf("Error\nThere is an invalid value in your map, the valid values \
 	are -> '012NESW'\n") : 0;
 	(error_value == MAP_BORDER_ERROR) ?
-	ft_printf("Error\nThere is a leack in your wall!\n") : 0;
+	ft_printf("Error\nThe border is not valid!\n") : 0;
 	(error_value == MAP_OVERFLOW) ?
 	ft_printf("Error\nYour map is over 1 million lines, try to get a \
 	smaller one\n") : 0;

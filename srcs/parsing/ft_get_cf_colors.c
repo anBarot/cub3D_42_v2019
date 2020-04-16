@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 18:01:55 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/16 15:08:51 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,30 @@ int		ft_check_col_value(t_color color, char *line, int i_line)
 	return (NO_ERROR);
 }
 
-int		ft_get_color(char *line, t_parse *parse)
+int		ft_get_color(char *line, t_parse *parse, int error)
 {
 	int		i_line;
 	t_color	color;
-	int		error;
+	char	*tmp_str;
 
-	error = NO_ERROR;
+	tmp_str = ft_remove_in_str(line, " ");
 	i_line = 0;
-	while (!ft_isdigit(line[i_line]) && line[i_line])
+	while (!ft_isdigit(tmp_str[i_line]) && tmp_str[i_line])
 		i_line++;
-	color.r = ft_atoi(line + i_line);
-	while (ft_isdigit(line[i_line]))
+	color.r = ft_atoi(tmp_str + i_line);
+	while (ft_isdigit(tmp_str[i_line]))
 		i_line++;
-	(line[i_line] == ',') ? i_line++ : 0;
-	color.g = ft_atoi((const char *)line + i_line);
-	while (ft_isdigit(line[i_line]))
+	(tmp_str[i_line] == ',') ? i_line++ : 0;
+	color.g = ft_atoi((const char *)tmp_str + i_line);
+	while (ft_isdigit(tmp_str[i_line]))
 		i_line++;
-	(line[i_line] == ',') ? i_line++ : 0;
-	color.b = ft_atoi((const char *)line + i_line);
-	while (ft_isdigit(line[i_line]))
+	(tmp_str[i_line] == ',') ? i_line++ : 0;
+	color.b = ft_atoi((const char *)tmp_str + i_line);
+	while (ft_isdigit(tmp_str[i_line]))
 		i_line++;
-	while (line[i_line] == ' ' && i_line < 50 && line[i_line])
-		i_line++;
-	if ((error = ft_check_col_value(color, line, i_line)))
+	if ((error = ft_check_col_value(color, tmp_str, i_line)))
 		return (error);
 	ft_fill_color(color, line[0], parse);
+	free(tmp_str);
 	return (error);
 }

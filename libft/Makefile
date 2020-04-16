@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 12:18:43 by abarot            #+#    #+#              #
-#    Updated: 2020/04/14 17:10:40 by abarot           ###   ########.fr        #
+#    Updated: 2020/04/16 17:14:16 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS	=	ft_addtoa.c ft_atoi.c ft_bzero.c ft_calloc.c ft_char_to_str.c \
 			ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c \
 			ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c \
 			ft_toupper.c ft_toupper_string.c ft_utoa.c get_next_line.c \
-			ft_is_char_in_set.c ft_count_line.c \
+			ft_is_char_in_set.c ft_count_line.c ft_is_empty.c \
 			ft_printf/ft_is_printf_option.c  \
 			ft_printf/ft_is_printf_type.c \
 			ft_printf/ft_printf.c \
