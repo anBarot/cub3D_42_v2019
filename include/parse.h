@@ -6,17 +6,18 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 17:01:18 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 16:19:15 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
-# define RESOL_MAX_X	2560
-# define RESOL_MAX_Y	1440
 # include "libft.h"
+# include <X11/Xlib.h>
 # include "mlx_img_treatment.h"
 # include "math_struct.h"
+# define RESMIN_X	70
+# define RESMIN_Y	70
 
 typedef struct		s_path_set
 {
@@ -40,6 +41,7 @@ typedef struct		s_parse
 	t_color			col_floor;
 	t_path_set		path_set;
 	t_map			map_elt;
+	void			*mlx_ptr;
 }					t_parse;
 enum				e_direction
 {

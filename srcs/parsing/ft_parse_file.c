@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:43:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 15:08:44 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 17:52:56 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		ft_check_missing_elt(t_parse parse)
 	return (error_value);
 }
 
-void	ft_parse_condition(char *line, t_parse *parse, char *tmp,
-							int *error_value)
+void	ft_parse_condition(char *line, t_parse *parse,
+							char *tmp, int *error_value)
 {
 	if (line[0] == 'R' && line[1] == ' ')
 		*error_value = ft_get_resolution(parse, line);
@@ -87,8 +87,6 @@ int		ft_init_parsing(t_parse *parse, char *cub_file)
 	if ((fd = open(cub_file, O_RDONLY)) == -1)
 		return (OPEN_FILE_ERROR);
 	if ((error_value = ft_parse_file(fd, parse)))
-		return (error_value);
-	if ((error_value = ft_get_player_coor(&parse->map_elt)))
 		return (error_value);
 	close(fd);
 	return (error_value);

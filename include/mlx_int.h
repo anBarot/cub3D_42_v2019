@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/14 14:02:22 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 14:26:54 by abarot           ###   ########.fr       */
+/*   Created: 2020/04/17 18:39:54 by abarot            #+#    #+#             */
+/*   Updated: 2020/04/17 18:47:09 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # include <sys/ipc.h>
 # include <sys/shm.h>
 # include <X11/extensions/XShm.h>
-# define MLX_TYPE_SHM_PIXMAP		3
-# define MLX_TYPE_SHM				2
-# define MLX_TYPE_XIMAGE			1
-# define MLX_MAX_EVENT				LASTEvent
-# define ENV_DISPLAY				"DISPLAY"
-# define LOCALHOST					"localhost"
-# define ERR_NO_TRUECOLOR			"No TrueColor Visual available.\n"
-# define WARN_SHM_ATTACH 			"X server can't attach shared memory.\n"
+# define MLX_TYPE_SHM_PIXMAP 3
+# define MLX_TYPE_SHM 2
+# define MLX_TYPE_XIMAGE 1
+# define MLX_MAX_EVENT LASTEvent
+# define ENV_DISPLAY "DISPLAY"
+# define LOCALHOST "localhost"
+# define ERR_NO_TRUECOLOR "Error : No TrueColor Visual available.\n"
+# define WARN_SHM_ATTACH "Warning : X server can't attach shared memory.\n"
 
 typedef	struct			s_xpm_col
 {
@@ -96,6 +96,7 @@ typedef struct			s_xvar
 	int					pshm_format;
 	int					do_flush;
 	int					decrgb[6];
+	Atom				wm_delete_window;
 }						t_xvar;
 
 int						mlx_int_do_nothing();

@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 16:21:33 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 18:53:27 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,52 @@ int		ft_get_player_coor(t_map *map_elt)
 	return (NO_ERROR);
 }
 
+int		ft_check_map(t_map *map_elt)
+{
+	int		line;
+	char	*tmp_str;
+	int		er_val;
+
+	er_val = NO_ERROR;
+	if ((er_val = ft_check_map_value(map_elt->map)) ||
+		(er_val = ft_ckeck_map_border(map_elt->map)) ||
+		(er_val = ft_get_player_coor(map_elt)))
+		return (er_val);
+	line = 1;
+	while (map_elt->map[line])
+	{
+		tmp_str = ft_remove_in_str(map_elt->map[line], "1");
+		if (*tmp_str == '\0' && map_elt->p_coord.x > line)
+			return (MAP_SPECIAL_ERROR);
+		free(tmp_str);
+		line++;
+	}
+	return (er_val);
+}
+
 int		ft_get_map(t_map *map_elt, char **line, int fd)
 {
 	int		map_line;
-	int		error_value;
+	char	*tmp_str;
 
 	map_line = 0;
 	map_elt->map[map_line] = ft_strdup(*line);
 	map_line++;
-	error_value = 0;
 	while (get_next_line(fd, line) == 1)
 	{
+		tmp_str = ft_remove_in_str(*line, " \t");
+		if (*tmp_str == '\0')
+			return (MAP_SPACE_ERROR);
 		map_elt->map[map_line] = ft_strdup(*line);
 		if (map_line >= 1000000)
 			return (MAP_OVERFLOW);
 		map_line++;
 		free(*line);
+		free(tmp_str);
 	}
 	map_elt->map[map_line] = ft_strdup(*line);
 	free(*line);
 	map_line++;
 	map_elt->map[map_line + 1] = '\0';
-	if ((error_value = ft_check_map_value(map_elt->map)))
-		return (error_value);
-	if ((error_value = ft_ckeck_map_border(map_elt->map)))
-		return (error_value);
-	return (NO_ERROR);
+	return (ft_check_map(map_elt));
 }

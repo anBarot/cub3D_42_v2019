@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 13:37:20 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 18:49:19 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,24 @@ void	ft_init_rays(t_coord p_coord, t_raycast *wall_ray,
 
 void	ft_init_ds2(t_drsprites_2 *ds_2, t_config cf, t_drsprites ds)
 {
-	ds_2->col = ds.col;
 	ds_2->mem_dist = ds.sprite_ray.dist_obj;
 	ds_2->obj_proj = ft_calc_projection(ds.sprite_ray.dist_obj, ds.angle,
 	cf.parse.map_elt.cam_angle, cf.parse.resol.x);
 	ds_2->tmp_img = ft_scalling(cf.mlx_ptr, cf.img_set.sprite,
 	ds_2->obj_proj, ds_2->obj_proj);
+	ds_2->col = ds.col;
+	if (ds.col == 0)
+		while (abs(ds.sprite_ray.dist_obj - ds_2->mem_dist) <
+		SQUARE_SIZE && ds.sprite_ray.dist_obj < ds.wall_ray.dist_obj
+		&& abs(ds_2->col) < (ds_2->obj_proj))
+		{
+			ds_2->col = ds_2->col - 1;
+			ds.angle = ds.angle - ((double)FOV / (double)cf.parse.resol.x);
+			if (ds.angle < 0)
+				ds.angle = ds.angle + 360;
+			ft_raycast(&ds.wall_ray, cf.parse.map_elt.map, ds.angle, '1');
+			ft_raycast(&ds.sprite_ray, cf.parse.map_elt.map, ds.angle, '2');
+		}
 }
 
 void	ft_put_tmp_img(t_config *cf, t_drsprites *ds)
@@ -54,19 +66,12 @@ void	ft_put_tmp_img(t_config *cf, t_drsprites *ds)
 		ft_raycast(&ds->wall_ray, cf->parse.map_elt.map, ds->angle, '1');
 		ft_raycast(&ds->sprite_ray, cf->parse.map_elt.map, ds->angle, '2');
 	}
-	if (ds_2.col == 0)
-		while (ds_2.tmp_img.width > (ds->col - ds_2.col))
-		{
-			ds_2.tmp_img.mlx += 4;
-			ds_2.tmp_img.width--;
-		}
-	if (ds_2.col == 0)
-		ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col,
-	(cf->parse.resol.y / 2) - (ds_2.obj_proj / 2));
-	else
-		ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col
-		+ ds_2.tmp_img.width / 2,
-	(cf->parse.resol.y / 2) - (ds_2.obj_proj / 2));
+	if (ds_2.col != 0 && ds->col != cf->parse.resol.x &&
+	((ds_2.tmp_img.width > (ds->col - ds_2.col)
+	&& ds_2.mem_dist > ds->wall_ray.dist_obj)))
+		ds_2.tmp_img.width = ds->col - ds_2.col;
+	ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col,
+		(cf->parse.resol.y / 2) - (ds_2.obj_proj / 2));
 	mlx_destroy_image(cf->mlx_ptr, ds_2.tmp_img.img_ptr);
 }
 

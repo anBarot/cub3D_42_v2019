@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:38:02 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 13:14:48 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 18:04:47 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_remove_in_str(char *str, char *char_set)
 		return (0);
 	while (str[i_str])
 	{
-		if (ft_check_in_charset(str[i_str], char_set) == 1)
+		if (ft_check_in_charset(str[i_str], char_set))
 			i_str++;
 		else
 		{

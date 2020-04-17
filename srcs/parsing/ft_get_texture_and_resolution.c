@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 18:46:29 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 17:47:14 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 16:43:47 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int		ft_is_valid_resolution(char *line)
 int		ft_get_resolution(t_parse *parse, char *line)
 {
 	int		i_line;
+	t_coord	max_res;
 
 	i_line = 0;
 	if (!ft_is_valid_resolution(line))
@@ -53,10 +54,16 @@ int		ft_get_resolution(t_parse *parse, char *line)
 	while (line[i_line] == ' ')
 		i_line++;
 	parse->resol.y = ft_atoi(line + i_line);
-	if (parse->resol.x > RESOL_MAX_X)
-		parse->resol.x = RESOL_MAX_X;
-	if (parse->resol.y > RESOL_MAX_Y)
-		parse->resol.y = RESOL_MAX_Y;
+	if (!(mlx_get_screen_size(parse->mlx_ptr, &max_res.x, &max_res.y)))
+		return (RESOL_ERROR);
+	if (parse->resol.x > max_res.x)
+		parse->resol.x = max_res.x;
+	if (parse->resol.y > max_res.y)
+		parse->resol.y = max_res.y;
+	if (parse->resol.x < RESMIN_X)
+		parse->resol.x = RESMIN_X;
+	if (parse->resol.y < RESMIN_Y)
+		parse->resol.y = RESMIN_Y;
 	return (NO_ERROR);
 }
 

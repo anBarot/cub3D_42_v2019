@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:11:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 16:59:48 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 17:51:07 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,9 @@ int		ft_error_msg_2(int error_value)
 	(error_value == NO_RESOL_ERROR) ?
 	ft_printf("Error\nThe resolution is missing, add the line \
 	'R XXXX YYYY'\n") : 0;
+	(error_value == MAP_SPECIAL_ERROR) ?
+	ft_printf("Error\nYou can't begin the map with a square with no \
+	player in it\n") : 0;
 	return (ft_error_msg_3(error_value));
 }
 
@@ -87,5 +90,7 @@ int		ft_error_msg(int error_value)
 	(error_value == RESOL_ERROR) ?
 	ft_printf("Error\nThe resolution is not in the right format : try \
 	'R XXXX YYYY'\n") : 0;
+	(error_value == MAP_SPACE_ERROR) ?
+	ft_printf("Error\nThe map has an empty line in it\n") : 0;
 	return (ft_error_msg_2(error_value));
 }

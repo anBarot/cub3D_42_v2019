@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 15:32:44 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 11:50:24 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 17:29:23 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ double		ft_get_crosscoor(t_raycast *ray, t_fcoord delta, char **map,
 	wall_coor.y = ray->p_coor.y + (delta.y / 2);
 	if (ft_outside_map(wall_coor.x, wall_coor.y, map))
 		return (0);
-	while (map[(int)(wall_coor.x / SQUARE_SIZE)][(int)(wall_coor.y /
-					SQUARE_SIZE)] != elt)
+	while ((map[(int)(wall_coor.x / SQUARE_SIZE)][(int)(wall_coor.y /
+					SQUARE_SIZE)] != elt))
 	{
 		wall_coor.x += delta.x;
 		wall_coor.y += delta.y;

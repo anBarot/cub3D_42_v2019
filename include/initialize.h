@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 18:08:30 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 17:36:57 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,11 @@ enum				e_error
 	INIT_ERROR,
 	OPEN_FILE_ERROR,
 	IMG_EXTENSION_ERROR,
+	MAP_SPACE_ERROR,
 	MAP_VALUE_ERROR,
 	MAP_BORDER_ERROR,
 	MAP_OVERFLOW,
+	MAP_SPECIAL_ERROR,
 	RESOL_ERROR,
 	COORD_ERROR,
 	BAD_LINE_ERROR,

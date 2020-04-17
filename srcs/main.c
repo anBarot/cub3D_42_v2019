@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 13:12:18 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 18:48:25 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_get_screen(t_config *config)
 {
+	mlx_do_key_autorepeatoff(config->mlx_ptr);
 	ft_create_texture(config->mlx_ptr, &config->img_set,
 	config->parse.path_set);
 	ft_create_screen(config->mlx_ptr, &config->img_set.screen,
@@ -48,21 +49,21 @@ int		main(int ac, char **av)
 	if (ac > 3 || ac == 1)
 		return (ft_error_msg(INVALID_ARG_NBR_ERROR));
 	if ((ac == 3 && !ft_is_valid_arg(av[1], av[2])) ||
-		!ft_is_valid_arg(av[1], 0))
+			!ft_is_valid_arg(av[1], 0))
 		return (ft_error_msg(INVALID_ARG_ERROR));
 	if (!(config = ft_calloc(sizeof(t_config), 1)) ||
 		!(ft_initialyse_config(config)))
 		return (ft_error_msg(INIT_ERROR));
+	config->mlx_ptr = mlx_init();
+	config->parse.mlx_ptr = config->mlx_ptr;
 	if ((error_value = ft_init_parsing(&config->parse, av[1])))
 		return (ft_error_msg(error_value));
-	config->mlx_ptr = mlx_init();
 	ft_get_screen(config);
 	if (ac == 3)
 	{
 		ft_create_screenshot(config, av[1]);
 		ft_escape_game(config);
 	}
-	mlx_do_key_autorepeatoff(config->mlx_ptr);
 	config->win_ptr = mlx_new_window(config->mlx_ptr, config->parse.resol.x,
 	config->parse.resol.y, av[1]);
 	return (ft_receive_events(config));

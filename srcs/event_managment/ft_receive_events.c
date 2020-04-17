@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:14:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 18:17:42 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/17 18:59:53 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 #include <X11/Xatom.h>
 #include "mlx_int.h"
 
+void	ft_destroy_images(t_config *config)
+{
+	mlx_destroy_image(config->mlx_ptr, config->img_set.west.img_ptr);
+	mlx_destroy_image(config->mlx_ptr, config->img_set.east.img_ptr);
+	mlx_destroy_image(config->mlx_ptr, config->img_set.north.img_ptr);
+	mlx_destroy_image(config->mlx_ptr, config->img_set.south.img_ptr);
+	mlx_destroy_image(config->mlx_ptr, config->img_set.sprite.img_ptr);
+	mlx_destroy_image(config->mlx_ptr, config->img_set.screen.img_ptr);
+	mlx_destroy_image(config->mlx_ptr, config->img_set.background.img_ptr);
+	free(config->parse.path_set.north);
+	free(config->parse.path_set.east);
+	free(config->parse.path_set.south);
+	free(config->parse.path_set.west);
+	free(config->parse.path_set.sprite);
+}
+
 void	ft_escape_game(t_config *config)
 {
 	int line;
@@ -22,17 +38,7 @@ void	ft_escape_game(t_config *config)
 	line = 0;
 	if (config->win_ptr)
 		mlx_destroy_window(config->mlx_ptr, config->win_ptr);
-	mlx_destroy_image(config->mlx_ptr, config->img_set.west.img_ptr);
-	mlx_destroy_image(config->mlx_ptr, config->img_set.east.img_ptr);
-	mlx_destroy_image(config->mlx_ptr, config->img_set.north.img_ptr);
-	mlx_destroy_image(config->mlx_ptr, config->img_set.south.img_ptr);
-	mlx_destroy_image(config->mlx_ptr, config->img_set.sprite.img_ptr);
-	mlx_destroy_image(config->mlx_ptr, config->img_set.screen.img_ptr);
-	free(config->parse.path_set.north);
-	free(config->parse.path_set.east);
-	free(config->parse.path_set.south);
-	free(config->parse.path_set.west);
-	free(config->parse.path_set.sprite);
+	ft_destroy_images(config);
 	while (config->parse.map_elt.map[line])
 	{
 		free(config->parse.map_elt.map[line]);
