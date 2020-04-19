@@ -6,13 +6,13 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 15:44:21 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 17:16:42 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/18 11:47:39 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "initialize.h"
 
-void	ft_create_background(t_config *config, t_img_2 *bckg_img,
+void	ft_create_background(t_config *config, t_img *bckg_img,
 								t_color c_color, t_color f_color)
 {
 	t_coord coor_to_fill;
@@ -36,7 +36,7 @@ void	ft_create_background(t_config *config, t_img_2 *bckg_img,
 	ft_draw_square(bckg_img, f_color, coor_to_fill, dim);
 }
 
-void	ft_create_screen(void *mlx_ptr, t_img_2 *screen, t_coord resol)
+void	ft_create_screen(void *mlx_ptr, t_img *screen, t_coord resol)
 {
 	screen->width = resol.x;
 	screen->height = resol.y;
@@ -45,7 +45,7 @@ void	ft_create_screen(void *mlx_ptr, t_img_2 *screen, t_coord resol)
 	&screen->size_line, &screen->endian);
 }
 
-void	ft_create_one_texture(void *mlx_ptr, t_img_2 *img, char *path)
+void	ft_create_one_texture(void *mlx_ptr, t_img *img, char *path)
 {
 	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, path, &img->width,
 	&img->height);

@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/17 15:57:00 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/18 11:49:09 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include "raycast.h"
 # include <mlx.h>
 # include "libft.h"
-# include <X11/Xlib.h>
-# include <X11/Xatom.h>
-# include "mlx_int.h"
 # define WALL_SIZE				64
 # define WALL_RATIO				1
 # define FOV 					60
@@ -47,15 +44,8 @@ typedef struct	s_drsprites_2
 	int			col;
 	int			mem_dist;
 	int			obj_proj;
-	t_img_2		tmp_img;
+	t_img		tmp_img;
 }				t_drsprites_2;
-
-typedef struct	s_loop
-{
-	XEvent		ev;
-	t_win_list	*win;
-	Atom		wm_delete_window;
-}				t_loop;
 
 int				ft_receive_events(t_config *config);
 void			ft_move_backandforth(char **map, t_coord *p_coord,
@@ -67,5 +57,5 @@ void			ft_draw_walls(t_config *config);
 void			ft_draw_sprites(t_config *config);
 int				ft_calc_projection(int dist_obj, double tmp_angle,
 				int cam_angle, int resol_x);
-void			ft_escape_game(t_config *config);
+int				ft_escape_game(t_config *config);
 #endif

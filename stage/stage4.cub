@@ -1,7 +1,7 @@
 R 1200 900
 
 
-S texture/blackmage_sprite.xpm 
+S texture/aliencartoon_sprite.xpm 
 SO texture/space_wall_1.xpm 
 NO texture/space_wall_2.xpm
 
@@ -9,7 +9,7 @@ NO texture/space_wall_2.xpm
 WE texture/space_wall_3.xpm
 EA texture/space_wall_4.xpm
 F 50,0,50
-C 0,0,0
+C     0,0,0
 
    
    

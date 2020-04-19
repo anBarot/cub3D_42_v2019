@@ -6,13 +6,13 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 16:40:46 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 12:38:45 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/18 11:47:39 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_img_treatment.h"
 
-void	ft_draw_square(t_img_2 *img, t_color color, t_coord start, t_coord dim)
+void	ft_draw_square(t_img *img, t_color color, t_coord start, t_coord dim)
 {
 	int		d_img;
 	char	*color_str;

@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/17 18:49:19 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 11:22:34 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,11 @@ void	ft_put_tmp_img(t_config *cf, t_drsprites *ds)
 	((ds_2.tmp_img.width > (ds->col - ds_2.col)
 	&& ds_2.mem_dist > ds->wall_ray.dist_obj)))
 		ds_2.tmp_img.width = ds->col - ds_2.col;
-	ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col,
+	if (ds_2.col <= 0)
+		ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col +
+	((ds->col - ds_2.col) / 2), (cf->parse.resol.y / 2) - (ds_2.obj_proj / 2));
+	else
+		ft_put_sprite_to_screen(cf->img_set.screen, ds_2.tmp_img, ds_2.col,
 		(cf->parse.resol.y / 2) - (ds_2.obj_proj / 2));
 	mlx_destroy_image(cf->mlx_ptr, ds_2.tmp_img.img_ptr);
 }

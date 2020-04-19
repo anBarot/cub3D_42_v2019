@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 15:51:47 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/14 17:24:34 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 10:08:01 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int		ft_initialyse_config(t_config *config)
 	config->parse.map_elt.p_coord.x = 0;
 	config->parse.map_elt.p_coord.y = 0;
 	config->parse.map_elt.cam_angle = 0;
+	config->escape = 0;
 	return (1);
 }

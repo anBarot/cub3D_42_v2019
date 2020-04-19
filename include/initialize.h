@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/17 17:36:57 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 09:42:48 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ enum				e_error
 
 typedef	struct		s_img_set
 {
-	t_img_2			screen;
-	t_img_2			background;
-	t_img_2			north;
-	t_img_2			south;
-	t_img_2			west;
-	t_img_2			east;
-	t_img_2			sprite;
+	t_img			screen;
+	t_img			background;
+	t_img			north;
+	t_img			south;
+	t_img			west;
+	t_img			east;
+	t_img			sprite;
 }					t_img_set;
 typedef struct		s_config
 {
@@ -64,6 +64,7 @@ typedef struct		s_config
 	void			*win_ptr;
 	t_parse			parse;
 	t_img_set		img_set;
+	int				escape;
 }					t_config;
 typedef struct		s_header
 {
@@ -78,11 +79,11 @@ int					ft_initialyse_config(t_config *config);
 int					ft_error_msg(int error_value);
 void				ft_create_texture(void *mlx_ptr, t_img_set *img,
 					t_path_set path);
-void				ft_create_fc(void *mlx_ptr, t_img_2 *img, t_parse parse,
+void				ft_create_fc(void *mlx_ptr, t_img *img, t_parse parse,
 					t_color col);
-void				ft_create_screen(void *mlx_ptr, t_img_2 *screen,
+void				ft_create_screen(void *mlx_ptr, t_img *screen,
 					t_coord resol);
-void				ft_create_background(t_config *config, t_img_2 *bckg_img,
+void				ft_create_background(t_config *config, t_img *bckg_img,
 					t_color c_color, t_color f_color);
 void				ft_create_screenshot(t_config *config, char *title);
 #endif

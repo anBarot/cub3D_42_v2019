@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/17 16:52:44 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/18 18:07:13 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void	ft_set_texture(t_img_set *ist, int col, char path, char c)
 	}
 }
 
-t_img_2	ft_set_wall_img(char path, void *mlx_ptr, t_img_set *img_set,
+t_img	ft_set_wall_img(char path, void *mlx_ptr, t_img_set *img_set,
 							int height)
 {
-	t_img_2	img_tmp;
+	t_img	img_tmp;
 
 	if (path == 'S')
 		img_tmp = ft_scalling(mlx_ptr, img_set->south, 1, height);
@@ -56,7 +56,7 @@ t_img_2	ft_set_wall_img(char path, void *mlx_ptr, t_img_set *img_set,
 
 void	ft_draw_column(t_config *config, char path, int col_height, int col)
 {
-	t_img_2	img;
+	t_img	img;
 
 	ft_set_texture(&config->img_set, col, path, '+');
 	img = ft_set_wall_img(path, config->mlx_ptr, &config->img_set, col_height);

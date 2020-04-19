@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 14:27:46 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 13:01:37 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 10:19:18 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_reset_coor_putscreen(t_coord *img_coor, t_coord *scr_c, int start_x)
 	scr_c->y = scr_c->y + 1;
 }
 
-void	ft_put_sprite_to_screen(t_img_2 screen, t_img_2 sprite, int start_x,
+void	ft_put_sprite_to_screen(t_img screen, t_img sprite, int start_x,
 								int start_y)
 {
 	t_coord	sprite_coor;
@@ -72,7 +72,7 @@ void	ft_put_sprite_to_screen(t_img_2 screen, t_img_2 sprite, int start_x,
 	}
 }
 
-void	ft_put_img_to_screen(t_img_2 screen, t_img_2 img, int start_x,
+void	ft_put_img_to_screen(t_img screen, t_img img, int start_x,
 							int start_y)
 {
 	t_coord img_coor;

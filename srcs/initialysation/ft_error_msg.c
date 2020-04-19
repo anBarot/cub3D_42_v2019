@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:11:39 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/17 17:51:07 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/18 11:17:02 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ int		ft_error_msg(int error_value)
 	(error_value == INIT_ERROR) ?
 	ft_printf("Error\nThe programm initialyzation is not possible\n") : 0;
 	(error_value == OPEN_FILE_ERROR) ?
-	ft_printf("Error\nThe program can't be oppened, check if you have the \
-	appropriate rights\n") : 0;
+	ft_printf("Error\nThe file can't be oppened, check if it exists and if \
+	you have the appropriate rights\n") : 0;
 	(error_value == MAP_VALUE_ERROR) ?
 	ft_printf("Error\nThere is an invalid value in your map, the valid values \
 	are -> '012NESW'\n") : 0;

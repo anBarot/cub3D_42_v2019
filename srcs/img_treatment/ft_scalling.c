@@ -6,13 +6,13 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:17:50 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/15 10:46:28 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/18 11:47:39 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_img_treatment.h"
 
-void	ft_fill_image(t_img_2 img, t_img_2 img_scale, t_fcoord p_cste)
+void	ft_fill_image(t_img img, t_img img_scale, t_fcoord p_cste)
 {
 	t_coord		img_coord;
 	int			d_fill;
@@ -35,9 +35,9 @@ void	ft_fill_image(t_img_2 img, t_img_2 img_scale, t_fcoord p_cste)
 	}
 }
 
-t_img_2	ft_scalling(void *mlx_ptr, t_img_2 img_to_scale, int width, int height)
+t_img	ft_scalling(void *mlx_ptr, t_img img_to_scale, int width, int height)
 {
-	t_img_2		img;
+	t_img		img;
 	t_fcoord	prop_cste;
 
 	img.width = width;
