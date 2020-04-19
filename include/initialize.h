@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 13:35:04 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 09:42:48 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 13:22:02 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ typedef struct		s_config
 	t_parse			parse;
 	t_img_set		img_set;
 	int				escape;
+	int				move;
 }					t_config;
 typedef struct		s_header
 {

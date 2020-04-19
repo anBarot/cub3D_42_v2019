@@ -6,11 +6,20 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 17:14:58 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 09:55:59 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 13:37:12 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int		ft_valid_key(int key)
+{
+	if (key == UPKEY1 || key == UPKEY2 || key == DOWNKEY1
+	|| key == DOWNKEY2 || key == LEFTKEY || key == LEFT_LAT_KEY
+	|| key == RIGHTKEY || key == RIGHT_LAT_KEY || key == ESCAPEKEY)
+		return (1);
+	return (0);
+}
 
 int		ft_pressed_key(int key, t_config *cf)
 {
@@ -30,8 +39,12 @@ int		ft_pressed_key(int key, t_config *cf)
 	if (LEFT_LAT_KEY == key)
 		ft_move_lateral(cf->parse.map_elt.map,
 		&cf->parse.map_elt.p_coord, cf->parse.map_elt.cam_angle, -1);
-	if (key == ESCAPEKEY || cf->escape == 1)
+	if (key == ESCAPEKEY)
 		cf->escape = 1;
+	if (ft_valid_key(key))
+		cf->move = 1;
+	else
+		cf->move = 0;
 	return (0);
 }
 
@@ -43,11 +56,15 @@ int		ft_close(t_config *config)
 
 int		ft_expose(t_config *cf)
 {
-	ft_put_img_to_screen(cf->img_set.screen, cf->img_set.background, 0, 0);
-	ft_draw_walls(cf);
-	ft_draw_sprites(cf);
-	mlx_put_image_to_window(cf->mlx_ptr, cf->win_ptr,
-		cf->img_set.screen.img_ptr, 0, 0);
+	if (cf->move == 1)
+	{
+		ft_put_img_to_screen(cf->img_set.screen, cf->img_set.background, 0, 0);
+		ft_draw_walls(cf);
+		ft_draw_sprites(cf);
+		mlx_put_image_to_window(cf->mlx_ptr, cf->win_ptr,
+			cf->img_set.screen.img_ptr, 0, 0);
+		cf->move = 0;
+	}
 	if (cf->escape)
 	{
 		ft_printf("\n\n\n------A bientôt!------\n\n\n");
