@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/17 18:53:27 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 12:09:58 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int		ft_get_map(t_map *map_elt, char **line, int fd)
 	map_line = 0;
 	map_elt->map[map_line] = ft_strdup(*line);
 	map_line++;
+	free(*line);
 	while (get_next_line(fd, line) == 1)
 	{
 		tmp_str = ft_remove_in_str(*line, " \t");

@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 17:31:34 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/16 17:13:52 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 11:54:57 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "libftprintf.h"
-# define BUFFER_SIZE	15
+# define BUFFER_SIZE	50
 
 int			ft_atoi(const char *s);
 void		ft_bzero(void *s, size_t n);
@@ -43,7 +43,7 @@ void		ft_putstr_fd(char *s, int fd);
 char		**ft_split(char const *s, char c);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strdup(const char *s);
-char		*ft_strjoin(char *s1, char *s2, int to_free);
+char		*ft_strjoin(char *s1, char *s2);
 size_t		ft_strlcat(char *dst, const char *src, size_t size);
 size_t		ft_strlcpy(char *dst, const char *src, size_t n);
 size_t		ft_strlen(const char *s);

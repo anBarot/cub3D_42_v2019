@@ -1,11 +1,18 @@
-R 200 200
+
+
+R 900 600
 S texture/blackmage_sprite.xpm 
 SO texture/gray_stone_wall.xpm 
+
+
+
 NO texture/stone_wall.xpm
 WE texture/leaves_wall.xpm
 EA texture/red_brick_wall.xpm
-C 0,100,255
-F 200,200,100 
+C 0,    100,255
+F 200,200,    100 
+
+
 11111
 10201
 10N01

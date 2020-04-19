@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 15:57:29 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/31 10:38:32 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 11:54:47 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int		get_next_line(int fd, char **line)
 		return (-1);
 	if (fd < 0 || !BUFFER_SIZE || !line)
 		return (-1);
-	(*to_keep) ? *line = ft_strjoin(to_keep, *line, 2) : 0;
+	(*to_keep) ? *line = ft_strjoin(ft_strdup(to_keep), *line) : 0;
 	while (ft_hasnewline(*line) != 1)
 	{
 		read_value = read(fd, buffer_str, BUFFER_SIZE);
 		if (read_value < BUFFER_SIZE)
 			buffer_str[read_value] = '\0';
-		*line = ft_strjoin(*line, buffer_str, 1);
+		*line = ft_strjoin(*line, ft_strdup(buffer_str));
 		if (read_value < BUFFER_SIZE && ft_hasnewline(*line) != 1)
 		{
 			free(buffer_str);

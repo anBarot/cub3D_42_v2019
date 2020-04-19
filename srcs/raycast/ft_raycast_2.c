@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:05:10 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/17 17:04:20 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 12:00:52 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,7 @@ int		ft_outside_map(double x, double y, char **map)
 		|| (int)(y / SQUARE_SIZE) > ((int)ft_strlen(map[0]) - 1)
 		|| (int)(y / SQUARE_SIZE) > ((int)ft_strlen(map[0]) + 1)
 		|| (int)(x / SQUARE_SIZE) < 0
-		|| (int)(y / SQUARE_SIZE) < 0
-		|| ft_is_empty(map[(int)(x / SQUARE_SIZE)][(int)(y / SQUARE_SIZE)]))
+		|| (int)(y / SQUARE_SIZE) < 0)
 		return (1);
 	return (0);
 }

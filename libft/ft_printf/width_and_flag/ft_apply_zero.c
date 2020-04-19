@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:19:30 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/22 14:38:05 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 11:35:28 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	ft_apply_zero(t_spec *spec)
 	{
 		spec->arg_str[0] = '0';
 		while (spec->width > (int)ft_strlen(spec->arg_str))
-			spec->arg_str = ft_strjoin("0", spec->arg_str, 2);
+			spec->arg_str = ft_strjoin(ft_strdup("0"), spec->arg_str);
 		(spec->space_plus_flag == PLUS) ? spec->arg_str[0] = '+' : 0;
 		(spec->space_plus_flag == SPACE) ? spec->arg_str[0] = ' ' : 0;
 		(!spec->space_plus_flag) ? spec->arg_str[0] = '-' : 0;
 	}
 	while (spec->width > (int)ft_strlen(spec->arg_str))
-		spec->arg_str = ft_strjoin("0", spec->arg_str, 2);
+		spec->arg_str = ft_strjoin(ft_strdup("0"), spec->arg_str);
 }

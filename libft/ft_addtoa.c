@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 11:25:08 by abarot            #+#    #+#             */
-/*   Updated: 2020/01/21 14:23:38 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 11:30:28 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ char		*ft_addtoa(unsigned long n)
 		i++;
 	}
 	res[i] = '\0';
-	res = ft_strjoin(res, "x0\0", 1);
+	res = ft_strjoin(res, ft_strdup("x0\0"));
 	return (ft_reverse_string(res));
 }
