@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 15:32:44 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 13:00:58 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 14:24:13 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ t_fcoord	ft_get_delta_hor(t_fcoord delta, double angle)
 {
 	if (angle > 0 && angle < 180)
 	{
-		delta.x = -SQUARE_SIZE - 0.0001;
+		delta.x = -SQUARE_SIZE - 0.000001;
 		delta.y = delta.x / tan((M_PI / 180) * (angle));
 	}
 	else
 	{
-		delta.x = SQUARE_SIZE + 0.0001;
+		delta.x = SQUARE_SIZE + 0.000001;
 		delta.y = delta.x / tan((M_PI / 180) * (angle - 180));
 	}
 	return (delta);
@@ -31,12 +31,12 @@ t_fcoord	ft_get_delta_vert(t_fcoord delta, double angle)
 {
 	if (angle > 90 && angle < 270)
 	{
-		delta.y = SQUARE_SIZE + 0.0001;
+		delta.y = SQUARE_SIZE + 0.000001;
 		delta.x = delta.y * tan((M_PI / 180) * (angle - 180));
 	}
 	else
 	{
-		delta.y = -SQUARE_SIZE - 0.0001;
+		delta.y = -SQUARE_SIZE - 0.000001;
 		delta.x = delta.y * tan((M_PI / 180) * (angle));
 	}
 	return (delta);
@@ -50,7 +50,7 @@ double		ft_get_crosscoor(t_raycast *ray, t_fcoord delta, char **map,
 	wall_coor.x = ray->p_coor.x + (delta.x / 2);
 	wall_coor.y = ray->p_coor.y + (delta.y / 2);
 	if (ft_outside_map(wall_coor.x, wall_coor.y, map))
-		return (0);
+		return (ft_get_magnitude(ray->p_coor, wall_coor));
 	while (map[(int)(wall_coor.x / SQUARE_SIZE)][(int)(wall_coor.y /
 		SQUARE_SIZE)] != elt)
 	{
@@ -84,15 +84,9 @@ void		ft_raycast(t_raycast *ray, char **map, double angle, char obj)
 	t_fcoord	delta;
 	t_fcoord	dist_obj;
 
-	if (fabs(angle - 180) > 1 || fabs(angle) > 1 || fabs(angle - 360) > 1)
-	{
-		delta = ft_get_delta_hor(delta, angle);
-		dist_obj.x = ft_get_crosscoor(ray, delta, map, obj);
-	}
-	if (fabs(angle - 90) > 1 || fabs(angle - 270) > 1)
-	{
-		delta = ft_get_delta_vert(delta, angle);
-		dist_obj.y = ft_get_crosscoor(ray, delta, map, obj);
-	}
+	delta = ft_get_delta_hor(delta, angle);
+	dist_obj.x = ft_get_crosscoor(ray, delta, map, obj);
+	delta = ft_get_delta_vert(delta, angle);
+	dist_obj.y = ft_get_crosscoor(ray, delta, map, obj);
 	ft_get_smallest_dist(ray, dist_obj, angle);
 }

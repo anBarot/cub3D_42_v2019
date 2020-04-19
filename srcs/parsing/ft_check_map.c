@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:36:54 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 11:48:10 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 15:08:43 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int		ft_check_map_value(char **map)
 		free(tmp_str);
 		line++;
 	}
-	tmp_str = ft_remove_in_str(map[0], " 1");
+	tmp_str = ft_remove_in_str(map[0], " \t1");
 	if (ft_strlen(tmp_str) > 0)
 		return (MAP_BORDER_ERROR);
 	(tmp_str) ? free(tmp_str) : 0;

@@ -1,4 +1,5 @@
 
+WE texture/leaves_wall.xpm
 
 R 900 600
 S texture/blackmage_sprite.xpm 
@@ -7,13 +8,13 @@ SO texture/gray_stone_wall.xpm
 
 
 NO texture/stone_wall.xpm
-WE texture/leaves_wall.xpm
+F 200,200,    100 
 EA texture/red_brick_wall.xpm
 C 0,    100,255
-F 200,200,    100 
 
 
-11111
-10201
-10N01
-11111
+111111
+100101
+102001
+1100N1
+111111

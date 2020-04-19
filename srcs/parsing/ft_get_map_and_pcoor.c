@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/27 18:20:28 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 12:55:10 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 14:31:09 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int		ft_get_player_coor(t_map *map_elt)
 
 int		ft_check_map(t_map *map_elt)
 {
-	int		line;
-	char	*tmp_str;
 	int		er_val;
 
 	er_val = NO_ERROR;
@@ -76,15 +74,6 @@ int		ft_check_map(t_map *map_elt)
 		(er_val = ft_ckeck_map_border(map_elt->map)) ||
 		(er_val = ft_get_player_coor(map_elt)))
 		return (er_val);
-	line = 1;
-	while (map_elt->map[line])
-	{
-		tmp_str = ft_remove_in_str(map_elt->map[line], "1");
-		if (*tmp_str == '\0' && map_elt->p_coord.x > line)
-			return (MAP_SPECIAL_ERROR);
-		free(tmp_str);
-		line++;
-	}
 	return (er_val);
 }
 

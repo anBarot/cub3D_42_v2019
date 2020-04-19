@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:16:31 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 11:35:59 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 15:28:11 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ void	ft_create_screenshot(t_config *config, char *av1)
 	char	*tmp;
 	char	*tmp2;
 
-	tmp = ft_substr(av1, 6, 7);
+	tmp = ft_substr(av1, 4, 10);
 	tmp2 = ft_strtrim(tmp, ".cub");
+	free(tmp);
 	file_name = ft_strjoin(tmp2, ft_strdup(".bmp"));
-	fd = open(file_name, O_WRONLY | O_APPEND | O_CREAT, 0644);
+	fd = open(file_name, O_WRONLY | O_CREAT, 0644);
 	ft_create_bmp_header(config, fd);
 	ft_copy_mlx_string(config, fd);
 	free(file_name);
-	free(tmp);
-	free(tmp2);
 	close(fd);
 }

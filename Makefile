@@ -6,7 +6,7 @@
 #    By: abarot <abarot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 13:40:59 by abarot            #+#    #+#              #
-#    Updated: 2020/04/19 09:52:42 by abarot           ###   ########.fr        #
+#    Updated: 2020/04/19 15:31:26 by abarot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS	=	srcs/main.c \
 
 OBJS	=	$(SRCS:.c=.o)
 
-CFLAGS	=	-Wall -Wextra #-Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
 INCL	=	include
 
