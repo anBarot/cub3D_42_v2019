@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 17:05:10 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 12:00:52 by abarot           ###   ########.fr       */
+/*   Updated: 2020/04/19 13:03:22 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void	ft_initialyse_ray(t_raycast *ray)
 
 int		ft_outside_map(double x, double y, char **map)
 {
-	if ((int)(x / SQUARE_SIZE) > (ft_count_line(map) - 1)
-		|| (int)(y / SQUARE_SIZE) > ((int)ft_strlen(map[0]) - 1)
-		|| (int)(y / SQUARE_SIZE) > ((int)ft_strlen(map[0]) + 1)
+	if ((int)(y / SQUARE_SIZE) > ((int)ft_strlen(map[0]) - 1)
 		|| (int)(x / SQUARE_SIZE) < 0
-		|| (int)(y / SQUARE_SIZE) < 0)
+		|| (int)(y / SQUARE_SIZE) < 0
+		|| (int)(x / SQUARE_SIZE) > (ft_count_line(map) - 2))
 		return (1);
 	return (0);
 }
