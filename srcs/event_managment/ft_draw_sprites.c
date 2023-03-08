@@ -6,7 +6,7 @@
 /*   By: abarot <abarot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/27 13:45:17 by abarot            #+#    #+#             */
-/*   Updated: 2020/04/19 11:22:34 by abarot           ###   ########.fr       */
+/*   Updated: 2023/03/08 15:19:27 by abarot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_init_ds2(t_drsprites_2 *ds_2, t_config cf, t_drsprites ds)
 	ds_2->obj_proj, ds_2->obj_proj);
 	ds_2->col = ds.col;
 	if (ds.col == 0)
-		while (abs(ds.sprite_ray.dist_obj - ds_2->mem_dist) <
+		while (abs((int)ds.sprite_ray.dist_obj - ds_2->mem_dist) <
 		SQUARE_SIZE && ds.sprite_ray.dist_obj < ds.wall_ray.dist_obj
 		&& abs(ds_2->col) < (ds_2->obj_proj))
 		{
@@ -58,7 +58,7 @@ void	ft_put_tmp_img(t_config *cf, t_drsprites *ds)
 	t_drsprites_2 ds_2;
 
 	ft_init_ds2(&ds_2, *cf, *ds);
-	while (abs(ds->sprite_ray.dist_obj - ds_2.mem_dist) <
+	while (abs((int)ds->sprite_ray.dist_obj - ds_2.mem_dist) <
 	SQUARE_SIZE && ds->sprite_ray.dist_obj < ds->wall_ray.dist_obj &&
 	ds->col < cf->parse.resol.x)
 	{
