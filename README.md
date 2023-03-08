@@ -2,9 +2,9 @@
 
 ## Presentation
 
-### cub3D is a 3D labyrinth coded in C, using the 42 mlx library, a simple X-Window (X11R6) programming API in C suitable for X-beginners.
-### The program is compiled using make and takes one mandatory parameter, the path to the map, 
-### and an optional parameter --save, which creates a screenshot of the first image the player see.
+cub3D is a 3D labyrinth coded in C, using the 42 mlx library, a simple X-Window (X11R6) programming API in C suitable for X-beginners.
+The program is compiled using make and takes one mandatory parameter, the path to the map, 
+and an optional parameter --save, which creates a screenshot of the first image the player see.
 
 ```
 make
@@ -16,11 +16,11 @@ make
 
 ## Changing the map
 
-### You can create your own custom map with a .cub extension.
-### The R is the resolution of the window, 5 textures have to be given : the South (SO), West (WE), Est (EA) and North (N) walls and the sprite (S).
-### The floor and ceiling colors are configured with rgb values.
-### Then the map is drawned : (1) represent walls, (0) is empty, (2) is to create a sprite.
-### The player is displayed inside the map with N/E/S or W, wich is the direction the player is turned to.
+You can create your own custom map with a .cub extension.
+The R is the resolution of the window, 5 textures have to be given : the South (SO), West (WE), Est (EA) and North (N) walls and the sprite (S).
+The floor and ceiling colors are configured with rgb values.
+Then the map is drawned : (1) represent walls, (0) is empty, (2) is to create a sprite.
+The player is displayed inside the map with N/E/S or W, wich is the direction the player is turned to.
 
 ```
 R 1200 900
